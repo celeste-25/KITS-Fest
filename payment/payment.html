@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Event Registration</title>
+  <title>Payment Page</title>
   <link rel="stylesheet" href="payment.css">
 </head>
 <body>
@@ -39,21 +39,70 @@
         <option value="Tech">Tech</option>
       </select>
 
-      <div id="eventOptions"></div>
-
       <label for="transactionId">Transaction ID</label>
       <input type="text" id="transactionId" pattern="^[A-Za-z0-9]{12}$" required placeholder="Enter Transaction ID (12 chars)" />
 
       <label for="uploadImage">Upload Image</label>
       <input type="file" id="uploadImage" required />
 
-      <button type="submit" id="submitBtn" disabled>Submit</button>
+      <button type="submit" id="submitBtn">Submit</button>
     </form>
-    
-    <h3>Registration Records:</h3>
-    <ul id="recordsList"></ul>
   </div>
 
-  <script type="module" src="payment.js"></script>
+  <h3>Payment Records:</h3>
+  <ul id="paymentsList"></ul>
+
+  <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+      import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-database.js";
+
+      const firebaseConfig = {
+          apiKey: "AIzaSyCqT-JZP038sERBgoRaiqRmPkVGDUGYLPw",
+          authDomain: "event-payment-30106.firebaseapp.com",
+          databaseURL: "https://event-payment-30106-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "event-payment-30106",
+          storageBucket: "event-payment-30106.appspot.com",
+          messagingSenderId: "171503241159",
+          appId: "1:171503241159:web:2347c107e65fb7a4003be2"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+      const paymentsRef = ref(database, "payments");
+
+      document.getElementById("paymentForm").addEventListener("submit", function(e) {
+          e.preventDefault();
+          const name = document.getElementById("name").value;
+          const year = document.getElementById("year").value;
+          const branch = document.getElementById("branch").value;
+          const eventType = document.getElementById("eventType").value;
+          const transactionId = document.getElementById("transactionId").value;
+
+          push(paymentsRef, {
+              name,
+              year,
+              branch,
+              eventType,
+              transactionId,
+              timestamp: new Date().toISOString()
+          });
+
+          alert("Registration submitted successfully!");
+      });
+
+      onValue(paymentsRef, (snapshot) => {
+          const data = snapshot.val();
+          const paymentsList = document.getElementById("paymentsList");
+          paymentsList.innerHTML = "";
+
+          if (data) {
+              Object.values(data).forEach(payment => {
+                  const listItem = document.createElement("li");
+                  listItem.textContent = `${payment.name} (${payment.year}, ${payment.branch}) registered for ${payment.eventType} on ${payment.timestamp}`;
+                  paymentsList.appendChild(listItem);
+              });
+          }
+      });
+  </script>
 </body>
 </html>
