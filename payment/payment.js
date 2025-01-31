@@ -1,6 +1,7 @@
 document.getElementById("paymentForm").addEventListener("submit", function (e) {
-    e.preventDefault(); 
-    console.log("Submitting data to Google Sheets..."); 
+    e.preventDefault();
+
+    console.log("Submitting data to Google Sheets...");
 
     let formData = new FormData(this);
     let data = {};
@@ -9,8 +10,7 @@ document.getElementById("paymentForm").addEventListener("submit", function (e) {
         data[key] = value;
     });
 
-    console.log("Form Data:", data); 
-
+    console.log("Form Data:", data);
     fetch("https://script.google.com/macros/s/AKfycbyajUmXaeaAZJev-JhKzdkPU_tkhiK24yM-YdCTRfvXhK1i5OGm4KrnMvOzCVMcFB2y-g/exec", { 
         method: "POST",
         headers: {
@@ -18,7 +18,7 @@ document.getElementById("paymentForm").addEventListener("submit", function (e) {
         },
         body: JSON.stringify(data)
     })
-    .then(response => response.text()) 
+    .then(response => response.text())
     .then(result => {
         console.log("Success:", result);
         alert("Payment details submitted successfully!"); 
