@@ -1,7 +1,10 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #FFE53B;
+*
+{
+     background-color: #FFE53B;
     background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);
+}
+    body {
+    font-family: Arial, sans-serif;
     justify-content: center;
     align-items: center;
     height: 100vh;
