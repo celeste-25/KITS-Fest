@@ -85,6 +85,7 @@
 
       // Get the public URL of the uploaded image
       const imageUrl = supabase.storage.from('event-images').getPublicUrl(storageData.path).publicURL;
+      console.log('Image URL:', imageUrl);  // Log the image URL to ensure it's correct
 
       // Insert data into the 'registrations' table
       const { data, error } = await supabase
@@ -106,25 +107,35 @@
       } else {
         alert('Registration submitted successfully!');
         form.reset();
+        fetchPayments();  // Refresh the payments list after successful submission
       }
     });
 
     // Fetch and display the payments list
     async function fetchPayments() {
       const { data, error } = await supabase.from('registrations').select('*');
+
       if (error) {
         console.error('Error fetching payments:', error.message);
       } else {
-        paymentsList.innerHTML = '';
+        console.log('Fetched data:', data);  // Log the fetched data to see what's returned
+        paymentsList.innerHTML = '';  // Clear existing list
+
+        // Loop through the fetched data and create list items
         data.forEach(payment => {
           const listItem = document.createElement('li');
-          listItem.innerHTML = `${payment.name} (${payment.year}, ${payment.branch}) registered for ${payment.eventType} on ${payment.timestamp}<br><img src="${payment.imageUrl}" alt="Image" width="100">`;
+          listItem.innerHTML = `
+            ${payment.name} (${payment.year}, ${payment.branch}) registered for ${payment.eventType} on ${payment.timestamp}
+            <br><img src="${payment.imageUrl}" alt="Image" width="100">
+          `;
           paymentsList.appendChild(listItem);
         });
       }
     }
 
-    fetchPayments();
+    // Call the fetchPayments function on page load to display the records
+    window.onload = fetchPayments;
+
   </script>
 </body>
 </html>
