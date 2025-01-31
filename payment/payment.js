@@ -16,7 +16,7 @@ document.getElementById("paymentForm").addEventListener("submit", async function
         imageUrl: "Uploaded Image (Not saved here)"
     };
 
-    const response = await fetch("https://script.google.com/macros/s/AKfycbyPsXXmQOCqg3a3FR06gbxuqn1c4hxEl6iAeO7CHOU7qE9gChvx81BdCb5pjZNwsjii3w/exec", {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbxIT844KU6Zm4Hqz7fCEGiz20pebsvMsC1O7S9VeyatFhrnsk4uqLN7CcP29GQJzZ3Ggg/exec", {
         method: "POST",
         body: JSON.stringify(formData),
         headers: { "Content-Type": "application/json" }
