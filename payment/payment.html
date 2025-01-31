@@ -1,37 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Payment Form</title>
-  <link rel="stylesheet" href="payment.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Payment</title>
 </head>
 <body>
-  <h1>Payment Form</h1>
-  <form id="payment-form" enctype="multipart/form-data">
-    <label for="eventType">Event Type:</label>
-    <input type="text" id="eventType" name="eventType" required>
-    <br><br>
-    <label for="userName">Your Name:</label>
-    <input type="text" id="userName" name="userName" required>
-    <br><br>
-    <label for="userEmail">Email:</label>
-    <input type="email" id="userEmail" name="userEmail" required>
-    <br><br>
-    <label for="image">Upload Image:</label>
-    <input type="file" id="image" name="image" required>
-    <br><br>
-    <button type="submit">Submit</button>
-  </form>
-  <script src="payment.js"></script>
-  <!-- Firebase SDKs (data collection vendi) -->
-<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-database.js"></script>
-  <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-  import { getDatabase, ref, set, push, onValue } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-database.js";
-</script>
+    <h2>Event Payment Form</h2>
+    
+    <form id="paymentForm">
+        <input type="text" id="username" placeholder="Enter name" required>
+        <input type="number" id="amount" placeholder="Enter amount" required>
+        <button type="submit">Submit</button>
+    </form>
 
+    <h3>Payment Records:</h3>
+    <ul id="paymentsList"></ul>
 
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import necessary Firebase functions
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+        import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-database.js";
+
+        // Your Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCqT-JZP038sERBgoRaiqRmPkVGDUGYLPw",
+            authDomain: "event-payment-30106.firebaseapp.com",
+            databaseURL: "https://event-payment-30106-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "event-payment-30106",
+            storageBucket: "event-payment-30106.appspot.com",
+            messagingSenderId: "171503241159",
+            appId: "1:171503241159:web:2347c107e65fb7a4003be2"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Reference to "payments" collection in Firebase
+        const paymentsRef = ref(database, "payments");
+
+        // Submit payment data
+        document.getElementById("paymentForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const amount = document.getElementById("amount").value;
+
+            // Push new data to Firebase
+            push(paymentsRef, {
+                username: username,
+                amount: amount,
+                timestamp: new Date().toISOString()
+            });
+
+            alert("Payment data submitted!");
+        });
+
+        // Retrieve and display payment data
+        onValue(paymentsRef, (snapshot) => {
+            const data = snapshot.val();
+            const paymentsList = document.getElementById("paymentsList");
+            paymentsList.innerHTML = ""; // Clear list before updating
+
+            if (data) {
+                Object.values(data).forEach(payment => {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = `${payment.username} paid $${payment.amount} on ${payment.timestamp}`;
+                    paymentsList.appendChild(listItem);
+                });
+            }
+        });
+    </script>
 </body>
 </html>
