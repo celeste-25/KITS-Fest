@@ -52,6 +52,79 @@
   <h3>Payment Records:</h3>
   <ul id="paymentsList"></ul>
 
-  <script type="module" src="payment.js"></script>
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+    // Initialize Supabase
+    const supabaseUrl = 'https://<your-supabase-url>';
+    const supabaseKey = '<your-supabase-key>';
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    const form = document.getElementById("paymentForm");
+    const paymentsList = document.getElementById("paymentsList");
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const year = document.getElementById("year").value;
+      const branch = document.getElementById("branch").value;
+      const eventType = document.getElementById("eventType").value;
+      const transactionId = document.getElementById("transactionId").value;
+      const imageFile = document.getElementById("uploadImage").files[0];
+
+      // Upload the image to Supabase Storage
+      const { data: storageData, error: storageError } = await supabase.storage
+        .from('event-images')
+        .upload(`images/${Date.now()}_${imageFile.name}`, imageFile);
+
+      if (storageError) {
+        console.error('Error uploading image:', storageError.message);
+        return;
+      }
+
+      // Get the public URL of the uploaded image
+      const imageUrl = supabase.storage.from('event-images').getPublicUrl(storageData.path).publicURL;
+
+      // Insert data into the 'registrations' table
+      const { data, error } = await supabase
+        .from('registrations')
+        .insert([
+          { 
+            name, 
+            year, 
+            branch, 
+            eventType, 
+            transactionId, 
+            imageUrl 
+          }
+        ]);
+
+      if (error) {
+        console.error('Error inserting registration:', error.message);
+        alert('Registration failed!');
+      } else {
+        alert('Registration submitted successfully!');
+        form.reset();
+      }
+    });
+
+    // Fetch and display the payments list
+    async function fetchPayments() {
+      const { data, error } = await supabase.from('registrations').select('*');
+      if (error) {
+        console.error('Error fetching payments:', error.message);
+      } else {
+        paymentsList.innerHTML = '';
+        data.forEach(payment => {
+          const listItem = document.createElement('li');
+          listItem.innerHTML = `${payment.name} (${payment.year}, ${payment.branch}) registered for ${payment.eventType} on ${payment.timestamp}<br><img src="${payment.imageUrl}" alt="Image" width="100">`;
+          paymentsList.appendChild(listItem);
+        });
+      }
+    }
+
+    fetchPayments();
+  </script>
 </body>
 </html>
