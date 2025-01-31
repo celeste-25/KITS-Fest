@@ -1,31 +1,30 @@
-document.getElementById("paymentForm").addEventListener("submit", async function (e) {
-    e.preventDefault();
-    
-    const name = document.getElementById("name").value;
-    const year = document.getElementById("year").value;
-    const branch = document.getElementById("branch").value;
-    const eventType = document.getElementById("eventType").value;
-    const transactionId = document.getElementById("transactionId").value;
-    
-    const formData = {
-        name,
-        year,
-        branch,
-        eventType,
-        transactionId,
-        imageUrl: "Uploaded Image (Not saved here)"
-    };
+document.getElementById("paymentForm").addEventListener("submit", function (e) {
+    e.preventDefault(); 
+    console.log("Submitting data to Google Sheets..."); 
 
-    const response = await fetch("https://script.google.com/macros/s/AKfycbxIT844KU6Zm4Hqz7fCEGiz20pebsvMsC1O7S9VeyatFhrnsk4uqLN7CcP29GQJzZ3Ggg/exec", {
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: { "Content-Type": "application/json" }
+    let formData = new FormData(this);
+    let data = {};
+
+    formData.forEach((value, key) => { 
+        data[key] = value;
     });
 
-    if (response.ok) {
-        alert("Payment data submitted successfully!");
-        document.getElementById("paymentForm").reset();
-    } else {
-        alert("Error submitting payment.");
-    }
+    console.log("Form Data:", data); 
+
+    fetch("https://script.google.com/macros/s/AKfycbyajUmXaeaAZJev-JhKzdkPU_tkhiK24yM-YdCTRfvXhK1i5OGm4KrnMvOzCVMcFB2y-g/exec", { 
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.text()) 
+    .then(result => {
+        console.log("Success:", result);
+        alert("Payment details submitted successfully!"); 
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert("Failed to submit payment details. Please try again.");
+    });
 });
