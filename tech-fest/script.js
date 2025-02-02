@@ -5,8 +5,8 @@ let registrationUrl = "";
 
 if (window.location.pathname.includes('th.html')) {
   registrationUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfX8ovXyEv-CLf3BF6oXscR4zqYlV3Fu_mUHzD66BC_yHIqmg/viewform?usp=header";
-} else if (window.location.pathname.includes('page1.html')) {
-  registrationUrl = "https://link-for-page1.com";
+} else if (window.location.pathname.includes('bgmi.html')) {
+  registrationUrl = "../../payment/payment.html";
 } else if (window.location.pathname.includes('page2.html')) {
   registrationUrl = "https://link-for-page2.com";
 } else {
