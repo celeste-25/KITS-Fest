@@ -42,11 +42,7 @@ document.getElementById("paymentForm").addEventListener("submit", function(e) {
   document.getElementById("paymentForm").reset();
 });
 
-// Retrieve and display registrations
-onValue(recordsRef, (snapshot) => {
-  const data = snapshot.val();
-  const recordsList = document.getElementById("recordsList");
-  recordsList.innerHTML = ""; // Clear previous entries
+
 
   if (data) {
     Object.values(data).forEach(record => {
