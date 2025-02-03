@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,7 +57,12 @@
 
       <button type="submit" id="submitBtn">Submit</button>
     </form>
+
+    <ul id="recordsList"></ul>
   </div>
+
+  <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js"></script>
 
   <script>
     const eventType = document.getElementById("eventType");
@@ -124,6 +128,7 @@
 
     document.getElementById("paymentForm").addEventListener("submit", function(e) {
       e.preventDefault();
+
       const name = document.getElementById("name").value;
       const year = document.getElementById("year").value;
       const branch = document.getElementById("branch").value;
@@ -137,14 +142,33 @@
         return;
       }
 
-      console.log({ name, year, branch, eventType, subCategory, selectedEvents, transactionId });
+      // Save data in Firebase
+      const firebaseApp = firebase.initializeApp({
+        apiKey: "AIzaSyD9KhodYSPnxCvRfOkRhxstCEQsxWXj9dY",  // New API Key
+        authDomain: "event-payment-76894.firebaseapp.com",  // New Auth Domain
+        databaseURL: "https://event-payment-76894-default-rtdb.asia-southeast1.firebasedatabase.app",  // New DB URL
+        projectId: "event-payment-76894",  // New Project ID
+        storageBucket: "event-payment-76894.firebasestorage.app",  // New Storage Bucket
+        messagingSenderId: "662934680496",  // New Messaging Sender ID
+        appId: "1:662934680496:web:5b834df99d41ab937b5c75"  // New App ID
+      });
+      const database = firebase.database();
+      const recordsRef = database.ref("registrations");
+
+      recordsRef.push({
+        name,
+        year,
+        branch,
+        eventType,
+        subCategory,
+        selectedEvents,
+        transactionId,
+        timestamp: new Date().toISOString()
+      });
 
       alert("Registration submitted successfully!");
+      document.getElementById("paymentForm").reset();
     });
   </script>
-  <script src="payment.js"></script>
 </body>
 </html>
-
-
-
