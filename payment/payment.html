@@ -64,111 +64,122 @@
   <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js"></script>
 
-  <script>
-    const eventType = document.getElementById("eventType");
-    const subCategoryContainer = document.getElementById("subCategoryContainer");
-    const subCategory = document.getElementById("subCategory");
-    const eventsContainer = document.getElementById("eventsContainer");
-    const events = document.getElementById("events");
+<script>
+  const eventType = document.getElementById("eventType");
+  const subCategoryContainer = document.getElementById("subCategoryContainer");
+  const subCategory = document.getElementById("subCategory");
+  const eventsContainer = document.getElementById("eventsContainer");
+  const events = document.getElementById("events");
 
-    // Data for Events
-    const eventOptions = {
-      "Sports": {
-        "Men’s Group Events": ["Football", "Cricket", "Volleyball", "Badminton Doubles", "400 Meters Relay"],
-        "Women’s Group Events": ["Throw Ball", "Badminton Doubles", "Penalty Shootout", "400 Meters Relay"],
-        "Athletic Events": ["100 Meters", "200 Meters", "Javelin Throw", "Disk Throw", "Shotput Throw", "Long Jump", "High Jump"]
-      },
-      "Arts": {
-        "Arts Fest": ["Solo Song", "Group Song", "Solo Dance", "Spot Chore", "Mr & Mrs", "Film Scene Recreation", "Fashion Show"]
-      },
-      "Tech": {
-        "Common Events": ["Poem Writing", "Essay Writing", "Story Writing", "Pencil Drawing", "Cartoon Drawing", "Face Drawing"],
-        "Technical Events": ["Treasure Hunt", "Bridge Making", "Tricky Circuit", "Toss the Egg", "Logo Identification", "Escape Room", "Chess"],
-        "Mobile Games": ["PUBG", "PES", "Free Fire"]
-      }
+  // Data for Events
+  const eventOptions = {
+    "Sports": {
+      "Men’s Group Events": ["Football", "Cricket", "Volleyball", "Badminton Doubles", "400 Meters Relay"],
+      "Women’s Group Events": ["Throw Ball", "Badminton Doubles", "Penalty Shootout", "400 Meters Relay"],
+      "Athletic Events": ["100 Meters", "200 Meters", "Javelin Throw", "Disk Throw", "Shotput Throw", "Long Jump", "High Jump"]
+    },
+    "Arts": {
+      "Arts Fest": ["Solo Song", "Group Song", "Solo Dance", "Spot Chore", "Mr & Mrs", "Film Scene Recreation", "Fashion Show"]
+    },
+    "Tech": {
+      "Common Events": ["Poem Writing", "Essay Writing", "Story Writing", "Pencil Drawing", "Cartoon Drawing", "Face Drawing"],
+      "Technical Events": ["Treasure Hunt", "Bridge Making", "Tricky Circuit", "Toss the Egg", "Logo Identification", "Escape Room", "Chess"],
+      "Mobile Games": ["PUBG", "PES", "Free Fire"]
+    }
+  };
+
+  eventType.addEventListener("change", function () {
+    const selectedType = eventType.value;
+
+    if (selectedType) {
+      subCategoryContainer.style.display = "block";
+      subCategory.innerHTML = '<option value="">Select Sub Category</option>';
+
+      Object.keys(eventOptions[selectedType]).forEach(category => {
+        const option = document.createElement("option");
+        option.value = category;
+        option.textContent = category;
+        subCategory.appendChild(option);
+      });
+    } else {
+      subCategoryContainer.style.display = "none";
+      eventsContainer.style.display = "none";
+    }
+  });
+
+  subCategory.addEventListener("change", function () {
+    const selectedType = eventType.value;
+    const selectedSubCategory = subCategory.value;
+
+    if (selectedSubCategory) {
+      eventsContainer.style.display = "block";
+      events.innerHTML = "";
+
+      eventOptions[selectedType][selectedSubCategory].forEach(event => {
+        const option = document.createElement("option");
+        option.value = event;
+        option.textContent = event;
+        events.appendChild(option);
+      });
+    } else {
+      eventsContainer.style.display = "none";
+    }
+  });
+
+  document.getElementById("paymentForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const year = document.getElementById("year").value;
+    const branch = document.getElementById("branch").value;
+    const eventType = document.getElementById("eventType").value;
+    const subCategory = document.getElementById("subCategory").value;
+    const selectedEvents = Array.from(document.getElementById("events").selectedOptions).map(option => option.value);
+    const transactionId = document.getElementById("transactionId").value;
+
+    if (!selectedEvents.length) {
+      alert("Please select at least one event.");
+      return;
+    }
+
+    // Create the data object
+    const data = {
+      name,
+      year,
+      branch,
+      eventType,
+      subCategory,
+      selectedEvents,
+      transactionId,
+      timestamp: new Date().toISOString()
     };
 
-    eventType.addEventListener("change", function () {
-      const selectedType = eventType.value;
+    // Log the data before pushing it to Firebase
+    console.log("Data being pushed to Firebase: ", data);
 
-      if (selectedType) {
-        subCategoryContainer.style.display = "block";
-        subCategory.innerHTML = '<option value="">Select Sub Category</option>';
-
-        Object.keys(eventOptions[selectedType]).forEach(category => {
-          const option = document.createElement("option");
-          option.value = category;
-          option.textContent = category;
-          subCategory.appendChild(option);
-        });
-      } else {
-        subCategoryContainer.style.display = "none";
-        eventsContainer.style.display = "none";
-      }
+    // Save data in Firebase
+    const firebaseApp = firebase.initializeApp({
+      apiKey: "AIzaSyD9KhodYSPnxCvRfOkRhxstCEQsxWXj9dY",
+      authDomain: "event-payment-76894.firebaseapp.com",
+      databaseURL: "https://celeste-25-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "event-payment-76894",
+      storageBucket: "event-payment-76894.firebasestorage.app",
+      messagingSenderId: "662934680496",
+      appId: "1:662934680496:web:5b834df99d41ab937b5c75"
     });
+    const database = firebase.database();
+    const recordsRef = database.ref("registrations");
 
-    subCategory.addEventListener("change", function () {
-      const selectedType = eventType.value;
-      const selectedSubCategory = subCategory.value;
-
-      if (selectedSubCategory) {
-        eventsContainer.style.display = "block";
-        events.innerHTML = "";
-
-        eventOptions[selectedType][selectedSubCategory].forEach(event => {
-          const option = document.createElement("option");
-          option.value = event;
-          option.textContent = event;
-          events.appendChild(option);
-        });
-      } else {
-        eventsContainer.style.display = "none";
-      }
-    });
-
-    document.getElementById("paymentForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      const name = document.getElementById("name").value;
-      const year = document.getElementById("year").value;
-      const branch = document.getElementById("branch").value;
-      const eventType = document.getElementById("eventType").value;
-      const subCategory = document.getElementById("subCategory").value;
-      const selectedEvents = Array.from(document.getElementById("events").selectedOptions).map(option => option.value);
-      const transactionId = document.getElementById("transactionId").value;
-
-      if (!selectedEvents.length) {
-        alert("Please select at least one event.");
-        return;
-      }
-
-      // Save data in Firebase
-      const firebaseApp = firebase.initializeApp({
-        apiKey: "AIzaSyD9KhodYSPnxCvRfOkRhxstCEQsxWXj9dY",  // New API Key
-        authDomain: "event-payment-76894.firebaseapp.com",  // New Auth Domain
-        databaseURL: "https://celeste-25-default-rtdb.asia-southeast1.firebasedatabase.app"
-        projectId: "event-payment-76894",  // New Project ID
-        storageBucket: "event-payment-76894.firebasestorage.app",  // New Storage Bucket
-        messagingSenderId: "662934680496",  // New Messaging Sender ID
-        appId: "1:662934680496:web:5b834df99d41ab937b5c75"  // New App ID
+    recordsRef.push(data)
+      .then(() => {
+        alert("Registration submitted successfully!");
+        document.getElementById("paymentForm").reset();
+      })
+      .catch((error) => {
+        console.error("Error writing data to Firebase: ", error);
       });
-      const database = firebase.database();
-      const recordsRef = database.ref("registrations");
+  });
+</script>
 
-      recordsRef.push({
-        name,
-        year,
-        branch,
-        eventType,
-        subCategory,
-        selectedEvents,
-        transactionId,
-        timestamp: new Date().toISOString()
-      });
-
-      alert("Registration submitted successfully!");
-      document.getElementById("paymentForm").reset();
-    });
-  </script>
 </body>
 </html>
