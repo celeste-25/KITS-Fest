@@ -27,6 +27,8 @@ document.getElementById("paymentForm").addEventListener("submit", function(e) {
   const branch = document.getElementById("branch").value;
   const eventType = document.getElementById("eventType").value;
   const transactionId = document.getElementById("transactionId").value;
+  const subCategory = document.getElementById("subCategory").value;
+  const selectedEvents = Array.from(document.getElementById("events").selectedOptions).map(option => option.value);
 
   // Store data in Firebase
   push(recordsRef, {
@@ -35,6 +37,8 @@ document.getElementById("paymentForm").addEventListener("submit", function(e) {
     branch,
     eventType,
     transactionId,
+    subCategory,
+    selectedEvents
     timestamp: new Date().toISOString()
   });
 
