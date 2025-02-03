@@ -15,7 +15,7 @@
             <input type="email" name="email" placeholder="Email" required><br>
             <input type="tel" name="phone" placeholder="Phone" required><br>
             <input type="text" name="address" placeholder="Address" required><br>
-            <input type="file" name="image" id="imageInput" required><br>
+            <input type="file" name="image" id="imageInput" accept="image/*" required><br>
             <button type="submit">Submit</button>
         </form>
     </div>
@@ -27,46 +27,65 @@
             let formData = new FormData(this);
             let imageFile = formData.get("image");
 
-            // Upload Image to ImgBB and get URL
-            let imageUrl = await uploadImageToImgBB(imageFile);
+            try {
+                // Upload Image to ImgBB and get URL
+                let imageUrl = await uploadImageToImgBB(imageFile);
 
-            // Prepare JSON Data
-            let jsonData = {
-                name: formData.get("name"),
-                email: formData.get("email"),
-                phone: formData.get("phone"),
-                address: formData.get("address"),
-                imageUrl: imageUrl // Image URL from ImgBB
-            };
+                if (!imageUrl) {
+                    alert("Image upload failed! Please try again.");
+                    return;
+                }
 
-            // Submit Data to Google Apps Script
-            fetch("https://script.google.com/macros/s/AKfycbzWo5kSHtAmUKyOquZyC411JOWuxJynUx3ucHXRLdQ6pLP12wMbefgdvKdeVuqd0xtW/exec", {
-                method: "POST",
-                body: JSON.stringify(jsonData),
-                headers: { "Content-Type": "application/json" }
-            }).then(response => response.text())
-              .then(data => {
-                  alert("Form Submitted Successfully!");
-                  document.getElementById("registrationForm").reset();
-              })
-              .catch(error => {
-                  alert("Error submitting form.");
-                  console.error(error);
-              });
+                // Prepare JSON Data
+                let jsonData = {
+                    name: formData.get("name"),
+                    email: formData.get("email"),
+                    phone: formData.get("phone"),
+                    address: formData.get("address"),
+                    imageUrl: imageUrl // Image URL from ImgBB
+                };
+
+                // Submit Data to Google Apps Script
+                let response = await fetch("https://script.google.com/macros/s/AKfycbzWo5kSHtAmUKyOquZyC411JOWuxJynUx3ucHXRLdQ6pLP12wMbefgdvKdeVuqd0xtW/exec", {
+                    method: "POST",
+                    body: JSON.stringify(jsonData),
+                    headers: { "Content-Type": "application/json" }
+                });
+
+                let result = await response.text();
+                alert("Form Submitted Successfully!");
+
+                // Reset form only after successful submission
+                document.getElementById("registrationForm").reset();
+            } catch (error) {
+                alert("Error submitting form.");
+                console.error("Error:", error);
+            }
         });
 
         async function uploadImageToImgBB(file) {
-            let apiKey = "YOUR_IMGBB_API_KEY"; // Replace with your ImgBB API Key
+            let apiKey = "ecaa228b4f17c5bdd0ead8588770c689"; // Your ImgBB API Key
             let formData = new FormData();
             formData.append("image", file);
 
-            let response = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
-                method: "POST",
-                body: formData
-            });
+            try {
+                let response = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
+                    method: "POST",
+                    body: formData
+                });
 
-            let data = await response.json();
-            return data.data.url; // Return direct image URL
+                let data = await response.json();
+
+                if (data.success) {
+                    return data.data.url; // Return direct image URL
+                } else {
+                    console.error("ImgBB Upload Failed:", data);
+                    return null;
+                }
+            } catch (error) {
+                console.error("Error uploading image:", error);
+                return null;
+            }
         }
     </script>
 
