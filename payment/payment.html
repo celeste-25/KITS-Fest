@@ -39,6 +39,16 @@
         <option value="Tech">Tech</option>
       </select>
 
+      <div id="subCategoryContainer" style="display: none;">
+        <label for="subCategory">Sub Category</label>
+        <select id="subCategory"></select>
+      </div>
+
+      <div id="eventsContainer" style="display: none;">
+        <label for="events">Select Events</label>
+        <select id="events" multiple></select>
+      </div>
+
       <label for="transactionId">Transaction ID</label>
       <input type="text" id="transactionId" pattern="^[A-Za-z0-9]{12}$" required placeholder="Enter Transaction ID (12 chars)" />
 
@@ -49,59 +59,87 @@
     </form>
   </div>
 
- 
+  <script>
+    const eventType = document.getElementById("eventType");
+    const subCategoryContainer = document.getElementById("subCategoryContainer");
+    const subCategory = document.getElementById("subCategory");
+    const eventsContainer = document.getElementById("eventsContainer");
+    const events = document.getElementById("events");
 
-  <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-      import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-database.js";
+    // Data for Events
+    const eventOptions = {
+      "Sports": {
+        "Men’s Group Events": ["Football", "Cricket", "Volleyball", "Badminton Doubles", "400 Meters Relay"],
+        "Women’s Group Events": ["Throw Ball", "Badminton Doubles", "Penalty Shootout", "400 Meters Relay"],
+        "Athletic Events": ["100 Meters", "200 Meters", "Javelin Throw", "Disk Throw", "Shotput Throw", "Long Jump", "High Jump"]
+      },
+      "Arts": {
+        "Arts Fest": ["Solo Song", "Group Song", "Solo Dance", "Spot Chore", "Mr & Mrs", "Film Scene Recreation", "Fashion Show"]
+      },
+      "Tech": {
+        "Common Events": ["Poem Writing", "Essay Writing", "Story Writing", "Pencil Drawing", "Cartoon Drawing", "Face Drawing"],
+        "Technical Events": ["Treasure Hunt", "Bridge Making", "Tricky Circuit", "Toss the Egg", "Logo Identification", "Escape Room", "Chess"],
+        "Mobile Games": ["PUBG", "PES", "Free Fire"]
+      }
+    };
 
-      const firebaseConfig = {
-          apiKey: "AIzaSyCqT-JZP038sERBgoRaiqRmPkVGDUGYLPw",
-          authDomain: "event-payment-30106.firebaseapp.com",
-          databaseURL: "https://event-payment-30106-default-rtdb.asia-southeast1.firebasedatabase.app",
-          projectId: "event-payment-30106",
-          storageBucket: "event-payment-30106.appspot.com",
-          messagingSenderId: "171503241159",
-          appId: "1:171503241159:web:2347c107e65fb7a4003be2"
-      };
+    eventType.addEventListener("change", function () {
+      const selectedType = eventType.value;
 
-      const app = initializeApp(firebaseConfig);
-      const database = getDatabase(app);
-      const paymentsRef = ref(database, "payments");
+      if (selectedType) {
+        subCategoryContainer.style.display = "block";
+        subCategory.innerHTML = '<option value="">Select Sub Category</option>';
 
-      document.getElementById("paymentForm").addEventListener("submit", function(e) {
-          e.preventDefault();
-          const name = document.getElementById("name").value;
-          const year = document.getElementById("year").value;
-          const branch = document.getElementById("branch").value;
-          const eventType = document.getElementById("eventType").value;
-          const transactionId = document.getElementById("transactionId").value;
+        Object.keys(eventOptions[selectedType]).forEach(category => {
+          const option = document.createElement("option");
+          option.value = category;
+          option.textContent = category;
+          subCategory.appendChild(option);
+        });
+      } else {
+        subCategoryContainer.style.display = "none";
+        eventsContainer.style.display = "none";
+      }
+    });
 
-          push(paymentsRef, {
-              name,
-              year,
-              branch,
-              eventType,
-              transactionId,
-              timestamp: new Date().toISOString()
-          });
+    subCategory.addEventListener("change", function () {
+      const selectedType = eventType.value;
+      const selectedSubCategory = subCategory.value;
 
-          alert("Registration submitted successfully!");
-      });
+      if (selectedSubCategory) {
+        eventsContainer.style.display = "block";
+        events.innerHTML = "";
 
-      onValue(paymentsRef, (snapshot) => {
-          const data = snapshot.val();
-          const paymentsList = document.getElementById("paymentsList");
-          paymentsList.innerHTML = "";
+        eventOptions[selectedType][selectedSubCategory].forEach(event => {
+          const option = document.createElement("option");
+          option.value = event;
+          option.textContent = event;
+          events.appendChild(option);
+        });
+      } else {
+        eventsContainer.style.display = "none";
+      }
+    });
 
-          if (data) {
-              Object.values(data).forEach(payment => {
-                  const listItem = document.createElement("li");
-                  listItem.textContent = `${payment.name} (${payment.year}, ${payment.branch}) registered for ${payment.eventType} on ${payment.timestamp}`;
-                  paymentsList.appendChild(listItem);
-              });
-          }
-      });
+    document.getElementById("paymentForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const year = document.getElementById("year").value;
+      const branch = document.getElementById("branch").value;
+      const eventType = document.getElementById("eventType").value;
+      const subCategory = document.getElementById("subCategory").value;
+      const selectedEvents = Array.from(document.getElementById("events").selectedOptions).map(option => option.value);
+      const transactionId = document.getElementById("transactionId").value;
+
+      if (!selectedEvents.length) {
+        alert("Please select at least one event.");
+        return;
+      }
+
+      console.log({ name, year, branch, eventType, subCategory, selectedEvents, transactionId });
+
+      alert("Registration submitted successfully!");
+    });
   </script>
 </body>
 </html>
