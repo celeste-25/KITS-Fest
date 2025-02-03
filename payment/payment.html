@@ -1,145 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Payment Page</title>
-  <link rel="stylesheet" href="payment.css">
-</head>
-<body>
-  <div class="container">
-    <h2>Registration Form</h2>
-    <form id="paymentForm">
-      <label for="name">Name</label>
-      <input type="text" id="name" required placeholder="Enter your name" />
+// Initialize Firebase
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  databaseURL: "https://YOUR_PROJECT.firebaseio.com",
+  projectId: "YOUR_PROJECT",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
 
-      <label for="year">Year</label>
-      <select id="year" required>
-        <option value="">Select Year</option>
-        <option value="1st Year">1st Year</option>
-        <option value="2nd Year">2nd Year</option>
-        <option value="3rd Year">3rd Year</option>
-        <option value="4th Year">4th Year</option>
-      </select>
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+const storage = firebase.storage(); // For image upload
 
-      <label for="branch">Branch</label>
-      <select id="branch" required>
-        <option value="">Select Branch</option>
-        <option value="CSE">CSE</option>
-        <option value="Civil">Civil</option>
-        <option value="Mech">Mech</option>
-        <option value="Automobile">Automobile</option>
-      </select>
+document.getElementById("paymentForm").addEventListener("submit", function (e) {
+  e.preventDefault();
 
-      <label for="eventType">Event Type</label>
-      <select id="eventType" required>
-        <option value="">Select Event Type</option>
-        <option value="Sports">Sports</option>
-        <option value="Arts">Arts</option>
-        <option value="Tech">Tech</option>
-      </select>
+  // Collect form values
+  const name = document.getElementById("name").value;
+  const year = document.getElementById("year").value;
+  const branch = document.getElementById("branch").value;
+  const eventType = document.getElementById("eventType").value;
+  const subCategory = document.getElementById("subCategory").value;
+  const selectedEvents = Array.from(document.getElementById("events").selectedOptions).map(opt => opt.value);
+  const transactionId = document.getElementById("transactionId").value;
+  const fileInput = document.getElementById("uploadImage").files[0]; // Get uploaded image
 
-      <div id="subCategoryContainer" style="display: none;">
-        <label for="subCategory">Sub Category</label>
-        <select id="subCategory"></select>
-      </div>
+  if (!selectedEvents.length) {
+    alert("Please select at least one event.");
+    return;
+  }
 
-      <div id="eventsContainer" style="display: none;">
-        <label for="events">Select Events</label>
-        <select id="events" multiple></select>
-      </div>
-
-      <label for="transactionId">Transaction ID</label>
-      <input type="text" id="transactionId" pattern="^[A-Za-z0-9]{12}$" required placeholder="Enter Transaction ID (12 chars)" />
-
-      <label for="uploadImage">Upload Image</label>
-      <input type="file" id="uploadImage" required />
-
-      <button type="submit" id="submitBtn">Submit</button>
-    </form>
-  </div>
-
-  <script>
-    const eventType = document.getElementById("eventType");
-    const subCategoryContainer = document.getElementById("subCategoryContainer");
-    const subCategory = document.getElementById("subCategory");
-    const eventsContainer = document.getElementById("eventsContainer");
-    const events = document.getElementById("events");
-
-    // Data for Events
-    const eventOptions = {
-      "Sports": {
-        "Men’s Group Events": ["Football", "Cricket", "Volleyball", "Badminton Doubles", "400 Meters Relay"],
-        "Women’s Group Events": ["Throw Ball", "Badminton Doubles", "Penalty Shootout", "400 Meters Relay"],
-        "Athletic Events": ["100 Meters", "200 Meters", "Javelin Throw", "Disk Throw", "Shotput Throw", "Long Jump", "High Jump"]
-      },
-      "Arts": {
-        "Arts Fest": ["Solo Song", "Group Song", "Solo Dance", "Spot Chore", "Mr & Mrs", "Film Scene Recreation", "Fashion Show"]
-      },
-      "Tech": {
-        "Common Events": ["Poem Writing", "Essay Writing", "Story Writing", "Pencil Drawing", "Cartoon Drawing", "Face Drawing"],
-        "Technical Events": ["Treasure Hunt", "Bridge Making", "Tricky Circuit", "Toss the Egg", "Logo Identification", "Escape Room", "Chess"],
-        "Mobile Games": ["PUBG", "PES", "Free Fire"]
-      }
-    };
-
-    eventType.addEventListener("change", function () {
-      const selectedType = eventType.value;
-
-      if (selectedType) {
-        subCategoryContainer.style.display = "block";
-        subCategory.innerHTML = '<option value="">Select Sub Category</option>';
-
-        Object.keys(eventOptions[selectedType]).forEach(category => {
-          const option = document.createElement("option");
-          option.value = category;
-          option.textContent = category;
-          subCategory.appendChild(option);
-        });
-      } else {
-        subCategoryContainer.style.display = "none";
-        eventsContainer.style.display = "none";
-      }
-    });
-
-    subCategory.addEventListener("change", function () {
-      const selectedType = eventType.value;
-      const selectedSubCategory = subCategory.value;
-
-      if (selectedSubCategory) {
-        eventsContainer.style.display = "block";
-        events.innerHTML = "";
-
-        eventOptions[selectedType][selectedSubCategory].forEach(event => {
-          const option = document.createElement("option");
-          option.value = event;
-          option.textContent = event;
-          events.appendChild(option);
-        });
-      } else {
-        eventsContainer.style.display = "none";
-      }
-    });
-
-    document.getElementById("paymentForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const name = document.getElementById("name").value;
-      const year = document.getElementById("year").value;
-      const branch = document.getElementById("branch").value;
-      const eventType = document.getElementById("eventType").value;
-      const subCategory = document.getElementById("subCategory").value;
-      const selectedEvents = Array.from(document.getElementById("events").selectedOptions).map(option => option.value);
-      const transactionId = document.getElementById("transactionId").value;
-
-      if (!selectedEvents.length) {
-        alert("Please select at least one event.");
-        return;
-      }
-
-      console.log({ name, year, branch, eventType, subCategory, selectedEvents, transactionId });
-
-      alert("Registration submitted successfully!");
-    });
-  </script>
-</body>
-</html>
+  // Push data to Firebase Database
+  const newEntryRef = database.ref("registrations").push();
+  newEntryRef.set({
+    name,
+    year,
+    branch,
+    eventType,
+    subCategory,
+    selectedEvents,
+    transactionId,
+    imageURL: "" // Placeholder for uploaded image URL
+  }).then(() => {
+    if (fileInput) {
+      const storageRef = storage.ref(`payment_images/${newEntryRef.key}_${fileInput.name}`);
+      return storageRef.put(fileInput).then(snapshot => {
+        return snapshot.ref.getDownloadURL();
+      }).then(downloadURL => {
+        newEntryRef.update({ imageURL: downloadURL });
+      });
+    }
+  }).then(() => {
+    alert("Registration submitted successfully!");
+    document.getElementById("paymentForm").reset(); // Clear form
+  }).catch(error => {
+    console.error("Error submitting registration:", error);
+    alert("Error submitting registration. Please try again.");
+  });
+});
