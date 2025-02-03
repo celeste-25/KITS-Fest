@@ -3,12 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Payment Page</title>
+  <title>Event Registration</title>
   <link rel="stylesheet" href="payment.css">
+  <style>
+    .event-category {
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+    .event-subcategory {
+      font-weight: bold;
+      font-size: 16px;
+      margin-top: 5px;
+    }
+    .event-options {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .event-options label {
+      width: 50%;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <h2>Registration Form</h2>
+    <h2>Event Registration</h2>
     <form id="paymentForm">
       <label for="name">Name</label>
       <input type="text" id="name" required placeholder="Enter your name" />
@@ -31,22 +50,80 @@
         <option value="Automobile">Automobile</option>
       </select>
 
-      <label for="eventType">Event Type</label>
-      <select id="eventType" required>
-        <option value="">Select Event Type</option>
-        <option value="Sports">Sports</option>
-        <option value="Arts">Arts</option>
-        <option value="Tech">Tech</option>
-      </select>
+      <!-- Event Selection -->
+      <div id="eventSelection">
+        <div class="event-category">Sports</div>
 
-      <div id="subCategoryContainer" style="display: none;">
-        <label for="subCategory">Sub Category</label>
-        <select id="subCategory"></select>
-      </div>
+        <div class="event-subcategory">Men’s Group Events</div>
+        <div class="event-options">
+          <label><input type="checkbox" value="Football"> Football</label>
+          <label><input type="checkbox" value="Cricket"> Cricket</label>
+          <label><input type="checkbox" value="Volleyball"> Volleyball</label>
+          <label><input type="checkbox" value="Badminton Doubles"> Badminton Doubles</label>
+          <label><input type="checkbox" value="400 Meters Relay"> 400 Meters Relay</label>
+        </div>
 
-      <div id="eventsContainer" style="display: none;">
-        <label for="events">Select Events</label>
-        <select id="events" multiple></select>
+        <div class="event-subcategory">Women’s Group Events</div>
+        <div class="event-options">
+          <label><input type="checkbox" value="Throw Ball"> Throw Ball</label>
+          <label><input type="checkbox" value="Badminton Doubles"> Badminton Doubles</label>
+          <label><input type="checkbox" value="Penalty Shootout"> Penalty Shootout</label>
+          <label><input type="checkbox" value="400 Meters Relay"> 400 Meters Relay</label>
+        </div>
+
+        <div class="event-subcategory">Athletic Events</div>
+        <div class="event-options">
+          <label><input type="checkbox" value="100 Meters"> 100 Meters</label>
+          <label><input type="checkbox" value="200 Meters"> 200 Meters</label>
+          <label><input type="checkbox" value="Javelin Throw"> Javelin Throw</label>
+          <label><input type="checkbox" value="Disk Throw"> Disk Throw</label>
+          <label><input type="checkbox" value="Shotput Throw"> Shotput Throw</label>
+          <label><input type="checkbox" value="Long Jump"> Long Jump</label>
+          <label><input type="checkbox" value="High Jump"> High Jump</label>
+        </div>
+
+        <div class="event-category">Arts</div>
+
+        <div class="event-subcategory">Arts Fest</div>
+        <div class="event-options">
+          <label><input type="checkbox" value="Solo Song"> Solo Song</label>
+          <label><input type="checkbox" value="Group Song"> Group Song</label>
+          <label><input type="checkbox" value="Solo Dance"> Solo Dance</label>
+          <label><input type="checkbox" value="Spot Chore"> Spot Chore</label>
+          <label><input type="checkbox" value="Mr & Mrs"> Mr & Mrs</label>
+          <label><input type="checkbox" value="Film Scene Recreation"> Film Scene Recreation</label>
+          <label><input type="checkbox" value="Fashion Show"> Fashion Show</label>
+        </div>
+
+        <div class="event-category">Tech</div>
+
+        <div class="event-subcategory">Common Events</div>
+        <div class="event-options">
+          <label><input type="checkbox" value="Poem Writing"> Poem Writing</label>
+          <label><input type="checkbox" value="Essay Writing"> Essay Writing</label>
+          <label><input type="checkbox" value="Story Writing"> Story Writing</label>
+          <label><input type="checkbox" value="Pencil Drawing"> Pencil Drawing</label>
+          <label><input type="checkbox" value="Cartoon Drawing"> Cartoon Drawing</label>
+          <label><input type="checkbox" value="Face Drawing"> Face Drawing</label>
+        </div>
+
+        <div class="event-subcategory">Technical Events</div>
+        <div class="event-options">
+          <label><input type="checkbox" value="Treasure Hunt"> Treasure Hunt</label>
+          <label><input type="checkbox" value="Bridge Making"> Bridge Making</label>
+          <label><input type="checkbox" value="Tricky Circuit"> Tricky Circuit</label>
+          <label><input type="checkbox" value="Toss the Egg"> Toss the Egg</label>
+          <label><input type="checkbox" value="Logo Identification"> Logo Identification</label>
+          <label><input type="checkbox" value="Escape Room"> Escape Room</label>
+          <label><input type="checkbox" value="Chess"> Chess</label>
+        </div>
+
+        <div class="event-subcategory">Mobile Games</div>
+        <div class="event-options">
+          <label><input type="checkbox" value="PUBG"> PUBG</label>
+          <label><input type="checkbox" value="PES"> PES</label>
+          <label><input type="checkbox" value="Free Fire"> Free Fire</label>
+        </div>
       </div>
 
       <label for="transactionId">Transaction ID</label>
@@ -57,131 +134,22 @@
 
       <button type="submit" id="submitBtn">Submit</button>
     </form>
-
-    <ul id="recordsList"></ul>
   </div>
 
-  <!-- Firebase CDN Links -->
-  <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-storage.js"></script>
-
 <script>
-  // Firebase Initialization
-  const firebaseApp = firebase.initializeApp({
-    apiKey: "AIzaSyD9KhodYSPnxCvRfOkRhxstCEQsxWXj9dY",
-    authDomain: "event-payment-76894.firebaseapp.com",
-    databaseURL: "https://celeste-25-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "event-payment-76894",
-    storageBucket: "event-payment-76894.appspot.com", // Fixed Storage Bucket
-    messagingSenderId: "662934680496",
-    appId: "1:662934680496:web:5b834df99d41ab937b5c75"
-  });
-
-  const database = firebase.database();
-  const storage = firebase.storage();
-  const recordsRef = database.ref("registrations");
-
-  const eventType = document.getElementById("eventType");
-  const subCategoryContainer = document.getElementById("subCategoryContainer");
-  const subCategory = document.getElementById("subCategory");
-  const eventsContainer = document.getElementById("eventsContainer");
-  const events = document.getElementById("events");
-
-  // Data for Events
-  const eventOptions = {
-    "Sports": {
-      "Men’s Group Events": ["Football", "Cricket", "Volleyball", "Badminton Doubles", "400 Meters Relay"],
-      "Women’s Group Events": ["Throw Ball", "Badminton Doubles", "Penalty Shootout", "400 Meters Relay"],
-      "Athletic Events": ["100 Meters", "200 Meters", "Javelin Throw", "Disk Throw", "Shotput Throw", "Long Jump", "High Jump"]
-    },
-    "Arts": {
-      "Arts Fest": ["Solo Song", "Group Song", "Solo Dance", "Spot Chore", "Mr & Mrs", "Film Scene Recreation", "Fashion Show"]
-    },
-    "Tech": {
-      "Common Events": ["Poem Writing", "Essay Writing", "Story Writing", "Pencil Drawing", "Cartoon Drawing", "Face Drawing"],
-      "Technical Events": ["Treasure Hunt", "Bridge Making", "Tricky Circuit", "Toss the Egg", "Logo Identification", "Escape Room", "Chess"],
-      "Mobile Games": ["PUBG", "PES", "Free Fire"]
-    }
-  };
-
-  eventType.addEventListener("change", function () {
-    const selectedType = eventType.value;
-
-    if (selectedType) {
-      subCategoryContainer.style.display = "block";
-      subCategory.innerHTML = '<option value="">Select Sub Category</option>';
-
-      Object.keys(eventOptions[selectedType]).forEach(category => {
-        const option = document.createElement("option");
-        option.value = category;
-        option.textContent = category;
-        subCategory.appendChild(option);
-      });
-    } else {
-      subCategoryContainer.style.display = "none";
-      eventsContainer.style.display = "none";
-    }
-  });
-
-  subCategory.addEventListener("change", function () {
-    const selectedType = eventType.value;
-    const selectedSubCategory = subCategory.value;
-
-    if (selectedSubCategory) {
-      eventsContainer.style.display = "block";
-      events.innerHTML = "";
-
-      eventOptions[selectedType][selectedSubCategory].forEach(event => {
-        const option = document.createElement("option");
-        option.value = event;
-        option.textContent = event;
-        events.appendChild(option);
-      });
-    } else {
-      eventsContainer.style.display = "none";
-    }
-  });
-
   document.getElementById("paymentForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    const name = document.getElementById("name").value;
-    const year = document.getElementById("year").value;
-    const branch = document.getElementById("branch").value;
-    const eventType = document.getElementById("eventType").value;
-    const subCategory = document.getElementById("subCategory").value;
-    const selectedEvents = Array.from(document.getElementById("events").selectedOptions).map(option => option.value);
-    const transactionId = document.getElementById("transactionId").value;
-    const fileInput = document.getElementById("uploadImage");
-    const file = fileInput.files[0];
+    const selectedEvents = Array.from(document.querySelectorAll("#eventSelection input:checked")).map(input => input.value);
 
-    if (!selectedEvents.length) {
+    if (selectedEvents.length === 0) {
       alert("Please select at least one event.");
       return;
     }
 
-    if (file) {
-      const storageRef = storage.ref();
-      const fileRef = storageRef.child('uploads/' + file.name);
-
-      fileRef.put(file).then(() => {
-        return fileRef.getDownloadURL();
-      }).then((url) => {
-        const data = {
-          name, year, branch, eventType, subCategory, selectedEvents, transactionId, uploadedImageUrl: url, timestamp: new Date().toISOString()
-        };
-
-        return recordsRef.push(data);
-      }).then(() => {
-        alert("Registration submitted successfully!");
-        document.getElementById("paymentForm").reset();
-      }).catch((error) => {
-        console.error("Error:", error);
-      });
-    } else {
-      alert("Please upload an image.");
-    }
+    console.log("Selected Events:", selectedEvents);
+    alert("Registration submitted successfully!");
+    document.getElementById("paymentForm").reset();
   });
 </script>
 
