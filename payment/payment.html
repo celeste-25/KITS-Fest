@@ -3,136 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Registration</title>
-    <link rel="stylesheet" href="payment.css"> <!-- Add your custom CSS here -->
-    <link rel="stylesheet" href="payment2.css"> <!-- Add your custom payment CSS here -->
-    <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js" type="module"></script>
-    <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js" type="module"></script>
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="payment.css">
 </head>
 <body>
 
     <div class="form-container">
-        <h1>Event Registration</h1>
-
-        <!-- Event Categories Section -->
-        <div id="tech-fest">
-            <h2>Tech Fest</h2>
-            <div class="event-group">
-                <h3>Technical Events</h3>
-                <div class="event-checkboxes">
-                    <input type="checkbox" id="event1" name="tech-events" value="Tech Event 1"> Tech Event 1
-                    <input type="checkbox" id="event2" name="tech-events" value="Tech Event 2"> Tech Event 2
-                </div>
-            </div>
-            <div class="event-group">
-                <h3>Mobile Games</h3>
-                <div class="event-checkboxes">
-                    <input type="checkbox" id="event3" name="mobile-games" value="BGMI"> BGMI
-                    <input type="checkbox" id="event4" name="mobile-games" value="Clash Royale"> Clash Royale
-                </div>
-            </div>
-            <div class="event-group">
-                <h3>Common Events</h3>
-                <div class="event-checkboxes">
-                    <input type="checkbox" id="event5" name="common-events" value="Treasure Hunt"> Treasure Hunt
-                    <input type="checkbox" id="event6" name="common-events" value="Quiz"> Quiz
-                </div>
-            </div>
-        </div>
-
-        <!-- Sports Fest Section -->
-        <div id="sports-fest">
-            <h2>Sports Fest</h2>
-            <div class="event-group">
-                <h3>Sports Events</h3>
-                <div class="event-checkboxes">
-                    <input type="checkbox" id="event7" name="sports-events" value="Cricket"> Cricket
-                    <input type="checkbox" id="event8" name="sports-events" value="Football"> Football
-                </div>
-            </div>
-            <div class="event-group">
-                <h3>Mobile Games</h3>
-                <div class="event-checkboxes">
-                    <input type="checkbox" id="event9" name="mobile-games" value="PUBG"> PUBG
-                    <input type="checkbox" id="event10" name="mobile-games" value="Free Fire"> Free Fire
-                </div>
-            </div>
-        </div>
-
-        <!-- Arts Fest Section -->
-        <div id="arts-fest">
-            <h2>Arts Fest</h2>
-            <div class="event-group">
-                <h3>Art Events</h3>
-                <div class="event-checkboxes">
-                    <input type="checkbox" id="event11" name="arts-events" value="Painting"> Painting
-                    <input type="checkbox" id="event12" name="arts-events" value="Sculpture"> Sculpture
-                </div>
-            </div>
-            <div class="event-group">
-                <h3>Creative Events</h3>
-                <div class="event-checkboxes">
-                    <input type="checkbox" id="event13" name="creative-events" value="Photography"> Photography
-                    <input type="checkbox" id="event14" name="creative-events" value="Writing"> Writing
-                </div>
-            </div>
-        </div>
-
-        <!-- Submit Form Section -->
-        <button id="submit" onclick="submitForm()">Submit</button>
+        <h2>Register Here</h2>
+        <form id="registrationForm">
+            <input type="text" name="name" placeholder="Name" required><br>
+            <input type="email" name="email" placeholder="Email" required><br>
+            <input type="tel" name="phone" placeholder="Phone" required><br>
+            <input type="text" name="address" placeholder="Address" required><br>
+            <input type="file" name="image" id="imageInput" required><br>
+            <button type="submit">Submit</button>
+        </form>
     </div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
 
-        // Firebase Configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyAsFLorQ-M1JJ6NXbFvo49AlPvf4x8glQY",
-            authDomain: "celeste-25.firebaseapp.com",
-            databaseURL: "https://celeste-25-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "celeste-25",
-            storageBucket: "celeste-25.firebasestorage.app",
-            messagingSenderId: "798589851177",
-            appId: "1:798589851177:web:2ef7f68ce3d557e4446e38"
-        };
+            let formData = new FormData(this);
+            let imageFile = formData.get("image");
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
+            // Upload Image to ImgBB and get URL
+            let imageUrl = await uploadImageToImgBB(imageFile);
 
-        // Submit Form Function
-        function submitForm() {
-            // Collecting selected events
-            let selectedEvents = [];
-            const techEvents = document.querySelectorAll('input[name="tech-events"]:checked');
-            const mobileGames = document.querySelectorAll('input[name="mobile-games"]:checked');
-            const sportsEvents = document.querySelectorAll('input[name="sports-events"]:checked');
-            const artsEvents = document.querySelectorAll('input[name="arts-events"]:checked');
-            const creativeEvents = document.querySelectorAll('input[name="creative-events"]:checked');
-            const commonEvents = document.querySelectorAll('input[name="common-events"]:checked');
+            // Prepare JSON Data
+            let jsonData = {
+                name: formData.get("name"),
+                email: formData.get("email"),
+                phone: formData.get("phone"),
+                address: formData.get("address"),
+                imageUrl: imageUrl // Image URL from ImgBB
+            };
 
-            // Add checked events to the array
-            techEvents.forEach(event => selectedEvents.push(event.value));
-            mobileGames.forEach(event => selectedEvents.push(event.value));
-            sportsEvents.forEach(event => selectedEvents.push(event.value));
-            artsEvents.forEach(event => selectedEvents.push(event.value));
-            creativeEvents.forEach(event => selectedEvents.push(event.value));
-            commonEvents.forEach(event => selectedEvents.push(event.value));
+            // Submit Data to Google Apps Script
+            fetch("https://script.google.com/macros/s/AKfycbzWo5kSHtAmUKyOquZyC411JOWuxJynUx3ucHXRLdQ6pLP12wMbefgdvKdeVuqd0xtW/exec", {
+                method: "POST",
+                body: JSON.stringify(jsonData),
+                headers: { "Content-Type": "application/json" }
+            }).then(response => response.text())
+              .then(data => {
+                  alert("Form Submitted Successfully!");
+                  document.getElementById("registrationForm").reset();
+              })
+              .catch(error => {
+                  alert("Error submitting form.");
+                  console.error(error);
+              });
+        });
 
-            // Firebase reference
-            const userId = "user_123"; // This should be dynamic based on user authentication
-            const userRef = ref(database, 'registrations/' + userId);
+        async function uploadImageToImgBB(file) {
+            let apiKey = "YOUR_IMGBB_API_KEY"; // Replace with your ImgBB API Key
+            let formData = new FormData();
+            formData.append("image", file);
 
-            // Set data in Firebase
-            set(userRef, {
-                selectedEvents: selectedEvents
-            }).then(() => {
-                alert("Registration successful!");
-            }).catch((error) => {
-                console.error("Error registering: ", error);
+            let response = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
+                method: "POST",
+                body: formData
             });
+
+            let data = await response.json();
+            return data.data.url; // Return direct image URL
         }
     </script>
+
 </body>
 </html>
