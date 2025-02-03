@@ -1,198 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Payment Page</title>
-  <link rel="stylesheet" href="payment.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Add your custom CSS here -->
+    <link rel="stylesheet" href="payment.css"> <!-- Add your custom payment CSS here -->
+    <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js" type="module"></script>
 </head>
 <body>
-  <div class="container">
-    <h2>Registration Form</h2>
-    <form id="paymentForm">
-      <label for="name">Name</label>
-      <input type="text" id="name" required placeholder="Enter your name" />
 
-      <label for="year">Year</label>
-      <select id="year" required>
-        <option value="">Select Year</option>
-        <option value="1st Year">1st Year</option>
-        <option value="2nd Year">2nd Year</option>
-        <option value="3rd Year">3rd Year</option>
-        <option value="4th Year">4th Year</option>
-      </select>
+    <div class="form-container">
+        <h1>Event Registration</h1>
 
-      <label for="branch">Branch</label>
-      <select id="branch" required>
-        <option value="">Select Branch</option>
-        <option value="CSE">CSE</option>
-        <option value="Civil">Civil</option>
-        <option value="Mech">Mech</option>
-        <option value="Automobile">Automobile</option>
-      </select>
+        <!-- Event Categories Section -->
+        <div id="tech-fest">
+            <h2>Tech Fest</h2>
+            <div>
+                <h3>Technical Events</h3>
+                <input type="checkbox" id="event1" name="tech-events" value="Tech Event 1"> Tech Event 1<br>
+                <input type="checkbox" id="event2" name="tech-events" value="Tech Event 2"> Tech Event 2<br>
+            </div>
+            <div>
+                <h3>Mobile Games</h3>
+                <input type="checkbox" id="event3" name="mobile-games" value="BGMI"> BGMI<br>
+                <input type="checkbox" id="event4" name="mobile-games" value="Clash Royale"> Clash Royale<br>
+            </div>
+            <div>
+                <h3>Common Events</h3>
+                <input type="checkbox" id="event5" name="common-events" value="Treasure Hunt"> Treasure Hunt<br>
+                <input type="checkbox" id="event6" name="common-events" value="Quiz"> Quiz<br>
+            </div>
+        </div>
 
-      <label for="eventType">Event Type</label>
-      <select id="eventType" required>
-        <option value="">Select Event Type</option>
-        <option value="Sports">Sports</option>
-        <option value="Arts">Arts</option>
-        <option value="Tech">Tech</option>
-      </select>
+        <!-- Sports Fest Section -->
+        <div id="sports-fest">
+            <h2>Sports Fest</h2>
+            <div>
+                <h3>Sports Events</h3>
+                <input type="checkbox" id="event7" name="sports-events" value="Cricket"> Cricket<br>
+                <input type="checkbox" id="event8" name="sports-events" value="Football"> Football<br>
+            </div>
+            <div>
+                <h3>Mobile Games</h3>
+                <input type="checkbox" id="event9" name="mobile-games" value="PUBG"> PUBG<br>
+                <input type="checkbox" id="event10" name="mobile-games" value="Free Fire"> Free Fire<br>
+            </div>
+        </div>
 
-      <div id="eventsContainer" style="display: none;">
-        <div id="sportsContainer" class="eventCategory"></div>
-        <div id="artsContainer" class="eventCategory"></div>
-        <div id="techContainer" class="eventCategory"></div>
-      </div>
+        <!-- Arts Fest Section -->
+        <div id="arts-fest">
+            <h2>Arts Fest</h2>
+            <div>
+                <h3>Art Events</h3>
+                <input type="checkbox" id="event11" name="arts-events" value="Painting"> Painting<br>
+                <input type="checkbox" id="event12" name="arts-events" value="Sculpture"> Sculpture<br>
+            </div>
+            <div>
+                <h3>Creative Events</h3>
+                <input type="checkbox" id="event13" name="creative-events" value="Photography"> Photography<br>
+                <input type="checkbox" id="event14" name="creative-events" value="Writing"> Writing<br>
+            </div>
+        </div>
 
-      <label for="transactionId">Transaction ID</label>
-      <input type="text" id="transactionId" pattern="^[A-Za-z0-9]{12}$" required placeholder="Enter Transaction ID (12 chars)" />
+        <!-- Submit Form Section -->
+        <button id="submit" onclick="submitForm()">Submit</button>
+    </div>
 
-      <label for="uploadImage">Upload Image</label>
-      <input type="file" id="uploadImage" required />
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
 
-      <button type="submit" id="submitBtn">Submit</button>
-    </form>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAsFLorQ-M1JJ6NXbFvo49AlPvf4x8glQY",
+            authDomain: "celeste-25.firebaseapp.com",
+            databaseURL: "https://celeste-25-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "celeste-25",
+            storageBucket: "celeste-25.firebasestorage.app",
+            messagingSenderId: "798589851177",
+            appId: "1:798589851177:web:2ef7f68ce3d557e4446e38"
+        };
 
-    <ul id="recordsList"></ul>
-  </div>
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
 
-  <!-- Firebase CDN for Firebase App and Database SDK -->
-  <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-    import { getDatabase, ref, set, push } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
-    import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-storage.js";
+        // Submit Form Function
+        function submitForm() {
+            // Collecting selected events
+            let selectedEvents = [];
+            const techEvents = document.querySelectorAll('input[name="tech-events"]:checked');
+            const mobileGames = document.querySelectorAll('input[name="mobile-games"]:checked');
+            const sportsEvents = document.querySelectorAll('input[name="sports-events"]:checked');
+            const artsEvents = document.querySelectorAll('input[name="arts-events"]:checked');
+            const creativeEvents = document.querySelectorAll('input[name="creative-events"]:checked');
+            const commonEvents = document.querySelectorAll('input[name="common-events"]:checked');
 
-    // Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyAsFLorQ-M1JJ6NXbFvo49AlPvf4x8glQY",
-      authDomain: "celeste-25.firebaseapp.com",
-      databaseURL: "https://celeste-25-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "celeste-25",
-      storageBucket: "celeste-25.firebasestorage.app",
-      messagingSenderId: "798589851177",
-      appId: "1:798589851177:web:2ef7f68ce3d557e4446e38"
-    };
+            // Add checked events to the array
+            techEvents.forEach(event => selectedEvents.push(event.value));
+            mobileGames.forEach(event => selectedEvents.push(event.value));
+            sportsEvents.forEach(event => selectedEvents.push(event.value));
+            artsEvents.forEach(event => selectedEvents.push(event.value));
+            creativeEvents.forEach(event => selectedEvents.push(event.value));
+            commonEvents.forEach(event => selectedEvents.push(event.value));
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const database = getDatabase(app);
-    const storage = getStorage(app);
-    const recordsRef = ref(database, 'registrations');
+            // Firebase reference
+            const userId = "user_123"; // This should be dynamic based on user authentication
+            const userRef = ref(database, 'registrations/' + userId);
 
-    // Event Options Data
-    const eventOptions = {
-      "Sports": {
-        "Men’s Group Events": ["Football", "Cricket", "Volleyball", "Badminton Doubles", "400 Meters Relay"],
-        "Women’s Group Events": ["Throw Ball", "Badminton Doubles", "Penalty Shootout", "400 Meters Relay"],
-        "Athletic Events": ["100 Meters", "200 Meters", "Javelin Throw", "Disk Throw", "Shotput Throw", "Long Jump", "High Jump"]
-      },
-      "Arts": {
-        "Arts Fest": ["Solo Song", "Group Song", "Solo Dance", "Spot Chore", "Mr & Mrs", "Film Scene Recreation", "Fashion Show"]
-      },
-      "Tech": {
-        "Common Events": ["Poem Writing", "Essay Writing", "Story Writing", "Pencil Drawing", "Cartoon Drawing", "Face Drawing"],
-        "Technical Events": ["Treasure Hunt", "Bridge Making", "Tricky Circuit", "Toss the Egg", "Logo Identification", "Escape Room", "Chess"],
-        "Mobile Games": ["PUBG", "PES", "Free Fire"]
-      }
-    };
-
-    const eventType = document.getElementById("eventType");
-    const eventsContainer = document.getElementById("eventsContainer");
-
-    // Handle event type change and display corresponding events
-    eventType.addEventListener("change", function () {
-      const selectedType = eventType.value;
-
-      if (selectedType) {
-        eventsContainer.style.display = "block";
-
-        // Clear previous events
-        document.getElementById("sportsContainer").innerHTML = '';
-        document.getElementById("artsContainer").innerHTML = '';
-        document.getElementById("techContainer").innerHTML = '';
-
-        // Display the selected event categories
-        if (selectedType === "Sports") {
-          displayCategory("Sports", document.getElementById("sportsContainer"));
-        } 
-        if (selectedType === "Arts") {
-          displayCategory("Arts", document.getElementById("artsContainer"));
+            // Set data in Firebase
+            set(userRef, {
+                selectedEvents: selectedEvents
+            }).then(() => {
+                alert("Registration successful!");
+            }).catch((error) => {
+                console.error("Error registering: ", error);
+            });
         }
-        if (selectedType === "Tech") {
-          displayCategory("Tech", document.getElementById("techContainer"));
-        }
-      } else {
-        eventsContainer.style.display = "none";
-      }
-    });
-
-    function displayCategory(category, container) {
-      const eventsList = eventOptions[category];
-      const categoryHeading = document.createElement("h3");
-      categoryHeading.textContent = category + " Events";
-      container.appendChild(categoryHeading);
-
-      Object.keys(eventsList).forEach(subCategory => {
-        const subCategoryHeading = document.createElement("h4");
-        subCategoryHeading.textContent = subCategory;
-        container.appendChild(subCategoryHeading);
-
-        const subCategoryEvents = eventsList[subCategory];
-        subCategoryEvents.forEach(event => {
-          const label = document.createElement("label");
-          const checkbox = document.createElement("input");
-          checkbox.type = "checkbox";
-          checkbox.value = event;
-          label.appendChild(checkbox);
-          label.appendChild(document.createTextNode(event));
-          container.appendChild(label);
-          container.appendChild(document.createElement("br"));
-        });
-      });
-    }
-
-    // Form submission logic
-    document.getElementById("paymentForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      const name = document.getElementById("name").value;
-      const year = document.getElementById("year").value;
-      const branch = document.getElementById("branch").value;
-      const eventType = document.getElementById("eventType").value;
-      const selectedEvents = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(checkbox => checkbox.value);
-      const transactionId = document.getElementById("transactionId").value;
-      const fileInput = document.getElementById("uploadImage");
-      const file = fileInput.files[0];
-
-      if (!selectedEvents.length) {
-        alert("Please select at least one event.");
-        return;
-      }
-
-      if (file) {
-        const fileRef = storageRef(storage, 'uploads/' + file.name);
-
-        uploadBytes(fileRef, file).then(() => {
-          return getDownloadURL(fileRef);
-        }).then((url) => {
-          const data = {
-            name, year, branch, eventType, selectedEvents, transactionId, uploadedImageUrl: url, timestamp: new Date().toISOString()
-          };
-
-          return push(recordsRef, data);
-        }).then(() => {
-          alert("Registration submitted successfully!");
-          document.getElementById("paymentForm").reset();
-        }).catch((error) => {
-          console.error("Error:", error);
-        });
-      } else {
-        alert("Please upload an image.");
-      }
-    });
-  </script>
-
+    </script>
 </body>
 </html>
