@@ -46,17 +46,21 @@
                 };
 
                 // Submit Data to Google Apps Script
-                let response = await fetch("https://script.google.com/macros/s/AKfycbzsLQ9uWFwHeq6zdLm9R-lCkQ0oMu-3j1Frvgl6GexVEoWuJFTUN9dxUAn6FligAAgN/exec", {
+                let response = await fetch("https://script.google.com/macros/s/AKfycbzkpf-RhQzA7ll4b8zgg3RYSpW8YZwP9UdDpG_syIXjXT8nzKEb8qJc6pV3AyotGps/exec", {
                     method: "POST",
                     body: JSON.stringify(jsonData),
                     headers: { "Content-Type": "application/json" }
                 });
 
-                let result = await response.text();
-                alert("Form Submitted Successfully!");
+                let result = await response.json();
 
-                // Reset form only after successful submission
-                document.getElementById("registrationForm").reset();
+                if (result.status === "Success") {
+                    alert("Form Submitted Successfully!");
+                    document.getElementById("registrationForm").reset();
+                } else {
+                    alert("Submission Failed: " + result.message);
+                }
+
             } catch (error) {
                 alert("Error submitting form.");
                 console.error("Error:", error);
