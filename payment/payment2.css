@@ -1,0 +1,41 @@
+/* Styles for the form container */
+.form-container {
+    margin: 20px;
+    padding: 20px;
+}
+
+/* General Heading Styles */
+h2, h3 {
+    margin-bottom: 10px;
+}
+
+/* Grouping event checkboxes in rows */
+.event-group {
+    margin-bottom: 20px;
+}
+
+.event-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.event-checkboxes input[type="checkbox"] {
+    margin-right: 5px;
+    width: auto;
+    margin-bottom: 10px;
+}
+
+/* Style the submit button */
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
