@@ -63,8 +63,24 @@
 
   <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-storage.js"></script>
 
 <script>
+  // Firebase Initialization (Moved outside the form handler)
+  const firebaseApp = firebase.initializeApp({
+    apiKey: "AIzaSyD9KhodYSPnxCvRfOkRhxstCEQsxWXj9dY",
+    authDomain: "event-payment-76894.firebaseapp.com",
+    databaseURL: "https://celeste-25-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "event-payment-76894",
+    storageBucket: "event-payment-76894.firebasestorage.app",
+    messagingSenderId: "662934680496",
+    appId: "1:662934680496:web:5b834df99d41ab937b5c75"
+  });
+
+  const database = firebase.database();
+  const storage = firebase.storage();
+  const recordsRef = database.ref("registrations");
+
   const eventType = document.getElementById("eventType");
   const subCategoryContainer = document.getElementById("subCategoryContainer");
   const subCategory = document.getElementById("subCategory");
@@ -136,48 +152,55 @@
     const subCategory = document.getElementById("subCategory").value;
     const selectedEvents = Array.from(document.getElementById("events").selectedOptions).map(option => option.value);
     const transactionId = document.getElementById("transactionId").value;
+    const fileInput = document.getElementById("uploadImage");
+    const file = fileInput.files[0];
 
     if (!selectedEvents.length) {
       alert("Please select at least one event.");
       return;
     }
 
-    // Create the data object
-    const data = {
-      name,
-      year,
-      branch,
-      eventType,
-      subCategory,
-      selectedEvents,
-      transactionId,
-      timestamp: new Date().toISOString()
-    };
+    if (file) {
+      const storageRef = storage.ref();
+      const fileRef = storageRef.child('uploads/' + file.name);
 
-    // Log the data before pushing it to Firebase
-    console.log("Data being pushed to Firebase: ", data);
+      fileRef.put(file).then((snapshot) => {
+        console.log('Uploaded a file!', snapshot);
+        fileRef.getDownloadURL().then((url) => {
+          console.log('File available at: ', url);
 
-    // Save data in Firebase
-    const firebaseApp = firebase.initializeApp({
-      apiKey: "AIzaSyD9KhodYSPnxCvRfOkRhxstCEQsxWXj9dY",
-      authDomain: "event-payment-76894.firebaseapp.com",
-      databaseURL: "https://celeste-25-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "event-payment-76894",
-      storageBucket: "event-payment-76894.firebasestorage.app",
-      messagingSenderId: "662934680496",
-      appId: "1:662934680496:web:5b834df99d41ab937b5c75"
-    });
-    const database = firebase.database();
-    const recordsRef = database.ref("registrations");
+          // Create the data object with the file URL
+          const data = {
+            name,
+            year,
+            branch,
+            eventType,
+            subCategory,
+            selectedEvents,
+            transactionId,
+            uploadedImageUrl: url,
+            timestamp: new Date().toISOString()
+          };
 
-    recordsRef.push(data)
-      .then(() => {
-        alert("Registration submitted successfully!");
-        document.getElementById("paymentForm").reset();
-      })
-      .catch((error) => {
-        console.error("Error writing data to Firebase: ", error);
+          // Log the data before pushing it to Firebase
+          console.log("Data being pushed to Firebase: ", data);
+
+          // Save data in Firebase
+          recordsRef.push(data)
+            .then(() => {
+              alert("Registration submitted successfully!");
+              document.getElementById("paymentForm").reset();
+            })
+            .catch((error) => {
+              console.error("Error writing data to Firebase: ", error);
+            });
+        });
+      }).catch((error) => {
+        console.error("Error uploading file: ", error);
       });
+    } else {
+      alert("Please upload an image.");
+    }
   });
 </script>
 
