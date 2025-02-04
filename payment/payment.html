@@ -1,72 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>College Fest 2025 - Payment</title>
-    <!-- Link to your CSS file -->
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://apis.google.com/js/api.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Fest 2025</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google API Script for Authentication -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <!-- Google API Client Library for Drive and Sheets APIs -->
+  <script src="https://apis.google.com/js/api.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Welcome to College Fest 2025</h1>
-        <p>Sign in to complete your payment and access event details.</p>
-    </header>
+  <div class="container">
+    <h1>Welcome to College Fest 2025</h1>
+    <p>Sign in to complete your payment and access event details.</p>
 
-    <main>
-        <!-- Google Sign-In button -->
-        <div class="auth-container">
-            <button id="google-signin-btn" onclick="startAuth()">Sign In with Google</button>
-        </div>
+    <!-- Sign In Button -->
+    <div id="google-signin-btn" class="g-signin2" data-onsuccess="onSignIn"></div>
 
-        <!-- Placeholder for user info once logged in -->
-        <div id="user-info" class="hidden">
-            <h3>Welcome, <span id="user-name"></span></h3>
-            <p>Email: <span id="user-email"></span></p>
-            <button id="logout-btn" onclick="signOut()">Sign Out</button>
-        </div>
-    </main>
+    <!-- User Info (will be displayed after sign-in) -->
+    <div id="user-info" class="hidden">
+      <p>Welcome, <span id="user-name"></span></p>
+      <p>Email: <span id="user-email"></span></p>
+      <button id="sign-out-btn" onclick="signOut()">Sign Out</button>
+    </div>
 
-    <footer>
-        <p>&copy; 2025 College Fest. All Rights Reserved.</p>
-    </footer>
+    <!-- Placeholder for Google Drive Files -->
+    <div id="drive-files" class="hidden">
+      <h3>Files in Google Drive</h3>
+      <ul id="file-list"></ul>
+    </div>
 
-    <script>
-        // Initialize the Google API client
-        function startAuth() {
-            gapi.load('auth2', function() {
-                gapi.auth2.init({
-                    client_id: '191477420452-gdpmvj83fjfhhu02esuhqdvvloti7rqi.apps.googleusercontent.com', // Replace with your actual Client ID
-                }).then(function() {
-                    const authInstance = gapi.auth2.getAuthInstance();
-                    authInstance.signIn().then(function(googleUser) {
-                        // On successful login, retrieve user data
-                        const profile = googleUser.getBasicProfile();
-                        const userName = profile.getName();
-                        const userEmail = profile.getEmail();
+    <!-- Placeholder for Google Sheets Data -->
+    <div id="sheet-data" class="hidden">
+      <h3>Sheet Data</h3>
+      <ul id="sheet-data-list"></ul>
+    </div>
+  </div>
 
-                        // Display user info
-                        document.getElementById("user-name").textContent = userName;
-                        document.getElementById("user-email").textContent = userEmail;
-                        document.getElementById("user-info").classList.remove("hidden");
+  <!-- Google API Authentication and Integration Script -->
+  <script>
+    let googleUser;
 
-                        // Hide the sign-in button
-                        document.getElementById("google-signin-btn").style.display = 'none';
-                    });
-                });
-            });
+    // Function to handle Google Sign-In
+    function onSignIn(googleUser) {
+      const profile = googleUser.getBasicProfile();
+      const userName = profile.getName();
+      const userEmail = profile.getEmail();
+
+      // Display user info
+      document.getElementById("user-name").textContent = userName;
+      document.getElementById("user-email").textContent = userEmail;
+      document.getElementById("user-info").classList.remove("hidden");
+
+      // Hide the sign-in button
+      document.getElementById("google-signin-btn").style.display = 'none';
+
+      // Now that the user is signed in, load the Drive and Sheets API
+      loadDriveAndSheetsAPI();
+    }
+
+    // Function to load the Drive and Sheets APIs
+    function loadDriveAndSheetsAPI() {
+      gapi.client.load('drive', 'v3', function() {
+        console.log("Drive API loaded successfully.");
+        listDriveFiles();  // List Google Drive files
+      });
+
+      gapi.client.load('sheets', 'v4', function() {
+        console.log("Sheets API loaded successfully.");
+        readSheetData();  // Read data from Google Sheets
+      });
+    }
+
+    // Function to list Google Drive files
+    function listDriveFiles() {
+      gapi.client.drive.files.list({
+        pageSize: 10,
+        fields: "nextPageToken, files(id, name)"
+      }).then(function(response) {
+        const files = response.result.files;
+        const fileListElement = document.getElementById("file-list");
+        if (files && files.length > 0) {
+          files.forEach(function(file) {
+            const li = document.createElement("li");
+            li.textContent = `${file.name} (${file.id})`;
+            fileListElement.appendChild(li);
+          });
+          document.getElementById("drive-files").classList.remove("hidden");
+        } else {
+          console.log("No files found.");
         }
+      }).catch(function(error) {
+        console.error('Error listing files: ', error);
+      });
+    }
 
-        // Sign out the user
-        function signOut() {
-            const authInstance = gapi.auth2.getAuthInstance();
-            authInstance.signOut().then(function() {
-                console.log('User signed out.');
-                document.getElementById("user-info").classList.add("hidden");
-                document.getElementById("google-signin-btn").style.display = 'block';
-            });
+    // Function to read data from Google Sheets
+    function readSheetData() {
+      const sheetId = '191477420452-gdpmvj83fjfhhu02esuhqdvvloti7rqi.apps.googleusercontent.com';  // Replace with your actual Sheet ID
+      const range = 'Sheet1!A1:D10';    // Change as needed
+
+      gapi.client.sheets.spreadsheets.values.get({
+        spreadsheetId: sheetId,
+        range: range,
+      }).then(function(response) {
+        const data = response.result.values;
+        const sheetDataElement = document.getElementById("sheet-data-list");
+        if (data && data.length > 0) {
+          data.forEach(function(row) {
+            const li = document.createElement("li");
+            li.textContent = row.join(", ");
+            sheetDataElement.appendChild(li);
+          });
+          document.getElementById("sheet-data").classList.remove("hidden");
+        } else {
+          console.log("No data found in sheet.");
         }
-    </script>
+      }).catch(function(error) {
+        console.error('Error reading sheet data: ', error);
+      });
+    }
+
+    // Function to sign out the user
+    function signOut() {
+      const auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function() {
+        console.log('User signed out.');
+        document.getElementById("user-info").classList.add("hidden");
+        document.getElementById("google-signin-btn").style.display = 'block';
+        document.getElementById("drive-files").classList.add("hidden");
+        document.getElementById("sheet-data").classList.add("hidden");
+      });
+    }
+  </script>
 </body>
 </html>
