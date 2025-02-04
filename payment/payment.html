@@ -1,138 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>College Fest 2025</title>
-  <link rel="stylesheet" href="styles.css">
-  <!-- Google API Script for Authentication -->
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <!-- Google API Client Library for Drive and Sheets APIs -->
-  <script src="https://apis.google.com/js/api.js"></script>
-</head>
-<body>
-  <div class="container">
-    <h1>Welcome to College Fest 2025</h1>
-    <p>Sign in to complete your payment and access event details.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form with Bootstrap</title>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+    <style>
+      .form-container {
+        max-width: 500px;
+        margin: auto;
+        margin-top: 50px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+      }
+    </style>
+  </head>
+  <body class="bg-light">
+    <div class="container">
+      <div class="form-container">
+        <h4 class="text-center mb-4">Form Submission to Google Sheet</h4>
+        <form id="submit-to-google-sheet">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input
+              class="form-control"
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input
+              class="form-control"
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="slip">Contact Number:</label>
+            <input
+              class="form-control"
+              type="text"
+              name="contact_number"
+              id="contact_number"
+              placeholder="Contact Number"
+              required
+            />
+          </div>
 
-    <!-- Sign In Button -->
-    <div id="google-signin-btn" class="g-signin2" data-onsuccess="onSignIn"></div>
-
-    <!-- User Info (will be displayed after sign-in) -->
-    <div id="user-info" class="hidden">
-      <p>Welcome, <span id="user-name"></span></p>
-      <p>Email: <span id="user-email"></span></p>
-      <button id="sign-out-btn" onclick="signOut()">Sign Out</button>
+          <div class="form-group">
+            <label for="loc">Gender:</label>
+            <select class="form-control" name="gender" id="gender" required>
+              <option value="" disabled selected hidden>Choose...</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="loc">Message:</label>
+            <textarea
+              class="form-control"
+              name="message"
+              id="message"
+              placeholder="Message"
+              required
+            ></textarea>
+          <div class="form-group form-check mt-2">
+            <input class="form-check-input" type="checkbox" id="age" />
+            <label class="form-check-label" for="age"
+              >Check if you are over 18 years old</label
+            >
+          </div>
+          <div class="form-group form-check">
+            <input class="form-check-input" type="checkbox" id="ex" required />
+            <label class="form-check-label" for="ex"
+              >By checking this box I certify that I am agree with the data
+              terms and policies.
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
 
-    <!-- Placeholder for Google Drive Files -->
-    <div id="drive-files" class="hidden">
-      <h3>Files in Google Drive</h3>
-      <ul id="file-list"></ul>
-    </div>
+    <script>
+      const scriptURL =                       
+      "https://script.google.com/macros/s/AKfycbz_JEKy3aXOpoaW_ED72hilyG1TNXd3XLQR6I0NhUyaStxPTV1Pn32AagQJ9fm9Cqpb/exec";
+      const form = document.forms["submit-to-google-sheet"];
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        var formData = new FormData(form);
+        var ex = document.getElementById("ex").checked;
+        var age = document.getElementById("age").checked;
 
-    <!-- Placeholder for Google Sheets Data -->
-    <div id="sheet-data" class="hidden">
-      <h3>Sheet Data</h3>
-      <ul id="sheet-data-list"></ul>
-    </div>
-  </div>
-
-  <!-- Google API Authentication and Integration Script -->
-  <script>
-    let googleUser;
-
-    // Function to handle Google Sign-In
-    function onSignIn(googleUser) {
-      const profile = googleUser.getBasicProfile();
-      const userName = profile.getName();
-      const userEmail = profile.getEmail();
-
-      // Display user info
-      document.getElementById("user-name").textContent = userName;
-      document.getElementById("user-email").textContent = userEmail;
-      document.getElementById("user-info").classList.remove("hidden");
-
-      // Hide the sign-in button
-      document.getElementById("google-signin-btn").style.display = 'none';
-
-      // Now that the user is signed in, load the Drive and Sheets API
-      loadDriveAndSheetsAPI();
-    }
-
-    // Function to load the Drive and Sheets APIs
-    function loadDriveAndSheetsAPI() {
-      gapi.client.load('drive', 'v3', function() {
-        console.log("Drive API loaded successfully.");
-        listDriveFiles();  // List Google Drive files
-      });
-
-      gapi.client.load('sheets', 'v4', function() {
-        console.log("Sheets API loaded successfully.");
-        readSheetData();  // Read data from Google Sheets
-      });
-    }
-
-    // Function to list Google Drive files
-    function listDriveFiles() {
-      gapi.client.drive.files.list({
-        pageSize: 10,
-        fields: "nextPageToken, files(id, name)"
-      }).then(function(response) {
-        const files = response.result.files;
-        const fileListElement = document.getElementById("file-list");
-        if (files && files.length > 0) {
-          files.forEach(function(file) {
-            const li = document.createElement("li");
-            li.textContent = `${file.name} (${file.id})`;
-            fileListElement.appendChild(li);
-          });
-          document.getElementById("drive-files").classList.remove("hidden");
+        if (age) {
+          formData.append("age", "Yes");
         } else {
-          console.log("No files found.");
+          formData.append("age", "No");
         }
-      }).catch(function(error) {
-        console.error('Error listing files: ', error);
-      });
-    }
-
-    // Function to read data from Google Sheets
-    function readSheetData() {
-      const sheetId = '191477420452-gdpmvj83fjfhhu02esuhqdvvloti7rqi.apps.googleusercontent.com';  // Replace with your actual Sheet ID
-      const range = 'Sheet1!A1:D10';    // Change as needed
-
-      gapi.client.sheets.spreadsheets.values.get({
-        spreadsheetId: sheetId,
-        range: range,
-      }).then(function(response) {
-        const data = response.result.values;
-        const sheetDataElement = document.getElementById("sheet-data-list");
-        if (data && data.length > 0) {
-          data.forEach(function(row) {
-            const li = document.createElement("li");
-            li.textContent = row.join(", ");
-            sheetDataElement.appendChild(li);
-          });
-          document.getElementById("sheet-data").classList.remove("hidden");
+        if (ex) {
+          formData.append("ex", "Yes");
         } else {
-          console.log("No data found in sheet.");
+          formData.append("ex", "No");
         }
-      }).catch(function(error) {
-        console.error('Error reading sheet data: ', error);
-      });
-    }
 
-    // Function to sign out the user
-    function signOut() {
-      const auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function() {
-        console.log('User signed out.');
-        document.getElementById("user-info").classList.add("hidden");
-        document.getElementById("google-signin-btn").style.display = 'block';
-        document.getElementById("drive-files").classList.add("hidden");
-        document.getElementById("sheet-data").classList.add("hidden");
+        fetch(scriptURL, { method: "POST", body: formData })
+          .then((response) => {
+            swal("Done", "Submitted Successfully.", "success");
+          })
+          .catch((error) => {
+            swal("Error", "Something went wrong. please try again!", "error");
+          });
       });
-    }
-  </script>
-</body>
+    </script>
+  </body>
 </html>
