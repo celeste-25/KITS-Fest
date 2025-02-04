@@ -9,13 +9,12 @@
 <body>
     <div class="container">
         <form method="post" action="https://script.google.com/macros/s/AKfycbwfuel8Q3p07r90k9r4aJ9cOSOmnqHJ6KNkLVWy-H5leSuG2-hlfpctnJKUOa8PQz53/exec" name="celeste25" enctype="multipart/form-data">
-            <h4>Contact Us</h4>
-            <input type="text" name="name" placeholder="Name">
-            <input type="text" name="year" placeholder="Year">
-            <input type="text" name="branch" placeholder="Branch">
-            <input type="text" name="registrationNumber" placeholder="Registration Number">
-            <input type="text" name="transactionID" placeholder="Transaction ID">
-            <input type="file" name="image" accept="image/*">
+            <h4>Registration Form</h4>
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="E-mail" required>
+            <input type="text" name="year" placeholder="Year" required>
+            <input type="text" name="branch" placeholder="Branch" required>
+            <input type="text" name="registrationNumber" placeholder="Registration Number" required>
             <input type="submit" value="Submit" id="submit">
         </form>
     </div>
