@@ -3,93 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Form</title>
-    <link rel="stylesheet" href="payment.css">
+    <title>UPI Payment</title>
+    <style>
+        .container { text-align: center; margin-top: 50px; }
+        .hidden { display: none; }
+        button { padding: 10px 20px; margin: 10px; font-size: 16px; cursor: pointer; }
+    </style>
 </head>
 <body>
 
-    <div class="form-container">
-        <h2>Register Here</h2>
-        <form id="registrationForm">
-            <input type="text" name="name" placeholder="Name" required><br>
-            <input type="email" name="email" placeholder="Email" required><br>
-            <input type="tel" name="phone" placeholder="Phone" required><br>
-            <input type="text" name="address" placeholder="Address" required><br>
-            <input type="file" name="image" id="imageInput" accept="image/*" required><br>
-            <button type="submit">Submit</button>
-        </form>
+    <div class="container" id="step1">
+        <h2>Step 1: Enter Amount</h2>
+        <input type="number" id="amount" placeholder="Enter Amount" required><br><br>
+        <button onclick="goToStep2()">Next</button>
+    </div>
+
+    <div class="container hidden" id="step2">
+        <h2>Step 2: Select Payment Method</h2>
+        <button onclick="selectMethod('gpay')">Google Pay</button>
+        <button onclick="selectMethod('phonepe')">PhonePe</button>
+        <button onclick="selectMethod('paytm')">Paytm</button>
+    </div>
+
+    <div class="container hidden" id="step3">
+        <h2>Step 3: Enter Your UPI ID</h2>
+        <input type="text" id="upiID" placeholder="Enter Your UPI ID" required><br><br>
+        <button onclick="requestPayment()">Request Payment</button>
+    </div>
+
+    <div class="container hidden" id="fallback">
+        <h2>Fallback Payment Method</h2>
+        <p>Please use the following link to complete your payment:</p>
+        <a id="fallbackLink" href="#" target="_blank">Complete Payment</a>
+    </div>
+
+    <div class="container hidden" id="webPayment">
+        <h2>Web-Based Payment</h2>
+        <p>Please use the following link to complete your payment:</p>
+        <a id="webPaymentLink" href="#" target="_blank">Complete Payment</a>
     </div>
 
     <script>
-        document.getElementById("registrationForm").addEventListener("submit", async function(event) {
-            event.preventDefault();
+        let selectedMethod = "";
+        let amount = 0;
 
-            let formData = new FormData(this);
-            let imageFile = formData.get("image");
-
-            try {
-                // Upload Image to ImgBB and get URL
-                let imageUrl = await uploadImageToImgBB(imageFile);
-
-                if (!imageUrl) {
-                    alert("Image upload failed! Please try again.");
-                    return;
-                }
-
-                // Prepare JSON Data
-                let jsonData = {
-                    name: formData.get("name"),
-                    email: formData.get("email"),
-                    phone: formData.get("phone"),
-                    address: formData.get("address"),
-                    imageUrl: imageUrl // Image URL from ImgBB
-                };
-
-                // Submit Data to Google Apps Script
-                let response = await fetch("https://script.google.com/macros/s/AKfycbx0qbz3yOMKSOuMKFLmkyRHXvL9cLrPXZ-byBOOVWCpWp_wcF2Raftc0CBDd8Ojhg/exec", {
-                    method: "POST",
-                    body: JSON.stringify(jsonData),
-                    headers: { "Content-Type": "application/json" }
-                });
-
-                let result = await response.json();
-
-                if (result.status === "Success") {
-                    alert("Form Submitted Successfully!");
-                    document.getElementById("registrationForm").reset();
-                } else {
-                    alert("Submission Failed: " + result.message);
-                }
-
-            } catch (error) {
-                alert("Error submitting form.");
-                console.error("Error:", error);
+        function goToStep2() {
+            amount = document.getElementById("amount").value;
+            if (!amount || amount <= 0) {
+                alert("Please enter a valid amount!");
+                return;
             }
-        });
+            document.getElementById("step1").classList.add("hidden");
+            document.getElementById("step2").classList.remove("hidden");
+        }
 
-        async function uploadImageToImgBB(file) {
-            let apiKey = "ecaa228b4f17c5bdd0ead8588770c689"; // Your ImgBB API Key
-            let formData = new FormData();
-            formData.append("image", file);
+        function selectMethod(method) {
+            selectedMethod = method;
+            document.getElementById("step2").classList.add("hidden");
+            document.getElementById("step3").classList.remove("hidden");
+        }
 
-            try {
-                let response = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
-                    method: "POST",
-                    body: formData
-                });
-
-                let data = await response.json();
-
-                if (data.success) {
-                    return data.data.url; // Return direct image URL
-                } else {
-                    console.error("ImgBB Upload Failed:", data);
-                    return null;
-                }
-            } catch (error) {
-                console.error("Error uploading image:", error);
-                return null;
+        function requestPayment() {
+            let userUPI = document.getElementById("upiID").value;
+            if (!userUPI.includes("@") || userUPI.trim() === "") {
+                alert("Please enter a valid UPI ID!");
+                return;
             }
+
+            // Construct UPI payment link - upi://pay?pa=ebenmathew3@okicici&pn=EBENEZER&aid=uGICAgID39oHaSQ&am=100&cu=INR
+            let upiUrl = `upi://pay?pa=ebenmathew3@okicici&pn=EBENEZER&aid=uGICAgID39oHaSQ&cu=INR`;
+
+            // Redirect to respective payment app based on the selected method
+            switch (selectedMethod) {
+                case "gpay":
+                    window.location.href = `intent://upi/${encodeURIComponent(upiUrl)}#Intent;package=com.google.android.apps.nbu.paisa.user;scheme=upi;end`;
+                    break;
+                case "phonepe":
+                    window.location.href = `phonepe://pay?url=${encodeURIComponent(upiUrl)}`;
+                    break;
+                case "paytm":
+                    window.location.href = `paytmmp://pay?url=${encodeURIComponent(upiUrl)}`;
+                    break;
+                default:
+                    alert("Invalid Payment Method!");
+                    break;
+            }
+
+            // Fallback mechanism
+            setTimeout(() => {
+                if (window.location.href.includes("upi://pay")) {
+                    document.getElementById("step3").classList.add("hidden");
+                    document.getElementById("fallback").classList.remove("hidden");
+                    document.getElementById("fallbackLink").href = upiUrl;
+                } else {
+                    document.getElementById("step3").classList.add("hidden");
+                    document.getElementById("webPayment").classList.remove("hidden");
+                    document.getElementById("webPaymentLink").href = `upi://pay?pa=ebenmathew3@okicici&pn=EBENEZER&aid=uGICAgID39oHaSQ&cu=INR`;
+                }
+            }, 2000);
         }
     </script>
 
