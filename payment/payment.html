@@ -3,106 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UPI Payment</title>
-    <style>
-        .container { text-align: center; margin-top: 50px; }
-        .hidden { display: none; }
-        button { padding: 10px 20px; margin: 10px; font-size: 16px; cursor: pointer; }
-    </style>
+    <title>College Fest 2025 - Payment</title>
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://apis.google.com/js/api.js"></script>
 </head>
 <body>
+    <header>
+        <h1>Welcome to College Fest 2025</h1>
+        <p>Sign in to complete your payment and access event details.</p>
+    </header>
 
-    <div class="container" id="step1">
-        <h2>Step 1: Enter Amount</h2>
-        <input type="number" id="amount" placeholder="Enter Amount" required><br><br>
-        <button onclick="goToStep2()">Next</button>
-    </div>
+    <main>
+        <!-- Google Sign-In button -->
+        <div class="auth-container">
+            <button id="google-signin-btn" onclick="startAuth()">Sign In with Google</button>
+        </div>
 
-    <div class="container hidden" id="step2">
-        <h2>Step 2: Select Payment Method</h2>
-        <button onclick="selectMethod('gpay')">Google Pay</button>
-        <button onclick="selectMethod('phonepe')">PhonePe</button>
-        <button onclick="selectMethod('paytm')">Paytm</button>
-    </div>
+        <!-- Placeholder for user info once logged in -->
+        <div id="user-info" class="hidden">
+            <h3>Welcome, <span id="user-name"></span></h3>
+            <p>Email: <span id="user-email"></span></p>
+            <button id="logout-btn" onclick="signOut()">Sign Out</button>
+        </div>
+    </main>
 
-    <div class="container hidden" id="step3">
-        <h2>Step 3: Enter Your UPI ID</h2>
-        <input type="text" id="upiID" placeholder="Enter Your UPI ID" required><br><br>
-        <button onclick="requestPayment()">Request Payment</button>
-    </div>
-
-    <div class="container hidden" id="fallback">
-        <h2>Fallback Payment Method</h2>
-        <p>Please use the following link to complete your payment:</p>
-        <a id="fallbackLink" href="#" target="_blank">Complete Payment</a>
-    </div>
-
-    <div class="container hidden" id="webPayment">
-        <h2>Web-Based Payment</h2>
-        <p>Please use the following link to complete your payment:</p>
-        <a id="webPaymentLink" href="#" target="_blank">Complete Payment</a>
-    </div>
+    <footer>
+        <p>&copy; 2025 College Fest. All Rights Reserved.</p>
+    </footer>
 
     <script>
-        let selectedMethod = "";
-        let amount = 0;
+        // Initialize the Google API client
+        function startAuth() {
+            gapi.load('auth2', function() {
+                gapi.auth2.init({
+                    client_id: '191477420452-gdpmvj83fjfhhu02esuhqdvvloti7rqi.apps.googleusercontent.com', // Replace with your actual Client ID
+                }).then(function() {
+                    const authInstance = gapi.auth2.getAuthInstance();
+                    authInstance.signIn().then(function(googleUser) {
+                        // On successful login, retrieve user data
+                        const profile = googleUser.getBasicProfile();
+                        const userName = profile.getName();
+                        const userEmail = profile.getEmail();
 
-        function goToStep2() {
-            amount = document.getElementById("amount").value;
-            if (!amount || amount <= 0) {
-                alert("Please enter a valid amount!");
-                return;
-            }
-            document.getElementById("step1").classList.add("hidden");
-            document.getElementById("step2").classList.remove("hidden");
+                        // Display user info
+                        document.getElementById("user-name").textContent = userName;
+                        document.getElementById("user-email").textContent = userEmail;
+                        document.getElementById("user-info").classList.remove("hidden");
+
+                        // Hide the sign-in button
+                        document.getElementById("google-signin-btn").style.display = 'none';
+                    });
+                });
+            });
         }
 
-        function selectMethod(method) {
-            selectedMethod = method;
-            document.getElementById("step2").classList.add("hidden");
-            document.getElementById("step3").classList.remove("hidden");
-        }
-
-        function requestPayment() {
-            let userUPI = document.getElementById("upiID").value;
-            if (!userUPI.includes("@") || userUPI.trim() === "") {
-                alert("Please enter a valid UPI ID!");
-                return;
-            }
-
-            // Construct UPI payment link - upi://pay?pa=ebenmathew3@okicici&pn=EBENEZER&aid=uGICAgID39oHaSQ&am=100&cu=INR
-            let upiUrl = `upi://pay?pa=ebenmathew3@okicici&pn=EBENEZER&aid=uGICAgID39oHaSQ&cu=INR`;
-
-            // Redirect to respective payment app based on the selected method
-            switch (selectedMethod) {
-                case "gpay":
-                    window.location.href = `intent://upi/${encodeURIComponent(upiUrl)}#Intent;package=com.google.android.apps.nbu.paisa.user;scheme=upi;end`;
-                    break;
-                case "phonepe":
-                    window.location.href = `phonepe://pay?url=${encodeURIComponent(upiUrl)}`;
-                    break;
-                case "paytm":
-                    window.location.href = `paytmmp://pay?url=${encodeURIComponent(upiUrl)}`;
-                    break;
-                default:
-                    alert("Invalid Payment Method!");
-                    break;
-            }
-
-            // Fallback mechanism
-            setTimeout(() => {
-                if (window.location.href.includes("upi://pay")) {
-                    document.getElementById("step3").classList.add("hidden");
-                    document.getElementById("fallback").classList.remove("hidden");
-                    document.getElementById("fallbackLink").href = upiUrl;
-                } else {
-                    document.getElementById("step3").classList.add("hidden");
-                    document.getElementById("webPayment").classList.remove("hidden");
-                    document.getElementById("webPaymentLink").href = `upi://pay?pa=ebenmathew3@okicici&pn=EBENEZER&aid=uGICAgID39oHaSQ&cu=INR`;
-                }
-            }, 2000);
+        // Sign out the user
+        function signOut() {
+            const authInstance = gapi.auth2.getAuthInstance();
+            authInstance.signOut().then(function() {
+                console.log('User signed out.');
+                document.getElementById("user-info").classList.add("hidden");
+                document.getElementById("google-signin-btn").style.display = 'block';
+            });
         }
     </script>
-
 </body>
 </html>
