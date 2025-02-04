@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Form</title>
+    <title>Registration Form</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <form method="post" action="https://script.google.com/macros/s/AKfycbwfuel8Q3p07r90k9r4aJ9cOSOmnqHJ6KNkLVWy-H5leSuG2-hlfpctnJKUOa8PQz53/exec" name="celeste25" enctype="multipart/form-data">
             <h4>Registration Form</h4>
-            <input type="text" name="name" placeholder="Name" required>
+            <input type="text" name="name" placeholder="Name" required oninput="this.value = this.value.toUpperCase()">
             <input type="email" name="email" placeholder="E-mail" required>
             <input type="text" name="year" placeholder="Year" required>
             <input type="text" name="branch" placeholder="Branch" required>
-            <input type="text" name="registrationNumber" placeholder="Registration Number" required>
+            <input type="text" name="registrationNumber" placeholder="Registration Number" required oninput="this.value = this.value.toUpperCase()">
             <input type="submit" value="Submit" id="submit">
         </form>
     </div>
