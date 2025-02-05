@@ -96,8 +96,7 @@ body::before {
 }
 
 @media (max-width: 768px) {
-  body::before {
-    margin-top: 50px;
+  body {
     background-image: url(https://i.ibb.co/S45nDvLg/Live-Wallpaper.jpg);
   }
 }
