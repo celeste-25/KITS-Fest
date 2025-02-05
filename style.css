@@ -53,7 +53,6 @@ html {
 }
 
 body{
-  content: "";
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   width: 100%;
@@ -70,7 +69,6 @@ body{
 
 body::before
 {
-    filter: hue-rotate(150deg);
     z-index: -1;
 }
 
