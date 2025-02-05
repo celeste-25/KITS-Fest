@@ -79,12 +79,6 @@ body::before
     z-index: -1;
 }
 
-@media (max-width: 768px) {
-  body::before {
-    margin-top: 50px;
-    background-image: url('https://i.ibb.co/wFy5XgL7/upscalemedia-transformed.jpg');
-  }
-}
 
 .title1 {
   font-family: "Rubik Distressed", serif;
