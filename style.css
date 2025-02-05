@@ -48,7 +48,7 @@ html {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: url('') no-repeat center center/cover;
+    background: url('https://i.ibb.co/wFy5XgL7/upscalemedia-transformed.jpg') no-repeat center center/cover;
     z-index: 0; 
     opacity: 0.4; 
 }
@@ -62,7 +62,6 @@ body{
   height: 100%;
   position: absolute;
   background-size: cover;
-  background-image: url('');
   background-repeat: no-repeat;
   background-position: center;
   position: fixed;
@@ -79,6 +78,11 @@ body::before
     z-index: -1;
 }
 
+@media (max-width: 768px) {
+  body::before {
+    margin-top: 50px;
+  }
+}
 
 .title1 {
   font-family: "Rubik Distressed", serif;
