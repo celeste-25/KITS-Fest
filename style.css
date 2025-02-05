@@ -43,13 +43,13 @@ html {
 }
 
 .background-image {
-    position: fixed; 
+    position: fixed; /* Keeps the image in place */
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: url('https://i.ibb.co/wFy5XgL7/upscalemedia-transformed.jpg') no-repeat center center/cover;
-    z-index: 0; 
+    background: url('your-image.jpg') no-repeat center center/cover;
+    z-index: 0; /* Places it behind other content */
     opacity: 0.4; 
 }
 
