@@ -18,6 +18,13 @@
     max-width: 768px;
 }
 
+@media(max-width:768px){
+    .title-metal
+    {
+        width: 90%;
+    }
+}
+
 html {
     scroll-behavior: smooth;
     overscroll-behavior: contain;
