@@ -25,7 +25,8 @@
 @media(max-width:768px){
     .title-metal
     {
-        width: 100%;
+        position: absolute;
+        width: 90%;
     }
 }
 
