@@ -3,9 +3,6 @@
 *
 {
     cursor: url('https://i.ibb.co/kcxPPSQ/cursor-knife.png'), pointer;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
     font-family: "Roboto", sans-serif;
     user-select: none;
     -webkit-user-select: none;
@@ -15,7 +12,9 @@
 .title-metal
 {
     display: flex;
-    height: 
+    height: auto;
+    align-items: center;
+    justify-content: center;
 }
 
 html {
@@ -47,36 +46,22 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
- /* background: #23074d;  */
-  position: relative;
   user-select: none;
   -webkit-user-select: none;
-  background: -webkit-linear-gradient(
-    to right,
-    #cc5333,
-    #23074d
-  );
-  background: linear-gradient(
-    to right,
-    #cc5333,
-    #23074d
-  ); 
+ 
 }
 
 body::before {
   content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(https://i.ibb.co/6vd5pd2/logo-with-name-removebg-preview.png);
-  background-size: contain;
-  background-position: center 100px;
+  position: absolute;
+  background-size: cover;
+  background-image: url(https://i.ibb.co/KxsHsCpS/Eine-Wand-mit-roten-Lichtern-und-schwarzem-Hintergrund-Premium-KI-generiertes-Bild.jpg);
   background-repeat: no-repeat;
+  background-position: center;
   position: fixed;
   background-attachment: fixed;
-  filter: blur(2px);
   transform: scale(1.1);
   z-index: -1;
   user-select: none;
@@ -96,7 +81,8 @@ body::before {
 }
 
 @media (max-width: 768px) {
-  body {
+  body::before {
+    margin-top: 50px;
     background-image: url(https://i.ibb.co/S45nDvLg/Live-Wallpaper.jpg);
   }
 }
