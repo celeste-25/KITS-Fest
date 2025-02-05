@@ -7,6 +7,11 @@
     -webkit-tap-highlight-color: transparent;
 }
 
+.contents
+{
+    filter: none;
+}
+
 .title-metal
 {
     display: flex;
