@@ -42,14 +42,14 @@ html {
     }
 }
 
-.background-image {
+.background-image1 {
     position: fixed; 
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
     background: url('https://i.ibb.co/wFy5XgL7/upscalemedia-transformed.jpg') no-repeat center center/cover;
-    z-index: 0; 
+    z-index: 10; 
     opacity: 0.4; 
 }
 
@@ -182,6 +182,7 @@ body::before
     align-items: center;
     margin-bottom: 10px;
     line-height: 20px;
+    z-index: 10;
 }
 
 
