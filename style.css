@@ -7,11 +7,6 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-.contents
-{
-    filter: none;
-}
-
 .title-metal
 {
     display: flex;
@@ -23,7 +18,7 @@
 @media(max-width:768px){
     .title-metal
     {
-        width: 90%;
+        width: 100%;
     }
 }
 
@@ -79,6 +74,7 @@ body{
 
 body::before
 {
+    filter: hue-rotate(150deg);
     z-index: -1;
 }
 
