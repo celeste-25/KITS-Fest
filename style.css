@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap");
-
 *
 {
     cursor: url('https://i.ibb.co/kcxPPSQ/cursor-knife.png'), pointer;
@@ -15,13 +13,12 @@
     height: auto;
     align-items: center;
     justify-content: center;
-    max-width: 768px;
 }
 
 @media(max-width:768px){
     .title-metal
     {
-        width: 90%;
+        width: 100%;
     }
 }
 
@@ -45,55 +42,50 @@ html {
     }
 }
 
-
-body {
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  transform: translate3d(0, 0, 0); 
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  user-select: none;
-  -webkit-user-select: none;
- 
+.background-image {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url('') no-repeat center center/cover;
+    z-index: 0; 
+    opacity: 0.4; 
 }
 
-body::before {
+body{
   content: "";
+  background-color: black;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
   width: 100%;
   height: 100%;
   position: absolute;
   background-size: cover;
-  background-image: url(https://i.ibb.co/KxsHsCpS/Eine-Wand-mit-roten-Lichtern-und-schwarzem-Hintergrund-Premium-KI-generiertes-Bild.jpg);
+  background-image: url('');
   background-repeat: no-repeat;
   background-position: center;
   position: fixed;
   background-attachment: fixed;
   transform: scale(1.1);
-  z-index: -1;
+  transform: translate3d(0, 0, 0); 
   user-select: none;
   -webkit-user-select: none;
-  /*
-  background: -webkit-linear-gradient(
-    to right,
-    #cc5333,
-    #23074d
-  );
-  background: linear-gradient(
-    to right,
-    #cc5333,
-    #23074d
-  ); 
-  */
+}
+
+body::before
+{
+    filter: hue-rotate(150deg);
+    z-index: -1;
 }
 
 @media (max-width: 768px) {
   body::before {
     margin-top: 50px;
-    background-image: url(https://i.ibb.co/S45nDvLg/Live-Wallpaper.jpg);
+    background-image: url('https://i.ibb.co/wFy5XgL7/upscalemedia-transformed.jpg');
   }
 }
+
 .title1 {
   font-family: "Rubik Distressed", serif;
   font-weight: 400;
@@ -244,6 +236,7 @@ body::before {
     display: flex;
     justify-content: center;
     align-items: center;
+    filter: none;
 }
 
 .contact a
@@ -272,85 +265,6 @@ body::before {
       margin-top: 10%;
     }
   }
-/*  /// contact-button
-#contact-popup {
-  position: fixed;
-  right: 10px;
-  top: 60%;
-  z-index: 1000;
-}
-
-
-#contact-bot {
-  width: 100px;
-  cursor: pointer;
-  animation: fade-in-out 6s infinite; 
-}
-
-
-#contact-dialog {
-  position: absolute;
-  top: -10px;
-  left: -250px;
-  width: 220px;
-  padding: 10px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.dialog-content {
-  flex: 1;
-  text-align: left;
-}
-
-.dialog-content a {
-  color: #007BFF;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.dialog-content a:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.dialog-close {
-  margin-left: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.dialog-close #close-dialog {
-  cursor: pointer;
-  font-weight: bold;
-  color: #ff4444;
-  font-size: 18px;
-}
-
-.hidden {
-  visibility: hidden;
-  opacity: 0;
-}
-
-#contact-dialog.show {
-  visibility: visible;
-  opacity: 1;
-}
-
-@keyframes fade-in-out {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
-*/
 
 
 .btn {
