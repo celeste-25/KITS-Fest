@@ -26,7 +26,7 @@
     .title-metal
     {
         position: absolute;
-        width: 90%;
+    transform: scale(0.8)
     }
 }
 
