@@ -20,16 +20,21 @@
     {
         width: 100%;
     }
-    .background-image
+}
+
+@media(max-width:768px){
+ .background-image
     {
         transform: scale(0.8)
         z-index: -8;
     }
+}
+
+@media(max-width:768px){
     .check-info
     {
         z-index: -8;
     }
-}
 
 html {
     scroll-behavior: smooth;
