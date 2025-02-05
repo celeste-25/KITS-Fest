@@ -13,12 +13,19 @@
     height: auto;
     align-items: center;
     justify-content: center;
+    position: relative;
+}
+
+.title-metal img
+{
+  position: absolute;
+  top: 20%;
 }
 
 @media(max-width:768px){
     .title-metal
     {
-        width: 90%;
+        width: 100%;
     }
 }
 
@@ -42,14 +49,14 @@ html {
     }
 }
 
-.background-image1 {
+.background-image {
     position: fixed; 
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
     background: url('https://i.ibb.co/wFy5XgL7/upscalemedia-transformed.jpg') no-repeat center center/cover;
-    z-index: 10; 
+    z-index: 0; 
     opacity: 0.4; 
 }
 
@@ -180,9 +187,9 @@ body::before
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 20%;
     margin-bottom: 10px;
     line-height: 20px;
-    z-index: 10;
 }
 
 
