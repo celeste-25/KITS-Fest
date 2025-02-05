@@ -5,7 +5,6 @@
     user-select: none;
     -webkit-user-select: none;
     -webkit-tap-highlight-color: transparent;
-    background-color: black;
 }
 
 .title-metal
@@ -44,13 +43,13 @@ html {
 }
 
 .background-image {
-    position: fixed; /* Keeps the image in place */
+    position: fixed; 
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: url('your-image.jpg') no-repeat center center/cover;
-    z-index: 0; /* Places it behind other content */
+    background: url('https://i.ibb.co/wFy5XgL7/upscalemedia-transformed.jpg') no-repeat center center/cover;
+    z-index: 0; 
     opacity: 0.4; 
 }
 
@@ -67,8 +66,6 @@ body{
   background-position: center;
   position: fixed;
   background-attachment: fixed;
-  transform: scale(1.1);
-  transform: translate3d(0, 0, 0); 
   user-select: none;
   -webkit-user-select: none;
 }
