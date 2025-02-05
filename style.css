@@ -187,9 +187,17 @@ body::before
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 75%;
+    margin-top: 20%;
     margin-bottom: 10px;
     line-height: 20px;
+}
+
+@media(max-width:768px)
+{
+  .check-info
+  {
+    margin-top: 60%;
+  }
 }
 
 
