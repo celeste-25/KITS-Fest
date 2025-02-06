@@ -22,11 +22,14 @@
   top: 20%;
 }
 
-@media(max-width:768px){
-    .title-metal
-    {
-        position: absolute;
-    transform: scale(0.8);
+@media (max-width: 768px) {
+    .title-metal {
+        width: 100%;
+        height: auto;
+    }
+
+    .title-metal img {
+        max-width: 80%; /* Adjust this if needed */
     }
 }
 
