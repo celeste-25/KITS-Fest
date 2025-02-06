@@ -63,6 +63,13 @@ html {
     opacity: 0.7; 
 }
 
+@media(max-width:768px)
+{
+ .background-image1 {
+    background: url('https://i.ibb.co/XfqLNXKg/Home-Page-Bg.gif') no-repeat center center/cover;
+ }   
+}
+
 body{
   content: "";
   background-color: rgb(0, 0, 0);
