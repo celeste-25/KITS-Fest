@@ -3,32 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../style.css">
     <title>Toss the Egg</title>
+    <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
-  <div class="container">
-    <h1 class="title1">Toss the Egg</h1>
-    <div class="rules">
-      <h2>Rules & Regulations</h2>
-      <ul>
-        <li>Each participant will have to toss an egg as far as possible.</li>
-        <li>The egg must land intact, without breaking.</li>
-        <li>No equipment or assistance allowed in tossing the egg.</li>
-        <li>The participant who tosses the egg the farthest wins.</li>
-        <li>The organizers' decision will be final.</li>
-      </ul>
+    <div class="container">
+        <div class="card" id="card">
+            <div class="front">
+                <div class="flip-button" onclick="flipCard()">&#62;</div>
+            </div>
+            <div class="back">
+                <h1>Toss the Egg</h1>
+                <h2>Rules and Regulations</h2>
+                <ul>
+                    <li>Each participant will have to toss an egg as far as possible.</li>
+                    <li>The egg must land intact, without breaking.</li>
+                    <li>No equipment or assistance allowed in tossing the egg.</li>
+                    <li>The participant who tosses the egg the farthest wins.</li>
+                    <li>The organizers' decision will be final.</li>
+                </ul>
+                <div class="agreement">
+                    <label>
+                        <input type="checkbox" id="agree-checkbox">
+                        <span>I have read all the rules and regulations and will follow them.</span>
+                    </label>
+                </div>
+                <button id="register-button" class="button" disabled>REGISTER</button>
+                <button class="button" onclick="flipCard()">BACK</button>
+            </div>
+        </div>
     </div>
-    <div class="agreement">
-      <label>
-        <input type="checkbox" id="agree-checkbox">
-        <span>I have read all the rules and regulations and will follow them.</span>
-      </label>
-    </div>
-  </div>
 
-  <button id="register-button" class="button" disabled>REGISTER</button>
-  
-  <script src="../../script.js"></script>
+    <script src="../../script.js"></script>
 </body>
 </html>
