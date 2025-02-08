@@ -1,107 +1,151 @@
 @import url('https://fonts.googleapis.com/css?family=Space%20Grotesk:700|Space%20Grotesk:400');
 
 :root {
-  --m: 2rem;
-
-  --red: #FF6565;
-  --pink: #FF64F9;
-  --purple: #6B5FFF;
-  --blue: #4D8AFF;
-  --green: #5BFF89;
-  --yellow: #FFEE55;
-  --orange: #FF6D1B;
+    --purple: #6B5FFF;
+    --pink: #FF64F9;
+    --white: #ffffff;
 }
 
-*
-{
-  font-family: Arial;
-  font-size: medium;
-}
-
-.title1
-{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  font-size: 300%;
-}
-
-@media(max-width:768px)
-{
-  .title1
-  {
-      font-size: 200%;
-  }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 body {
-  background-color: #bf1077;
-  background-image: linear-gradient(225deg, #bf1077 0%, #7933c7 50%, #181414 100%);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 0;
-  color: white;
-  font-family: Arial;
-  min-height: 100vh;
+    background-color: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .container {
-  background: inherit; 
-  padding: 20px;
-  border-radius: 10px;
-  width: 80%;
-  max-width: 1000px;
-  line-height: 180%;
+    position: relative;
+    width: 300px;
+    height: 500px;
+    perspective: 1000px;
 }
 
-button {
-  border: calc(0.08 * var(--m)) solid transparent;
-  position: relative;
-  color: #F3F3F3;
-  font-family: 'Space Grotesk';
-  font-size: var(--m);
-  border-radius: calc(0.7 * var(--m));
-  padding: calc(0.5 * var(--m)) calc(1 * var(--m));
-  display: flex;
-  justify-content: center;
-  cursor: pointer;
-  background: linear-gradient(#121213, #121213), 
-              linear-gradient(#121213 50%, rgba(18, 18, 19, 0.6) 80%, rgba(18, 18, 19, 0)),  
-              linear-gradient(90deg, var(--orange), var(--yellow), var(--green), var(--blue), var(--purple), var(--pink), var(--red));
-  background-origin: border-box;
-  background-clip: padding-box, border-box, border-box;
-  background-size: 200%;
-  animation: animate 2s infinite linear;
-  margin-top: 3%;
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
 }
 
-button::before {
-  content: '';
-  background: linear-gradient(90deg, var(--orange), var(--yellow), var(--green), var(--blue), var(--purple), var(--pink), var(--red));
-  height: 30%;
-  width: 60%;
-  position: absolute;
-  bottom: -20%;
-  z-index: -5;
-  background-size: 200%;
-  animation: animate 2s infinite linear;
-  filter: blur(calc(0.8 * var(--m)));
+.card.flipped {
+    transform: rotateY(180deg);
 }
 
-button:hover, button:hover::before {
-  animation: animate 0.5s infinite linear;
+/* FRONT & BACK SIDES */
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
-@keyframes animate {
-  0% {background-position: 0;}
-  100% {background-position: 200%;}
+/* FRONT SIDE */
+.front {
+    background: url('https://i.ibb.co/rgsMvFV/ezgif-6b9cdc22106a67.gif') no-repeat center center;
+    background-size: cover;
+    position: relative;
 }
 
-@media screen and (max-width: 1000px) {
-  :root {
-    --m: 1.5rem; 
-  }
+/* Flip Button */
+.flip-button {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(90deg, var(--purple), var(--pink));
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+}
+
+/* BACK SIDE */
+.back {
+    background-color: black;
+    color: white;
+    transform: rotateY(180deg);
+    padding: 20px;
+    text-align: center;
+}
+
+.back h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.back h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.back ul {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.back ul li {
+    margin-bottom: 8px;
+}
+
+/* Agreement Checkbox */
+.agreement {
+    margin: 20px 0;
+    color: #ccc;
+}
+
+.agreement input[type="checkbox"] {
+    margin-right: 10px;
+    accent-color: var(--purple);
+}
+
+/* Buttons */
+.button {
+    background: linear-gradient(90deg, var(--purple), var(--pink));
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.button:hover {
+    background: linear-gradient(90deg, var(--pink), var(--purple));
+}
+
+#register-button {
+    margin-top: 20px;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+#register-button:enabled {
+    cursor: pointer;
+    opacity: 1;
 }
