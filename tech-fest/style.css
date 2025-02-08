@@ -56,9 +56,44 @@ body {
     flex-direction: column;
 }
 
-/* FRONT SIDE */
-.front {
-    background: url('https://i.ibb.co/Xkrnv9fL/Toss-The-Egg-1.gif') no-repeat center center;
+.toss-the-egg .front {
+    background: url('https://i.ibb.co/rgsMvFV/ezgif-6b9cdc22106a67.gif') no-repeat center center;
+    background-size: cover;
+    position: relative;
+}
+
+.logo-identification .front {
+    background: url('https://i.ibb.co/tPJb7GSn/Logo-Identification-2-K.gif') no-repeat center center;
+    background-size: cover;
+    position: relative;
+}
+
+.bridge-making .front {
+    background: url('https://i.ibb.co/rgsMvFV/ezgif-6b9cdc22106a67.gif') no-repeat center center;
+    background-size: cover;
+    position: relative;
+}
+
+.chess .front {
+    background: url('https://i.ibb.co/tPJb7GSn/Logo-Identification-2-K.gif') no-repeat center center;
+    background-size: cover;
+    position: relative;
+}
+
+.escape-room .front {
+    background: url('https://i.ibb.co/rgsMvFV/ezgif-6b9cdc22106a67.gif') no-repeat center center;
+    background-size: cover;
+    position: relative;
+}
+
+.treasure-hunt .front {
+    background: url('https://i.ibb.co/tPJb7GSn/Logo-Identification-2-K.gif') no-repeat center center;
+    background-size: cover;
+    position: relative;
+}
+
+.tricky-circuit .front {
+    background: url('https://i.ibb.co/tPJb7GSn/Logo-Identification-2-K.gif') no-repeat center center;
     background-size: cover;
     position: relative;
 }
