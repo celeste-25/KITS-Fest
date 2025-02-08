@@ -6,29 +6,37 @@
     <link rel="stylesheet" href="../../style.css">
     <title>Escape Room</title>
 </head>
-<body>
-  <div class="container">
-    <h1 class="title1">Escape Room</h1>
-    <div class="rules">
-      <h2>Rules & Regulations</h2>
-      <ul>
-        <li>Teams must escape from the room within the allotted time.</li>
-        <li>Any attempt to cheat or break the rules will lead to disqualification.</li>
-        <li>Team members must work together to solve puzzles and escape.</li>
-        <li>Participants must respect the safety protocols at all times.</li>
-        <li>The organizers' decision will be final.</li>
-      </ul>
+    <body class="escape-room">
+      <div class="container">
+        <div class="card" id="card">
+            <div class="front">
+                <div class="flip-button" onclick="flipCard()">&#62;</div>
+            </div>
+            <div class="back">
+                <h1>Escape Room</h1>
+                <h2>Rules and Regulations</h2>
+                <ul>
+                    <li>Teams must escape from the room within the allotted time.</li>
+                    <li>Any attempt to cheat or break the rules will lead to disqualification.</li>
+                    <li>Team members must work together to solve puzzles and escape.</li>
+                    <li>Participants must respect the safety protocols at all times.</li>
+                    <li>The organizers' decision will be final.</li>
+                </ul>
+                <div class="agreement">
+                    <label>
+                        <input type="checkbox" id="agree-checkbox">
+                        <span>I have read all the rules and regulations and will follow them.</span>
+                    </label>
+                </div>
+                
+                <div class="button-row">
+                    <button class="back-button" onclick="flipCard()">&lt</button>
+                    <button id="register-button" class="button" disabled>REGISTER</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="agreement">
-      <label>
-        <input type="checkbox" id="agree-checkbox">
-        <span>I have read all the rules and regulations and will follow them.</span>
-      </label>
-    </div>
-  </div>
 
-  <button id="register-button" class="button" disabled>REGISTER</button>
-  
   <script src="../../script.js"></script>
 </body>
 </html>
