@@ -7,25 +7,34 @@
     <title>Logo Identification</title>
 </head>
 <body class="logo-identification">
-  <div class="container">
-    <h1 class="title1">Logo Identification</h1>
-    <div class="rules">
-      <h2>Rules & Regulations</h2>
-      <ul>
+      <div class="container">
+        <div class="card" id="card">
+            <div class="front">
+                <div class="flip-button" onclick="flipCard()">&#62;</div>
+            </div>
+            <div class="back">
+                <h1>Logo Identification</h1>
+                <h2>Rules and Regulations</h2>
+                <ul>
         <li>Participants must identify logos within a specified time.</li>
         <li>No external help or references are allowed.</li>
         <li>Each correct logo earns a point, and the participant with the highest score wins.</li>
         <li>The organizers' decision will be final.</li>
-      </ul>
+                </ul>
+                <div class="agreement">
+                    <label>
+                        <input type="checkbox" id="agree-checkbox">
+                        <span>I have read all the rules and regulations and will follow them.</span>
+                    </label>
+                </div>
+                
+                <div class="button-row">
+                    <button class="back-button" onclick="flipCard()">&lt</button>
+                    <button id="register-button" class="button" disabled>REGISTER</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="agreement">
-      <label>
-        <input type="checkbox" id="agree-checkbox">
-        <span>I have read all the rules and regulations and will follow them.</span>
-      </label>
-    </div>
-  </div>
-  <button id="register-button" class="button" disabled>REGISTER</button>
   <script src="../../script.js"></script>
 </body>
 </html>
