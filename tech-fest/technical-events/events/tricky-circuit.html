@@ -6,29 +6,40 @@
     <link rel="stylesheet" href="../../style.css">
     <title>Tricky Circuit</title>
 </head>
-<body>
-  <div class="container">
-    <h1 class="title1">Tricky Circuit</h1>
-    <div class="rules">
-      <h2>Rules & Regulations</h2>
-      <ul>
+<body class="tricky-circuit">
+      <div class="container">
+        <div class="card" id="card">
+            <div class="front">
+                <div class="flip-button" onclick="flipCard()">&#62;</div>
+            </div>
+            <div class="back">
+                <h1>Tricky Circuit</h1>
+                <h2>Rules and Regulations</h2>
+                <ul>
         <li>Participants must complete the circuit within the given time.</li>
         <li>Only one attempt is allowed.</li>
         <li>No help or external devices are allowed during the circuit.</li>
         <li>The circuit will be timed, and accuracy is key.</li>
         <li>The organizers' decision will be final.</li>
-      </ul>
+                </ul>
+                <div class="agreement">
+                    <label>
+                        <input type="checkbox" id="agree-checkbox">
+                        <span>I have read all the rules and regulations and will follow them.</span>
+                    </label>
+                </div>
+                
+                <div class="button-row">
+                    <button class="back-button" onclick="flipCard()">&lt</button>
+                    <button id="register-button" class="button" disabled>REGISTER</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="agreement">
-      <label>
-        <input type="checkbox" id="agree-checkbox">
-        <span>I have read all the rules and regulations and will follow them.</span>
-      </label>
-    </div>
-  </div>
-
-  <button id="register-button" class="button" disabled>REGISTER</button>
-  
   <script src="../../script.js"></script>
 </body>
 </html>
+
+
+
+
