@@ -6,37 +6,46 @@
     <link rel="stylesheet" href="../../style.css">
     <title>Treasure Hunt</title>
 </head>
-<body class="treasure-hunt">
-      <div class="container">
-        <div class="card" id="card">
-            <div class="front">
-                <div class="flip-button" onclick="flipCard()">&#62;</div>
+<body>
+    <div class="container">
+        <!-- Left Content -->
+        <div class="left-section">
+            <h1>Treasure Hunt</h1>
+            <h2>Rules and Regulations</h2>
+            <ul class="rules-list">
+                <li>You must participate individually or in teams as specified.</li>
+                <li>Follow all instructions provided by the organizers.</li>
+                <li>Cheating or any unfair practices will result in disqualification.</li>
+                <li>Respect fellow participants and organizers at all times.</li>
+                <li>Make sure to complete tasks within the allocated time.</li>
+                <li>The organizers' decisions will be final.</li>
+            </ul>
+            <div class="agreement">
+                <label>
+                    <input type="checkbox" id="agree-checkbox">
+                    <span>I have read all the rules and regulations and will follow them.</span>
+                </label>
             </div>
-            <div class="back">
-                <h1>Treasure Hunt</h1>
-                <h2>Rules and Regulations</h2>
-                <ul>
-        <li>You must participate individually or in teams as specified.</li>
-        <li>Follow all instructions provided by the organizers.</li>
-        <li>Cheating or any unfair practices will result in disqualification.</li>
-        <li>Respect fellow participants and organizers at all times.</li>
-        <li>Make sure to complete tasks within the allocated time.</li>
-        <li>The organizers' decisions will be final.</li>
-                </ul>
-                <div class="agreement">
-                    <label>
-                        <input type="checkbox" id="agree-checkbox">
-                        <span>I have read all the rules and regulations and will follow them.</span>
-                    </label>
-                </div>
-                
-                <div class="button-row">
-                    <button class="back-button" onclick="flipCard()">&lt</button>
-                    <button id="register-button" class="button" disabled>REGISTER</button>
-                </div>
-            </div>
+            <button id="register-button" class="button" disabled>REGISTER</button>
+        </div>
+
+        <!-- Right Image -->
+        <div class="right-section">
+            <img src="https://i.ibb.co/tPJb7GSn/Logo-Identification-2-K.gif" alt="Treasure Hunt">
         </div>
     </div>
-  <script src="../../script.js"></script>
+
+    <script>
+        const checkbox = document.getElementById("agree-checkbox");
+        const registerButton = document.getElementById("register-button");
+
+        checkbox.addEventListener("change", function () {
+            registerButton.disabled = !this.checked;
+        });
+
+        registerButton.addEventListener("click", function () {
+            window.location.href = `online-payment.html?event=${encodeURIComponent(document.title)}`;
+        });
+    </script>
 </body>
 </html>
