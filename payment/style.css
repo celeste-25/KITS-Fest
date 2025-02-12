@@ -24,6 +24,14 @@ body {
     line-height: 30px;
 }
 
+@media(max-width:768px)
+{
+    .container
+    {
+        margin-top: 20px;
+    }
+}
+
 h4 {
     margin-bottom: 10px;
     font-size: 24px;
