@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration & Payment Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <form method="post" name="paymentForm" enctype="multipart/form-data">
+            <h4>Registration & Payment Form</h4>
+
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Name" required oninput="this.value = this.value.toUpperCase()">
+            
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="E-mail" required>
+            
+            <label for="year">Year</label>
+            <select id="year" name="year" required>
+                <option value="" disabled selected>Select Year</option>
+                <option value="1st Year">1st Year</option>
+                <option value="2nd Year">2nd Year</option>
+                <option value="3rd Year">3rd Year</option>
+                <option value="4th Year">4th Year</option>
+            </select>
+            
+            <label for="branch">Branch</label>
+            <select id="branch" name="branch" required>
+                <option value="" disabled selected>Select Branch</option>
+                <option value="CSE">CSE</option>
+                <option value="Automobile">Automobile</option>
+                <option value="Civil">Civil</option>
+                <option value="Mech">Mechanical</option>
+                <option value="Electrical">Electrical</option>
+                <option value="Electronics">Electronics</option>
+            </select>
+            
+            <label for="event">Event</label>
+            <input type="text" id="event" name="event" readonly>
+            
+            <label for="registrationNumber">Registration Number</label>
+            <input type="text" id="registrationNumber" name="registrationNumber" placeholder="Registration Number" required oninput="this.value = this.value.toUpperCase()">
+            
+            <!-- Transaction ID Input -->
+            <label for="transactionId">Transaction ID (12 Alphanumeric)</label>
+            <input type="text" id="transactionId" name="transactionId" placeholder="Transaction ID" required pattern="[A-Za-z0-9]{12}" title="Transaction ID must be exactly 12 alphanumeric characters">
+            
+            <!-- Image Upload -->
+            <label for="image">Upload Payment Screenshot</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+            <img id="preview" src="" alt="Image Preview" style="display: none; width: 100%; max-width: 300px; margin-top: 10px;">
+            
+            <input type="submit" value="Submit" id="submit">
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
