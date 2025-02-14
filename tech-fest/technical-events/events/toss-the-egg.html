@@ -6,37 +6,46 @@
     <title>Toss the Egg</title>
     <link rel="stylesheet" href="../../style.css">
 </head>
-<body class="toss-the-egg">
-    <div class="container">
-        <div class="card" id="card">
-            <div class="front">
-                <div class="flip-button" onclick="flipCard()">&#62;</div>
-            </div>
-            <div class="back">
+ <div class="container">
+        <!-- Left Content -->
+        <div class="left-section">
                 <h1>Toss the Egg</h1>
-                <h2>Rules and Regulations</h2>
-                <ul>
+            <h2>Rules and Regulations</h2>
+            <ul class="rules-list">
                     <li>Each participant will have to toss an egg as far as possible.</li>
                     <li>The egg must land intact, without breaking.</li>
                     <li>No equipment or assistance allowed in tossing the egg.</li>
                     <li>The participant who tosses the egg the farthest wins.</li>
                     <li>The organizers' decision will be final.</li>
-                </ul>
-                <div class="agreement">
-                    <label>
-                        <input type="checkbox" id="agree-checkbox">
-                        <span>I have read all the rules and regulations and will follow them.</span>
-                    </label>
-                </div>
-                
-                <div class="button-row">
-                    <button class="back-button" onclick="flipCard()">&lt</button>
-                    <button id="register-button" class="button" disabled>REGISTER</button>
-                </div>
+            </ul>
+            <div class="agreement">
+                <label>
+                    <input type="checkbox" id="agree-checkbox">
+                    <span>I have read all the rules and regulations and will follow them.</span>
+                </label>
             </div>
+            <button id="register-button" class="button" disabled>REGISTER</button>
+        </div>
+    
+        <!-- Right Image -->
+        <div class="right-section">
+            <img src="https://i.ibb.co/tPJb7GSn/Logo-Identification-2-K.gif" alt="Treasure Hunt">
         </div>
     </div>
-
-    <script src="../../script.js"></script>
+    
+    <script>
+        const checkbox = document.getElementById("agree-checkbox");
+        const registerButton = document.getElementById("register-button");
+    
+        checkbox.addEventListener("change", function () {
+            registerButton.disabled = !this.checked;
+        });
+    
+        registerButton.addEventListener("click", function () {
+            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/online-payment.html?event=${encodeURIComponent(document.title)}`;
+        });
+    </script>
 </body>
 </html>
+
+
