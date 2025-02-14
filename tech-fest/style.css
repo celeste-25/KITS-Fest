@@ -110,6 +110,8 @@ ul li {
 
 
 .right-section img {
+  max-width: 100%;
+  height: auto;
   object-fit: contain;
 }
 
