@@ -6,30 +6,46 @@
     <link rel="stylesheet" href="../../style.css">
     <title>E-Football</title>
 </head>
-<body>
-  <div class="container">
-    <h1 class="title1">E-Football</h1>
-    <div class="rules">
-      <h2>Rules & Regulations</h2>
-      <ul>
+<div class="container">
+        <!-- Left Content -->
+        <div class="left-section">
+                <h1>E-Football</h1>
+            <h2>Rules and Regulations</h2>
+            <ul class="rules-list">
         <li>Players must participate individually in the tournament.</li>
         <li>Matches will follow a knockout format, with each match being 1v1.</li>
         <li>Players should not use any unfair advantages like third-party tools.</li>
         <li>Respect your opponent and follow the rules during gameplay.</li>
         <li>The winner will be determined based on the match score.</li>
         <li>Organizers' decision will be final in case of any disputes or conflicts.</li>
-      </ul>
+            </ul>
+            <div class="agreement">
+                <label>
+                    <input type="checkbox" id="agree-checkbox">
+                    <span>I have read all the rules and regulations and will follow them.</span>
+                </label>
+            </div>
+            <button id="register-button" class="button" disabled>REGISTER</button>
+        </div>
+    
+        <!-- Right Image -->
+        <div class="right-section">
+            <img src="https://i.ibb.co/tPJb7GSn/Logo-Identification-2-K.gif" alt="Treasure Hunt">
+        </div>
     </div>
-    <div class="agreement">
-      <label>
-        <input type="checkbox" id="agree-checkbox">
-        <span>I have read all the rules and regulations and will follow them.</span>
-      </label>
-    </div>
-  </div>
-
-  <button id="register-button" class="button" disabled>REGISTER</button>
-  
-  <script src="../../script.js"></script>
+    
+    <script>
+        const checkbox = document.getElementById("agree-checkbox");
+        const registerButton = document.getElementById("register-button");
+    
+        checkbox.addEventListener("change", function () {
+            registerButton.disabled = !this.checked;
+        });
+    
+        registerButton.addEventListener("click", function () {
+            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/online-payment.html?event=${encodeURIComponent(document.title)}`;
+        });
+    </script>
 </body>
 </html>
+
