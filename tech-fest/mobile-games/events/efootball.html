@@ -33,17 +33,22 @@
             <img src="https://i.ibb.co/tPJb7GSn/Logo-Identification-2-K.gif" alt="Treasure Hunt">
         </div>
     </div>
-    
-    <script>
+   <script>
         const checkbox = document.getElementById("agree-checkbox");
-        const registerButton = document.getElementById("register-button");
+        const payOnlineButton = document.getElementById("pay-online-button");
+        const payOfflineButton = document.getElementById("pay-offline-button");
 
         checkbox.addEventListener("change", function () {
-            registerButton.disabled = !this.checked;
+            payOnlineButton.disabled = !this.checked;
+            payOfflineButton.disabled = !this.checked;
         });
 
-        registerButton.addEventListener("click", function () {
+        payOnlineButton.addEventListener("click", function () {
             window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/payment-options.html?event=${encodeURIComponent(document.querySelector('h1').innerText)}`;
+        });
+
+        payOfflineButton.addEventListener("click", function () {
+            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/offline&no-payment.html?event=${encodeURIComponent(document.querySelector('h1').innerText)}`;
         });
     </script>
 </body>
