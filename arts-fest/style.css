@@ -1,107 +1,149 @@
-@import url('https://fonts.googleapis.com/css?family=Space%20Grotesk:700|Space%20Grotesk:400');
-
 :root {
-  --m: 2rem;
-
-  --red: #FF6565;
-  --pink: #FF64F9;
   --purple: #6B5FFF;
-  --blue: #4D8AFF;
-  --green: #5BFF89;
-  --yellow: #FFEE55;
-  --orange: #FF6D1B;
+  --pink: #FF64F9;
+  --white: #ffffff;
 }
 
-*
-{
-  font-family: Arial;
-  font-size: medium;
-}
-
-.title1
-{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  font-size: 300%;
-}
-
-@media(max-width:768px)
-{
-  .title1
-  {
-      font-size: 200%;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
 body {
-  background-color: #bf1077;
-  background-image: linear-gradient(225deg, #bf1077 0%, #7933c7 50%, #181414 100%);
+  background-color: #000000;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Two-Column Layout */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+}
+
+/* Left Section */
+.left-section {
+  flex: 1;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  margin-top: 0;
+}
+
+h1 {
+  font-size: 60px; /* Big, rich font */
+  text-align: center;
+  margin-bottom: 80px;
+  margin-top: 20px;
+
+}
+
+h2 {
+  font-size: 28px; /* Slightly smaller than main heading */
+  margin-bottom: 35px;
+}
+
+ul {
+  list-style-type: none;
+  margin-bottom: 20px;
+}
+
+ul li {
+  margin-bottom: 8px;
+}
+
+/* Checkbox & Register Button */
+.agreement {
+  margin: 20px 0;
+  color: #ccc;
+}
+
+.agreement input[type="checkbox"] {
+  margin-right: 10px;
+  accent-color: var(--purple);
+}
+
+.button {
+  background: linear-gradient(90deg, var(--purple), var(--pink));
+  border: none;
   color: white;
-  font-family: Arial;
-  min-height: 100vh;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
 }
 
-.container {
-  background: inherit; 
-  padding: 20px;
-  border-radius: 10px;
-  width: 80%;
-  max-width: 1000px;
-  line-height: 180%;
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
-button {
-  border: calc(0.08 * var(--m)) solid transparent;
-  position: relative;
-  color: #F3F3F3;
-  font-family: 'Space Grotesk';
-  font-size: var(--m);
-  border-radius: calc(0.7 * var(--m));
-  padding: calc(0.5 * var(--m)) calc(1 * var(--m));
+.button:hover:not(:disabled) {
+  background: linear-gradient(90deg, var(--pink), var(--purple));
+}
+
+/* Right Section (Image) */
+.right-section {
+  flex: 1;
   display: flex;
   justify-content: center;
-  cursor: pointer;
-  background: linear-gradient(#121213, #121213), 
-              linear-gradient(#121213 50%, rgba(18, 18, 19, 0.6) 80%, rgba(18, 18, 19, 0)),  
-              linear-gradient(90deg, var(--orange), var(--yellow), var(--green), var(--blue), var(--purple), var(--pink), var(--red));
-  background-origin: border-box;
-  background-clip: padding-box, border-box, border-box;
-  background-size: 200%;
-  animation: animate 2s infinite linear;
-  margin-top: 3%;
+  align-items: center;
+  overflow: hidden;
 }
 
-button::before {
-  content: '';
-  background: linear-gradient(90deg, var(--orange), var(--yellow), var(--green), var(--blue), var(--purple), var(--pink), var(--red));
-  height: 30%;
-  width: 60%;
-  position: absolute;
-  bottom: -20%;
-  z-index: -5;
-  background-size: 200%;
-  animation: animate 2s infinite linear;
-  filter: blur(calc(0.8 * var(--m)));
+.rules-list {
+  list-style-type: disc;  /* Adds bullet points */
+  margin-left: 20px;  /* Indents the list */
+  padding-left: 20px;
 }
 
-button:hover, button:hover::before {
-  animation: animate 0.5s infinite linear;
+
+.right-section img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
-@keyframes animate {
-  0% {background-position: 0;}
-  100% {background-position: 200%;}
-}
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+      flex-direction: column;
+      height: auto;
+  }
 
-@media screen and (max-width: 1000px) {
-  :root {
-    --m: 1.5rem; 
+  .right-section {
+      order: -1; /* Image first */
+      width: 100%;
+      height: auto;
+  }
+
+  .right-section img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+  }
+
+  .left-section {
+      padding: 20px;
+      text-align: center;
+  }
+
+  h1 {
+      font-size: 40px;
+  }
+
+  h2 {
+      font-size: 22px;
   }
 }
