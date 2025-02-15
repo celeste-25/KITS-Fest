@@ -7,29 +7,51 @@
     <title>FASHION SHOW</title>
 </head>
 <body>
-  <div class="container">
-    <h1 class="title1">FASHION SHOW</h1>
-    <div class="rules">
-      <h2>Rules & Regulations</h2>
-      <ul>
-        <li>Will be added later</li>
-        <li>Will be added later</li>
-        <li>Will be added later</li>
-        <li>Will be added later</li>
-        <li>Will be added later</li>
-        <li>Will be added later</li>
-      </ul>
+<div class="container">
+        <!-- Left Content -->
+        <div class="left-section">
+                <h1>FASHION SHOW</h1>
+            <h2>Rules and Regulations</h2>
+            <ul class="rules-list">
+        <li>TEAM SIZE:3-8 MEMBERS (Minimum of 3 and maximum of 8 members).</li>
+        <li>Walking on barefoot is not allowed.</li>
+        <li>TIME LIMIT: 6 minutes. Exceeding the time limit will lead to negative marking.</li>
+        <li>No gender restrictions on team constitution. </li>
+        <li>Any form of obscenity or vulgarity leads to direct disqualification. </li>
+        <li>Participants are to mandatorily bring their songs and submit it to the coordinators prior to the performance.</li>
+        <li>Use of cigarettes, alcohol and any unfair means as property is strongly prohibited. </li>
+        <li>Teams will be judged on costumes, theme, walking stance and attitude. </li>
+        <li>The group should decide their own theme and perform accordingly. </li>
+        <li>The decision of the judges will be final.</li>
+            </ul>
+            <div class="agreement">
+                <label>
+                    <input type="checkbox" id="agree-checkbox">
+                    <span>I have read all the rules and regulations and will follow them.</span>
+                </label>
+            </div>
+            <button id="register-button" class="button" disabled>REGISTER</button>
+        </div>
+    
+        <!-- Right Image -->
+        <div class="right-section">
+            <img src="https://i.ibb.co/tPJb7GSn/Logo-Identification-2-K.gif" alt="Fashion Show">
+        </div>
     </div>
-    <div class="agreement">
-      <label>
-        <input type="checkbox" id="agree-checkbox">
-        <span>I have read all the rules and regulations and will follow them.</span>
-      </label>
-    </div>
-  </div>
-
-  <button id="register-button" class="button" disabled>REGISTER</button>
-  
-  <script src="../script.js"></script>
+    
+    <script>
+        const checkbox = document.getElementById("agree-checkbox");
+        const registerButton = document.getElementById("register-button");
+    
+        checkbox.addEventListener("change", function () {
+            registerButton.disabled = !this.checked;
+        });
+    
+        registerButton.addEventListener("click", function () {
+            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/online-payment.html?event=${encodeURIComponent(document.title)}`;
+        });
+    </script>
 </body>
 </html>
+
+
