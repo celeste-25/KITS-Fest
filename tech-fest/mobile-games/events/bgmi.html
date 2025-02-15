@@ -6,18 +6,19 @@
     <link rel="stylesheet" href="../../style.css">
     <title>BGMI</title>
 </head>
-<div class="container">
+<body>
+    <div class="container">
         <!-- Left Content -->
         <div class="left-section">
-                <h1>BGMI - Battle Grounds Mobile India</h1>
+            <h1>BGMI - Battle Grounds Mobile India</h1>
             <h2>Rules and Regulations</h2>
             <ul class="rules-list">
-        <li>All players must join the match within the designated time.</li>
-        <li>Players must remain in the game until the match ends.</li>
-        <li>No use of third-party tools or hacks; fair play is required.</li>
-        <li>Respect your teammates and opponents during the game.</li>
-        <li>The player with the most kills or the last survivor wins.</li>
-        <li>In case of any disputes, the organizers' decision is final.</li>
+                <li>All players must join the match within the designated time.</li>
+                <li>Players must remain in the game until the match ends.</li>
+                <li>No use of third-party tools or hacks; fair play is required.</li>
+                <li>Respect your teammates and opponents during the game.</li>
+                <li>The player with the most kills or the last survivor wins.</li>
+                <li>In case of any disputes, the organizers' decision is final.</li>
             </ul>
             <div class="agreement">
                 <label>
@@ -27,27 +28,23 @@
             </div>
             <button id="register-button" class="button" disabled>REGISTER</button>
         </div>
-    
+
         <!-- Right Image -->
         <div class="right-section">
             <img src="https://i.ibb.co/tPJb7GSn/Logo-Identification-2-K.gif" alt="Treasure Hunt">
         </div>
     </div>
-    
     <script>
         const checkbox = document.getElementById("agree-checkbox");
         const registerButton = document.getElementById("register-button");
-    
+
         checkbox.addEventListener("change", function () {
             registerButton.disabled = !this.checked;
         });
-    
+
         registerButton.addEventListener("click", function () {
-            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/online-payment.html?event=${encodeURIComponent(document.title)}`;
+            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/payment-options.html?event=${encodeURIComponent(document.querySelector('h1').innerText)}`;
         });
     </script>
 </body>
 </html>
-
-
-
