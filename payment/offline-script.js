@@ -28,6 +28,8 @@ form.addEventListener('submit', e => {
     formData.append("year", form.year.value);
     formData.append("branch", form.branch.value);
     formData.append("event", eventField.value);
+    formData.append("registrationNumber", form.registrationNumber.value);
+
 
     let fr = new FileReader();
     fr.onloadend = () => {
