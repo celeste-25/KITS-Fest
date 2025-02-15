@@ -16,13 +16,15 @@
         <p>UPI ID: ebenmathew3@okicici</p>
         <a href="upi://pay?pa=ebenmathew3@okicici&pn=EBENEZER&aid=uGICAgID39oHaSQ&am=10&cu=INR">GPay Here</a>
         <li>Rules Pending</li>
-        <div class="agreement">
-            <label>
-                <input type="checkbox" id="paid-checkbox">
+        <div class="agreement" style="margin-top: 10px;">
+            <label style="display: flex; align-items: center;">
+                <input type="checkbox" id="paid-checkbox" style="margin-right: 10px;">
                 <span>I have paid the amount for this event.</span>
             </label>
         </div>
-        <button id="next-button" class="button" disabled>Next</button>
+        <div style="text-align: center; margin-top: 10px;">
+            <button id="next-button" class="button" disabled>Next</button>
+        </div>
     </div>
     <script>
         const urlParams = new URLSearchParams(window.location.search);
