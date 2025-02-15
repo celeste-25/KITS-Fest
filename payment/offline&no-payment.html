@@ -3,35 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration & Payment Form</title>
+    <title>Offline Registration Form</title>
     <link rel="stylesheet" href="style.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rock+3D&family=Rubik+Distressed&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Rock+3D&family=Rubik+Distressed&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <form method="post" name="paymentForm" enctype="multipart/form-data">
-            <h4>Registration & Payment Form</h4>
-
-            <label for="name">Enter your name. If this is a group event, enter all players' names, each on a new line.</label>
-            <input type="text" id="name" name="name" placeholder="Name" required oninput="this.value = this.value.toUpperCase()">
-            
+        <form method="post" name="offlinePaymentForm" enctype="multipart/form-data" aria-label="Offline Payment Form">
+            <h4>Offline Registration Form</h4>
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Name" required oninput="this.value = this.value.toUpperCase()" aria-label="Your Name">
             <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" placeholder="E-mail" required>
-            
+            <input type="email" id="email" name="email" placeholder="E-mail" required aria-label="E-mail">
             <label for="year">Year</label>
-            <select id="year" name="year" required>
+            <select id="year" name="year" required aria-label="Year">
                 <option value="" disabled selected>Select Year</option>
                 <option value="1st Year">1st Year</option>
                 <option value="2nd Year">2nd Year</option>
                 <option value="3rd Year">3rd Year</option>
                 <option value="4th Year">4th Year</option>
             </select>
-            
             <label for="branch">Branch</label>
-            <select id="branch" name="branch" required>
+            <select id="branch" name="branch" required aria-label="Branch">
                 <option value="" disabled selected>Select Branch</option>
                 <option value="CSE">CSE</option>
                 <option value="Automobile">Automobile</option>
@@ -40,17 +35,13 @@
                 <option value="Electrical">Electrical</option>
                 <option value="Electronics">Electronics</option>
             </select>
-            
             <label for="event">Event</label>
-            <input type="text" id="event" name="event" readonly>
-            
+            <input type="text" id="event" name="event" readonly aria-label="Event">
             <label for="registrationNumber">Registration Number</label>
-            <input type="text" id="registrationNumber" name="registrationNumber" placeholder="eg. KIT21CS000" required oninput="this.value = this.value.toUpperCase()">
-            
+            <input type="text" id="registrationNumber" name="registrationNumber" placeholder="Registration Number" required oninput="this.value = this.value.toUpperCase()" aria-label="Registration Number">
             <input type="submit" value="Submit" id="submit">
         </form>
     </div>
-
-    <script src="offline-script.js"></script>
+    <script src="offline_script.js"></script>
 </body>
 </html>
