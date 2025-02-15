@@ -4,12 +4,10 @@
     margin: 0;
     font-family: 'Poppins', sans-serif;
     font-size: 18px;
-   
 }
 
-
 body {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,19 +18,18 @@ body {
     font-family: "Poppins", serif;
     font-weight: 400;
     font-style: normal;
-    
+    margin: 20px 0;
 }
 
 .container {
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
     padding: 30px;
     border: 1px solid #eeeeee;
     border-radius: 10px;
     background-color: #003b5b;
     color: white;
     line-height: 25px;
-    margin-top: 20px;
-    margin-bottom: 20px;
 }
 
 h4 {
@@ -52,8 +49,8 @@ input, select {
     border: none;
     background-color: orangered;
     color: white;
-    width: 200px;
-    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -66,4 +63,24 @@ img {
     border: 1px solid #ddd;
     padding: 5px;
     border-radius: 5px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    h4 {
+        font-size: 20px;
+    }
+
+    input, select {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    #submit {
+        font-size: 16px;
+        padding: 8px;
+    }
 }
