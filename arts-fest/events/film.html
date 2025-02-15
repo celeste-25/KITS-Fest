@@ -7,29 +7,45 @@
     <title>FILM SCENE RECREATION</title>
 </head>
 <body>
-  <div class="container">
-    <h1 class="title1">FILM SCENE RECREATION</h1>
-    <div class="rules">
-      <h2>Rules & Regulations</h2>
-      <ul>
-        <li>Will be added later</li>
-        <li>Will be added later</li>
-        <li>Will be added later</li>
-        <li>Will be added later</li>
-        <li>Will be added later</li>
-        <li>Will be added later</li>
-      </ul>
+<div class="container">
+        <!-- Left Content -->
+        <div class="left-section">
+                <h1>FILM SCENE RECREATION</h1>
+            <h2>Rules and Regulations</h2>
+            <ul class="rules-list">
+        <li>Recreate any of your favourite movie/web series/tv show scenes with the resources you have.</li>
+        <li>The videos must be in LANDSCAPE mode only. (16:9) </li>
+        <li>The videos can be 1 to 4 minutes long, excluding the credits. </li>
+        <li>There is no language barrier. But subtitles should be provided if the scenes are in languages other than Telugu, Hindi, and English. </li>
+        <li>You can submit previously recorded videos but are not allowed to submit content previously submitted to any past editions of this competition.</li>
+            <div class="agreement">
+                <label>
+                    <input type="checkbox" id="agree-checkbox">
+                    <span>I have read all the rules and regulations and will follow them.</span>
+                </label>
+            </div>
+            <button id="register-button" class="button" disabled>REGISTER</button>
+        </div>
+    
+        <!-- Right Image -->
+        <div class="right-section">
+            <img src="https://i.ibb.co/tPJb7GSn/Logo-Identification-2-K.gif" alt="Fashion Show">
+        </div>
     </div>
-    <div class="agreement">
-      <label>
-        <input type="checkbox" id="agree-checkbox">
-        <span>I have read all the rules and regulations and will follow them.</span>
-      </label>
-    </div>
-  </div>
-
-  <button id="register-button" class="button" disabled>REGISTER</button>
-  
-  <script src="../script.js"></script>
+    
+    <script>
+        const checkbox = document.getElementById("agree-checkbox");
+        const registerButton = document.getElementById("register-button");
+    
+        checkbox.addEventListener("change", function () {
+            registerButton.disabled = !this.checked;
+        });
+    
+        registerButton.addEventListener("click", function () {
+            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/online-payment.html?event=${encodeURIComponent(document.title)}`;
+        });
+    </script>
 </body>
 </html>
+
+
