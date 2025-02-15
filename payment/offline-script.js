@@ -1,17 +1,15 @@
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwzErJi7cft8A0GKV9DG3WNr99bcz5PF2cSfuP5ZyKndwCP7BpDVzmTrgXR168xC6CV/exec'; // Replace with actual URL
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwPjDcIDw2twWDFsLJRgEoL278WwDY1XA6R5VjUnj6ftaRQLC8T16ZSLJ0xHTkB5jSa/exec';
 const form = document.forms['paymentForm'];
 const fileInput = document.getElementById("image");
 const preview = document.getElementById("preview");
 const eventField = document.getElementById("event");
 
-// Get event name from URL
 const urlParams = new URLSearchParams(window.location.search);
 const eventName = urlParams.get("event");
 if (eventName) {
     eventField.value = eventName;
 }
 
-// Image Preview
 fileInput.addEventListener("change", () => {
     let fr = new FileReader();
     fr.onloadend = () => {
@@ -21,7 +19,6 @@ fileInput.addEventListener("change", () => {
     fr.readAsDataURL(fileInput.files[0]);
 });
 
-// Form Submission
 form.addEventListener('submit', e => {
     e.preventDefault();
 
@@ -30,7 +27,7 @@ form.addEventListener('submit', e => {
     formData.append("email", form.email.value);
     formData.append("year", form.year.value);
     formData.append("branch", form.branch.value);
-    formData.append("event", eventField.value); // Include event name
+    formData.append("event", eventField.value);
 
     let fr = new FileReader();
     fr.onloadend = () => {
