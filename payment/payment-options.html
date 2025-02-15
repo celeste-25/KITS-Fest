@@ -16,11 +16,32 @@
         <p>UPI ID: ebenmathew3@okicici</p>
         <a href="upi://pay?pa=ebenmathew3@okicici&pn=EBENEZER&aid=uGICAgID39oHaSQ&am=10&cu=INR">GPay Here</a>
         <li>Rules Pending</li>
-        <div>
-            <button id="payOnlineBtn">Paid Online</button>
-            <button id="payOfflineBtn">Paying Offline</button>
+        <div class="agreement">
+            <label>
+                <input type="checkbox" id="paid-checkbox">
+                <span>I have paid the amount for this event.</span>
+            </label>
         </div>
+        <button id="next-button" class="button" disabled>Next</button>
     </div>
-    <script src="payment-options.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const eventName = urlParams.get("event");
+        const eventTitle = document.getElementById("eventTitle");
+        const paidCheckbox = document.getElementById("paid-checkbox");
+        const nextButton = document.getElementById("next-button");
+
+        if (eventName) {
+            eventTitle.innerText = `Event: ${eventName}`;
+        }
+
+        paidCheckbox.addEventListener("change", function () {
+            nextButton.disabled = !this.checked;
+        });
+
+        nextButton.addEventListener("click", function () {
+            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/online-payment.html?event=${eventName}`;
+        });
+    </script>
 </body>
 </html>
