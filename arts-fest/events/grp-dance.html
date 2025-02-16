@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <title>GROUP DANCE</title>
+</head>
+<body>
+<div class="container">
+        <!-- Left Content -->
+        <div class="left-section">
+            <h1>Group Dance</h1>
+            <h2>Rules and Regulations</h2>
+            <ul class="rules-list">
+        <li>Each team may have 3-8 members including coordinators.</li>
+        <li>Time limit is maximum 8 minutes for each performance.</li>
+        <li>• No props will be provided by the coordinators, participants can carry their own props.</li>
+        <li>The music should be provided in a pen drive prior to the event.</li>
+        <li>Participants are not allowed to mix dialogs within the performance.</li>
+        <li>Judgement will be based on choreography, rhythms, synchronization, costume, makeup and overall presentation and performances.</li>
+        <li>Green rooms would be given for changing purpose.</li>
+        <li>Dance performances should not convey any indecent gestures.</li>
+        <li>Decision of the judges will be final and binding. </li>
+            <div class="agreement">
+                <label>
+                    <input type="checkbox" id="agree-checkbox">
+                    <span>I have read all the rules and regulations and will follow them.</span>
+                </label>
+            </div>
+            <button id="register-button" class="button" disabled>REGISTER</button>
+        </div>
+    
+        <!-- Right Image -->
+        <div class="right-section">
+            <img src="https://i.ibb.co/pBYXXKcM/Whats-App-Image-2025-02-15-at-15-47-16-2699f172.jpg" alt="Group Dance">
+        </div>
+    </div>
+    
+    <script>
+        const checkbox = document.getElementById("agree-checkbox");
+        const registerButton = document.getElementById("register-button");
+    
+        checkbox.addEventListener("change", function () {
+            registerButton.disabled = !this.checked;
+        });
+    
+        registerButton.addEventListener("click", function () {
+            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/offline&no-payment.html?event=${encodeURIComponent(document.title)}`;
+        });
+    </script>
+</body>
+</html>
