@@ -7,29 +7,47 @@
     <title>SOLO SONG</title>
 </head>
 <body>
-  <div class="container">
-    <h1 class="title1">Solo Song</h1>
-    <div class="rules">
-      <h2>Rules & Regulations</h2>
-      <ul>
-        <li>Will be added later</li>
-        <li>Will be added later</li>
-        <li>Will be added later</li>
-        <li>Will be added later</li>
-        <li>Will be added later</li>
-        <li>Will be added later</li>
-      </ul>
+<div class="container">
+        <!-- Left Content -->
+        <div class="left-section">
+            <h1>Solo Song</h1>
+            <h2>Rules and Regulations</h2>
+            <ul class="rules-list">
+        <li>The maximum time limit allowed is 4 minutes, if not be disqualified.</li>
+        <li>Participants can choose any song of their choice irrespective of the language for the prelims.</li>
+        <li>Karoke is permitted.</li>
+        <li>Participants will not be allowed to refer to the lyrics while singing.</li>
+        <li>Classical songs are not allowed.</li>
+        <li>It is mandatory to submit the Karoke at least one hour the before the performance on a mobile phone or a pen drive.</li>
+        <li>The judging will be based on voice quality, clarity rhythm and their appeal to the audience.</li>
+        <li>The decision of judges will be final.</li>
+        <li>Online registrations are allowed and No spot registration.</li>
+            <div class="agreement">
+                <label>
+                    <input type="checkbox" id="agree-checkbox">
+                    <span>I have read all the rules and regulations and will follow them.</span>
+                </label>
+            </div>
+            <button id="register-button" class="button" disabled>REGISTER</button>
+        </div>
+    
+        <!-- Right Image -->
+        <div class="right-section">
+            <img src="https://i.ibb.co/Jj2jFy9Z/Whats-App-Image-2025-02-15-at-15-47-20-abbefbc3.jpg" alt="Solo Song">
+        </div>
     </div>
-    <div class="agreement">
-      <label>
-        <input type="checkbox" id="agree-checkbox">
-        <span>I have read all the rules and regulations and will follow them.</span>
-      </label>
-    </div>
-  </div>
-
-  <button id="register-button" class="button" disabled>REGISTER</button>
-  
-  <script src="../script.js"></script>
+    
+    <script>
+        const checkbox = document.getElementById("agree-checkbox");
+        const registerButton = document.getElementById("register-button");
+    
+        checkbox.addEventListener("change", function () {
+            registerButton.disabled = !this.checked;
+        });
+    
+        registerButton.addEventListener("click", function () {
+            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/offline&no-payment.html?event=${encodeURIComponent(document.title)}`;
+        });
+    </script>
 </body>
 </html>
