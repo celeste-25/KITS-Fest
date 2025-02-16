@@ -1,21 +1,35 @@
-const groupEventForm = document.forms['groupEventForm'];
-const eventFieldGroup = document.getElementById("event");
+const sheetName = 'Sheet1'; 
+const scriptProp = PropertiesService.getScriptProperties();
 
-const urlParamsGroup = new URLSearchParams(window.location.search);
-const eventNameGroup = urlParamsGroup.get("event");
-if (eventNameGroup) {
-    eventFieldGroup.value = eventNameGroup;
+function initialSetup() {
+  const activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  scriptProp.setProperty('key', activeSpreadsheet.getId());
 }
 
-groupEventForm.addEventListener('submit', e => {
-    e.preventDefault();
+function doPost(e) {
+  const lock = LockService.getUserLock();
+  lock.waitLock(10000);
 
-    const formData = new FormData(groupEventForm);
+  try {
+    const doc = SpreadsheetApp.openById(scriptProp.getProperty('key'));
+    const sheet = doc.getSheetByName(sheetName);
+    const nextRow = sheet.getLastRow() + 1;
 
-    fetch(groupEventForm.action, { method: 'POST', body: formData, mode: "no-cors" })
-    .then(() => {
-        alert("Thank you! Your group registration details are submitted.");
-        groupEventForm.reset();
-    })
-    .catch(error => console.error('Error!', error.message));
-});
+    const playerNames = e.parameter.playerNames || '';
+    const email = e.parameter.email || '';
+    const year = e.parameter.year || '';
+    const branch = e.parameter.branch || '';
+    const registrationNumber = e.parameter.registrationNumber || '';
+    const event = e.parameter.event || '';
+
+    sheet.appendRow([new Date(), playerNames, email, year, branch, registrationNumber, event]);
+
+    return ContentService.createTextOutput(JSON.stringify({ 'result': 'success', 'row': nextRow }))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch (error) {
+    return ContentService.createTextOutput(JSON.stringify({ 'result': 'error', 'error': error.message }))
+      .setMimeType(ContentService.MimeType.JSON);
+  } finally {
+    lock.releaseLock();
+  }
+}
