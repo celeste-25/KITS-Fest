@@ -7,6 +7,8 @@ body {
   height: 100vh;
   font-family: "Rubik Distressed", monospace;
   color: #ffffff;
+  position: relative;
+  z-index: 1;  /* Add z-index to ensure content is above the background */
 }
 
 body::after {
@@ -24,6 +26,7 @@ body::after {
   pointer-events: none;
   opacity: 1;
   filter: none;
+  z-index: -1;  /* Ensure the background is behind the content */
 }
 
 .p-div {
@@ -32,6 +35,8 @@ body::after {
   font-weight: bolder;
   text-align: center;
   margin-top: 120px;
+  z-index: 2;  /* Ensure content appears above the background */
+  position: relative;
 }
 
 .btn {
@@ -52,6 +57,7 @@ body::after {
   color: white;
   font-family: monospace;
   font-weight: bolder;
+  z-index: 2;  /* Ensure content appears above the background */
 }
 
 .btn-position {
@@ -60,6 +66,8 @@ body::after {
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
+  z-index: 2;  /* Ensure content appears above the background */
+  position: relative;
 }
 
 @media (max-width: 768px) {
@@ -70,6 +78,8 @@ body::after {
 
 .back-to-home {
   margin-top: 50px;
+  z-index: 2;  /* Ensure content appears above the background */
+  position: relative;
 }
 
 .to-home {
@@ -80,6 +90,8 @@ body::after {
   text-align: center;
   justify-content: center;
   align-content: center;
+  z-index: 2;  /* Ensure content appears above the background */
+  position: relative;
 }
 
 .to-home:hover {
@@ -100,6 +112,8 @@ body::after {
   margin-top: 60px;
   align-items: center;
   justify-content: center;
+  z-index: 2;  /* Ensure content appears above the background */
+  position: relative;
 }
 
 /* Navbar Styles */
@@ -242,6 +256,8 @@ body::after {
     text-align: center;
     overflow-x: hidden;
     height: 110vh;
+    position: relative;
+    z-index: 1;
   }
 
   .prev-btn {
