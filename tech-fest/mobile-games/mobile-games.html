@@ -1,34 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MObile Events - CELESTE'25</title>
-  <link rel="stylesheet" href="../../sub.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mobile Events - CELESTE'25</title>
+    <link
+      rel="stylesheet"
+      href="/KITS-Fest/tech-fest/mobile-games/mobile-games.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar">
+      <!-- Hamburger Menu Button -->
+      <button class="hamburger-menu" aria-label="Toggle navigation">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </button>
+
+      <!-- Logo -->
+      <div class="NavBar_logo">
+        <img alt="-logo" src="../LOGO.png" class="logo" />
+      </div>
+
+      <div class="nav-links">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#about">About</a></li>
+
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
 
     <div class="p-div">
-        <p class="event-title"><span class="p1">MOBILE</span> <span class="p2">GAMES</span></p>
+      <p class="event-title">
+        <span class="p1">MOBILE</span> <span class="p2">GAMES</span>
+      </p>
     </div>
-  
-  <a href="events/bgmi.html">
-     <button style="--clr:#39FF14" class="btn"><span>BGMI</span><i></i></button>
-  </a>
 
-  <a href="events/freefire.html">
-    <button style="--clr:#FF44CC" class="btn"><span>Free Fire</span><i></i></button>
-  </a>
- 
-  <a href="events/efootball.html">
-    <button style="--clr:#0FF0FC"><span>E-Football</span><i></i></button>
-  </a>
+    <div class="btn-position">
+      <a href="events/bgmi.html">
+        <button style="--clr: #39ff14" class="btn">
+          <span>BGMI</span><i></i>
+        </button>
+      </a>
 
-  <div class="to-home">
-    <a href="../tech-fest.html" class="to-home"> Previous Page </a>
-    <a href="../../index.html" class="to-home"> Home Page </a>
-  </div>
-    
+      <a href="events/freefire.html">
+        <button style="--clr: #ff44cc" class="btn">
+          <span>Free Fire</span><i></i>
+        </button>
+      </a>
+
+      <a href="events/efootball.html">
+        <button style="--clr: #0ff0fc" class="btn">
+          <span>E-Football</span><i></i>
+        </button>
+      </a>
+    </div>
+
+    <div class="prev-btn">
+      <div class="to-home">
+        <a href="../tech-fest.html" class="to-home"> Previous Page </a>
+      </div>
+      <br />
+      <br />
+
+      <div class="to-home">
+        <a href="../../index.html" class="to-home"> Home Page </a>
+      </div>
+    </div>
   </body>
-  </html>
- 
+  <script src="/KITS-Fest/navbar.js" defer></script>
+</html>
+
