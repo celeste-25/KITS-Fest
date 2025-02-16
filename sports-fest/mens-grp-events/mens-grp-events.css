@@ -1,0 +1,282 @@
+body {
+    background: radial-gradient(circle at top, rgb(81, 28, 0) 0%, #000 80%);
+    color: #ffffff;
+    font-family: "Rubik Distressed", monospace;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    overflow-x: hidden;
+    height: 100vh;
+  }
+  
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 150%;
+  
+    background: url(/KITS-Fest/IMAGES1/sports\ baxckground0ff_00000.png);
+    background-size: contain;
+  
+    background-position: center;
+    background-repeat: repeat;
+    pointer-events: none;
+    opacity: 21%;
+    filter: invert(27%) sepia(92%) saturate(586%) hue-rotate(330deg);
+  }
+  
+  @media (max-width: 768px) {
+    body::after {
+      content: "";
+      position: fixed;
+      bottom: 0;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url(/KITS-Fest/IMAGES1/sports\ baxckground0ff_00000.png);
+      background-size: cover;
+  
+      background-position: center;
+      background-repeat: repeat;
+      pointer-events: none;
+      opacity: 21%;
+      filter: invert(27%) sepia(92%) saturate(586%) hue-rotate(330deg);
+    }
+  }
+  
+  .p-div {
+    font-family: monospace;
+    font-size: 48px;
+    font-weight: bolder;
+    text-align: center;
+    margin-top: 120px;
+  }
+  
+  .btn {
+    position: relative;
+    display: flex;
+    flex: wrap;
+    gap: 20px;
+    width: 250px;
+    height: 150px;
+    background-color: #1a1a1a;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: monospace;
+    font-weight: bolder;
+  }
+  
+  .btn-position {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .btn-position {
+      flex-direction: column;
+    }
+  }
+  
+  .back-to-home {
+    margin-top: 50px;
+  }
+  
+  .to-home {
+    text-decoration: none;
+    padding: 20px;
+    color: white;
+  }
+  
+  .to-home:hover {
+    background-color: rgb(255, 106, 0);
+    padding: 20px;
+    border-radius: 32px;
+    color: #000;
+  }
+  
+  .btn:hover {
+    transform: scale(1.05);
+    border: 1px solid #fff;
+    opacity: 90%;
+  }
+  
+  /*** tech fest nav bar **/
+  
+  /* Navbar Styles */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width of the page */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space between hamburger and logo */
+    padding: 10px 20px; /* Add padding for spacing */
+    background-color: transparent; /* Keep transparent */
+    z-index: 1000; /* Ensure it stays on top */
+    height: 70px; /* Fixed height */
+  }
+  
+  /* Hamburger Menu Button */
+  .hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 40px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: 20px; /* Add some margin for spacing */
+    margin-top: 15px;
+    margin-bottom: 10px;
+    z-index: 1003; /* Keep above other elements */
+    position: relative;
+  }
+  
+  .hamburger-menu .line {
+    width: 100%;
+    height: 3px;
+    background-color: #fff; /* Adjust color as needed */
+    transition: all 0.3s ease;
+  }
+  
+  /* Logo Positioning */
+  .NavBar_logo {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+    height: 70px;
+    position: absolute; /* Position absolutely */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    z-index: 1002; /* Ensure logo stays above menu */
+    padding: 10px; /* Add padding for better appearance */
+  }
+  
+  .logo {
+    align-items: center;
+    height: 10vh;
+    text-align: center;
+    size: 3vw;
+  }
+  
+  .prev-btn {
+    display: flex;
+    margin-top: 60px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Navigation Links */
+  .nav-links {
+    display: none; /* Shows the list */
+    flex-direction: column;
+    position: absolute;
+    top: 90px; /* Position below navbar */
+    left: 0;
+    width: 100%; /* Full width */
+    background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent background */
+    padding: 10px 0;
+    z-index: 1001; /* Ensure it appears above other content */
+  }
+  
+  .nav-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center; /* Center the links */
+  }
+  
+  .nav-links ul li {
+    margin: 10px 0;
+  }
+  
+  .nav-links ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 20px;
+    display: block;
+  }
+  
+  .nav-links ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Active State for Navbar */
+  .navbar.active {
+    background-color: rgba(0, 0, 0, 0.9); /* Example background color */
+    display: flex;
+  }
+  
+  .navbar.active .hamburger-menu .line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .navbar.active .hamburger-menu .line:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .navbar.active .hamburger-menu .line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+  
+  @media (max-width: 1024px) {
+    .nav-links ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-items: center;
+      text-align: center;
+    }
+  
+    .nav-links ul li {
+      width: 100%;
+      text-align: left;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .NavBar_logo {
+      left: 50%; /* Center horizontally */
+      transform: translateX(-55%); /* Center horizontally */
+    }
+  
+    body {
+      background: radial-gradient(circle at top, rgb(81, 28, 0) 0%, #000 50%);
+      color: #ffffff;
+      font-family: "Rubik Distressed", monospace;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      overflow-x: hidden;
+      height: 150vh;
+    }
+  
+    .prev-btn {
+      display: grid;
+      place-items: center;
+      margin-top: 60px;
+    }
+  
+    .to-home {
+      text-align: center;
+      gap: 50px;
+      font-size: 18px;
+    }
+  }
+  
