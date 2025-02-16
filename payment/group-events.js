@@ -1,35 +1,28 @@
-const sheetName = 'Sheet1'; 
-const scriptProp = PropertiesService.getScriptProperties();
+const offlineScriptURL = 'https://script.google.com/macros/s/AKfycbwZTYRtj8NOjuSLNckWoA2imIl1llnni6xMh0u16W3PsEdb5j_hY5SE0pUhQrNAm1OTGA/exec'; 
+const offlineForm = document.forms['offlinePaymentForm'];
+const eventFieldOffline = document.getElementById("event");
 
-function initialSetup() {
-  const activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  scriptProp.setProperty('key', activeSpreadsheet.getId());
+const urlParamsOffline = new URLSearchParams(window.location.search);
+const eventNameOffline = urlParamsOffline.get("event");
+if (eventNameOffline) {
+    eventFieldOffline.value = eventNameOffline;
 }
 
-function doPost(e) {
-  const lock = LockService.getUserLock();
-  lock.waitLock(10000);
+offlineForm.addEventListener('submit', e => {
+    e.preventDefault();
 
-  try {
-    const doc = SpreadsheetApp.openById(scriptProp.getProperty('key'));
-    const sheet = doc.getSheetByName(sheetName);
-    const nextRow = sheet.getLastRow() + 1;
+    const formData = new FormData();
+    formData.append("name", offlineForm.name.value);
+    formData.append("email", offlineForm.email.value);
+    formData.append("year", offlineForm.year.value);
+    formData.append("branch", offlineForm.branch.value);
+    formData.append("event", eventFieldOffline.value); 
+    formData.append("registrationNumber", offlineForm.registrationNumber.value);
 
-    const playerNames = e.parameter.playerNames || '';
-    const email = e.parameter.email || '';
-    const year = e.parameter.year || '';
-    const branch = e.parameter.branch || '';
-    const registrationNumber = e.parameter.registrationNumber || '';
-    const event = e.parameter.event || '';
-
-    sheet.appendRow([new Date(), playerNames, email, year, branch, registrationNumber, event]);
-
-    return ContentService.createTextOutput(JSON.stringify({ 'result': 'success', 'row': nextRow }))
-      .setMimeType(ContentService.MimeType.JSON);
-  } catch (error) {
-    return ContentService.createTextOutput(JSON.stringify({ 'result': 'error', 'error': error.message }))
-      .setMimeType(ContentService.MimeType.JSON);
-  } finally {
-    lock.releaseLock();
-  }
-}
+    fetch(offlineScriptURL, { method: 'POST', body: formData, mode: "no-cors" })
+    .then(() => {
+        alert("Thank you! Your offline payment details are submitted.");
+        offlineForm.reset();
+    })
+    .catch(error => console.error('Error!', error.message));
+});
