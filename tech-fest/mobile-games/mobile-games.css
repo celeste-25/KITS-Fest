@@ -26,7 +26,8 @@ body::after {
   background-repeat: repeat;
   pointer-events: none;
   opacity: 75%;
-  filter: invert(27%) sepia(92%) saturate(586%) hue-rotate(150deg);
+  /* Adjust or remove the filter property */
+  filter: sepia(92%) saturate(586%);
 }
 
 @media (max-width: 768px) {
