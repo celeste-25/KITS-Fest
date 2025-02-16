@@ -1,28 +1,28 @@
-const groupEventScriptURL = 'https://script.google.com/macros/s/AKfycbw4Dni0BGubf25DgfITGkLMashIQQIFB7l2mqatCb5wfsAZRmu0jw0R4K8C38t_lmlETg/exec';
-const groupEventForm = document.forms['groupEventForm'];
-const eventFieldGroup = document.getElementById("event");
+const offlineScriptURL = 'https://script.google.com/macros/s/AKfycbw4Dni0BGubf25DgfITGkLMashIQQIFB7l2mqatCb5wfsAZRmu0jw0R4K8C38t_lmlETg/exec'; 
+const offlineForm = document.forms['offlinePaymentForm'];
+const eventFieldOffline = document.getElementById("event");
 
-const urlParamsGroup = new URLSearchParams(window.location.search);
-const eventNameGroup = urlParamsGroup.get("event");
-if (eventNameGroup) {
-    eventFieldGroup.value = eventNameGroup;
+const urlParamsOffline = new URLSearchParams(window.location.search);
+const eventNameOffline = urlParamsOffline.get("event");
+if (eventNameOffline) {
+    eventFieldOffline.value = eventNameOffline;
 }
 
-groupEventForm.addEventListener('submit', e => {
+offlineForm.addEventListener('submit', e => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("playerNames", groupEventForm.playerNames.value);
-    formData.append("email", groupEventForm.email.value);
-    formData.append("year", groupEventForm.year.value);
-    formData.append("branch", groupEventForm.branch.value);
-    formData.append("event", eventFieldGroup.value);
-    formData.append("registrationNumber", groupEventForm.registrationNumber.value);
+    formData.append("name", offlineForm.name.value);
+    formData.append("email", offlineForm.email.value);
+    formData.append("year", offlineForm.year.value);
+    formData.append("branch", offlineForm.branch.value);
+    formData.append("event", eventFieldOffline.value); 
+    formData.append("registrationNumber", offlineForm.registrationNumber.value);
 
-    fetch(groupEventScriptURL, { method: 'POST', body: formData, mode: "no-cors" })
+    fetch(offlineScriptURL, { method: 'POST', body: formData, mode: "no-cors" })
     .then(() => {
-        alert("Thank you! Your group registration details are submitted.");
-        groupEventForm.reset();
+        alert("Thank you! Your offline payment details are submitted.");
+        offlineForm.reset();
     })
     .catch(error => console.error('Error!', error.message));
 });
