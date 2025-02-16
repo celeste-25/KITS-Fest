@@ -1,16 +1,12 @@
 body {
-  background: radial-gradient(circle at top, rgb(0, 67, 81) 0%, #000 80%);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  color: #ffffff;
-  font-family: "Rubik Distressed", monospace;
+  background: none;
   margin: 0;
   padding: 0;
   text-align: center;
   overflow-x: hidden;
   height: 100vh;
+  font-family: "Rubik Distressed", monospace;
+  color: #ffffff;
 }
 
 body::after {
@@ -23,21 +19,11 @@ body::after {
   height: 100vh;
   background-image: url(https://i.ibb.co/MVrs4tP/pc-games.gif);
   background-position: center;
-  background-repeat: repeat;
+  background-size: cover;
+  background-repeat: no-repeat;
   pointer-events: none;
-  opacity: 75%;
-  /* Adjust or remove the filter property */
-  filter: sepia(92%) saturate(586%);
-}
-
-@media (max-width: 768px) {
-  body::after {
-    background-image: url(https://i.ibb.co/MVrs4tP/pc-games.gif);
-    background-size: cover;
-    background-position: center;
-    background-repeat: repeat;
-    opacity: 65%;
-  }
+  opacity: 1;
+  filter: none;
 }
 
 .p-div {
@@ -248,7 +234,7 @@ body::after {
   }
 
   body {
-    background: radial-gradient(circle at top, rgb(0, 67, 81) 0%, #000 50%);
+    background: none;
     color: #ffffff;
     font-family: "Rubik Distressed", monospace;
     margin: 0;
