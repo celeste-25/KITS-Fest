@@ -22,7 +22,9 @@ body::after {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: url(/KITS-Fest/IMAGES1/techbackground.png);
+ background-image: url(https://i.ibb.co/MVrs4tP/pc-games.gif);
+        background-position: center;
+
 
   background-position: center;
   background-repeat: repeat;
