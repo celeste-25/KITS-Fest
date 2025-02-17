@@ -1,5 +1,4 @@
 /* General Styles */
-
 body {
   background: linear-gradient(to bottom, #500000 8%, #000 20%);
   color: #ffffff;
@@ -237,7 +236,7 @@ body {
 /* Events Section */
 .events-button {
   display: flex;
-  flex: wrap;
+  flex-wrap: wrap;
   justify-content: center;
   margin-top: 50px;
 }
@@ -257,58 +256,35 @@ body {
 
 .container {
   display: flex;
-  flex: wrap;
+  flex-wrap: wrap;
   gap: 20px;
   text-align: center;
+}
+
+.event-card {
+  text-align: center;
+  margin: 20px;
+}
+
+.event-card h2 {
+  margin-bottom: 10px;
+  color: white; /* Adjust color as needed */
+  font-size: 24px; /* Adjust font size as needed */
 }
 
 .eventname-title {
   color: #ffffff;
   z-index: 1;
 }
+
 .artsthumb {
   z-index: 0;
 }
 
-.card-btn-arts {
-  background: linear-gradient(to bottom, rgb(0, 0, 0) 30%, #ff0000 80%);
-  width: 250px;
-  height: 150px;
-  background-color: #1a1a1a;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-size: 34px;
-  position: relative;
-}
-
-
-
-
-
-.card-btn-tech {
-  background: linear-gradient(to bottom, rgb(0, 0, 0) 30%, #0008ff 80%);
-  width: 250px;
-  height: 150px;
-  background-color: #1a1a1a;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
+.card-btn-arts,
+.card-btn-tech,
 .card-btn-sports {
-  background: linear-gradient(to bottom, rgb(0, 0, 0) 30%, #ffffff 80%);
+  background: linear-gradient(to bottom, rgb(0, 0, 0) 30%, #000 80%);
   width: 250px;
   height: 150px;
   background-color: #1a1a1a;
@@ -353,30 +329,4 @@ body {
 
 /* Footer */
 .footer {
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  margin-top: 80px;
-  padding: 20px 0;
-  /* background-color: #000000; */
-  font-family: monospace;
-}
-
-.footer .contact {
-  display: flex;
-  justify-content: center;
-  gap: 50px;
-}
-
-.contact a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.contact img {
-  width: 30px;
-}
+  background-color: rgba(255, 
