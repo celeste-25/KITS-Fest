@@ -49,20 +49,34 @@ body {
   
   .p-div {
     font-family: monospace;
-    font-size: 48px;
+    font-size: 35px;
     font-weight: bolder;
     text-align: center;
     margin-top: 120px;
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  a {
+    text-decoration: none;
+  }
+  
+  .p2 {
+    font-size: 18px;
   }
   
   .btn {
     position: relative;
     display: flex;
-    flex: wrap;
+    flex: auto;
+  
+    flex-direction: column;
     gap: 20px;
     width: 250px;
     height: 150px;
-    background-color: #1a1a1a;
+    background-color: #161616;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
@@ -73,6 +87,12 @@ body {
     color: white;
     font-family: monospace;
     font-weight: bolder;
+    font-size: 18px;
+    text-decoration: none;
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
   }
   
   .btn-position {
@@ -93,11 +113,18 @@ body {
   }
   
   .to-home {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 32px;
     text-decoration: none;
     padding: 20px;
-    color: white;
+    color: rgb(255, 255, 255);
+    width: 200px;
   }
-  
+
+
   .to-home:hover {
     background-color: rgb(255, 106, 0);
     padding: 20px;
@@ -175,11 +202,12 @@ body {
   }
   
   .prev-btn {
-    display: flex;
-    margin-top: 60px;
-    align-items: center;
-    justify-content: center;
-  }
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  margin-top: 60px;
+  gap: 20px;
+}
   
   /* Navigation Links */
   .nav-links {
