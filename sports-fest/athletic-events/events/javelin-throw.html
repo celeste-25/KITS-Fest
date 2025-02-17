@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../style.css">
+    <title>Athletics Javelin Throw</title>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Content -->
+        <div class="left-section">
+            <h1>Athletics - Javelin Throw</h1>
+            <button id="register-button" class="button">REGISTER</button>
+        </div>
+
+        <!-- Right Image -->
+        <div class="right-section">
+            <img src="../../../IMAGES2/javelin-throw.jpg" alt="Athletics Javelin Throw">
+        </div>
+    </div>
+    
+    <script>
+        const registerButton = document.getElementById("register-button");
+
+        registerButton.addEventListener("click", function () {
+            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/offline&no-payment.html?event=${encodeURIComponent(document.title)}`;
+        });
+    </script>
+</body>
+</html>
