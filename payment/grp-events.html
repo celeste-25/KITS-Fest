@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Offline Registration Form</title>
+    <title>Group Event Registration Form</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,10 +11,12 @@
 </head>
 <body>
     <div class="container">
-        <form method="post" name="offlinePaymentForm" enctype="multipart/form-data" aria-label="Offline Payment Form">
+        <form method="post" name="groupEventForm" enctype="multipart/form-data" action="https://script.google.com/macros/s/AKfycbw7VEiEirtoCsy0yezMOtIznY2kI8BwbjHYrEAXPMUXMw1L2nWkJqNYLX1h-dkmHNyGFA/exec" aria-label="Group Events Registration Form">
             <h4>Group Registration Form</h4>
-            <label for="name">Player Names</label>
-            <textarea id="name" name="name" placeholder="eg: Team leader's name, Player 2..." required aria-label="Player Names" style="height: 100px;"></textarea>
+            <label for="teamLeaderName">Team Leader Name</label>
+            <input type="text" id="teamLeaderName" name="teamLeaderName" placeholder="Team Leader's Name" required aria-label="Team Leader Name">
+            <label for="playerNames">Player Names</label>
+            <textarea id="playerNames" name="playerNames" placeholder="eg: Player 2, Player 3, Player 4..." required aria-label="Player Names" style="height: 100px;"></textarea>
             <label for="email">E-mail</label>
             <input type="email" id="email" name="email" placeholder="E-mail" required aria-label="E-mail">
             <label for="year">Year</label>
@@ -38,7 +40,7 @@
             <label for="event">Event</label>
             <input type="text" id="event" name="event" readonly aria-label="Event">
             <label for="registrationNumber">Registration Number</label>
-            <input type="text" id="registrationNumber" name="registrationNumber" placeholder="Registration Number" required oninput="this.value = this.value.toUpperCase()" aria-label="Registration Number">
+            <input type="text" id="registrationNumber" name="registrationNumber" placeholder="eg. KIT21CS000" required oninput="this.value = this.value.toUpperCase()" aria-label="Registration Number">
             <input type="submit" value="Submit" id="submit">
         </form>
     </div>
