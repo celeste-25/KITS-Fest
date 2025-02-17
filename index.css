@@ -1,9 +1,4 @@
 /* General Styles */
-*
-{
-  cursor: url('https://i.ibb.co/kcxPPSQ/cursor-knife.png'), pointer;
-
-}
 
 body {
   background: linear-gradient(to bottom, #500000 8%, #000 20%);
