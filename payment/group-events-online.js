@@ -27,7 +27,7 @@ groupEventForm.addEventListener('submit', e => {
     formData.append("email", groupEventForm.email.value);
     formData.append("year", groupEventForm.year.value);
     formData.append("branch", groupEventForm.branch.value);
-    formData.append("event", eventFieldGroup.value);
+    formData.append("event", eventFieldGroup.value); // Include event name
     formData.append("registrationNumber", groupEventForm.registrationNumber.value);
     formData.append("transactionId", groupEventForm.transactionId.value);
 
