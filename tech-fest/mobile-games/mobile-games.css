@@ -22,12 +22,12 @@ body::after {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: url(/KITS-Fest/IMAGES1/techbackground.png);
+  background: url(/KITS-Fest/IMAGES1/mobile\ games\ background_00000.png);
 
   background-position: center;
   background-repeat: repeat;
   pointer-events: none;
-  opacity: 75%;
+  opacity: 25%;
   filter: invert(27%) sepia(92%) saturate(586%) hue-rotate(150deg);
 }
 
@@ -40,13 +40,13 @@ body::after {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: url(/KITS-Fest/IMAGES1/techbackground.png);
+    background: url(/KITS-Fest/IMAGES1/mobile\ games\ background_00000.png);
     background-size: cover;
 
     background-position: center;
     background-repeat: repeat;
     pointer-events: none;
-    opacity: 65%;
+    opacity: 25%;
     filter: invert(27%) sepia(92%) saturate(586%) hue-rotate(150deg);
   }
 }

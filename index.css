@@ -245,7 +245,7 @@ body {
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
-    margin-top: -200px;
+    margin-top: -180px;
   }
 
   .events-text {
@@ -264,10 +264,43 @@ body {
 
 .eventname-title {
   color: #ffffff;
-  z-index: 1;
+  position: absolute;
+  top: 75%; /* Adjust spacing from the top */
+  left: 30%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  font-weight: bold;
+  z-index: 3;
+  transform: scale(1.05);
+  text-align: center;
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
 }
+
+.eventname-title-sports {
+  color: #ffffff;
+  position: absolute;
+  top: 75%; /* Adjust spacing from the top */
+  left: 25%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  font-weight: bold;
+  z-index: 3;
+  transform: scale(1.05);
+  text-align: center;
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
+}
+
 .artsthumb {
-  z-index: 0;
+  .artsthumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Ensure it's behind the text */
+    opacity: 0.7; /* Adjust transparency for readability */
+  }
 }
 
 .card-btn-arts {
@@ -286,11 +319,8 @@ body {
   text-align: center;
   font-size: 34px;
   position: relative;
+  z-index: 2;
 }
-
-
-
-
 
 .card-btn-tech {
   background: linear-gradient(to bottom, rgb(0, 0, 0) 30%, #0008ff 80%);
@@ -305,6 +335,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 2;
 }
 
 .card-btn-sports {
@@ -320,6 +352,9 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 .card-btn-arts img,
@@ -331,6 +366,7 @@ body {
   display: block;
   height: 300px;
   opacity: 80%;
+  z-index: 1;
 }
 
 .card-btn-arts a,
@@ -349,6 +385,13 @@ body {
   transform: scale(1.05);
   border: 1px solid #fff;
   opacity: 30%;
+}
+
+.card-btn-arts:hover,
+.card-btn-sports:hover,
+.card-btn-tech:hover,
+.eventname-title:hover {
+  opacity: 100;
 }
 
 /* Footer */
