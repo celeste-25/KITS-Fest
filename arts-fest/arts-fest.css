@@ -56,6 +56,11 @@ body::after {
   margin-top: 120px;
 }
 
+.p2{
+  font-size: 25px;
+
+}
+
 .btn {
   position: relative;
   display: flex;
