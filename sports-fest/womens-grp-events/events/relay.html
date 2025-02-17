@@ -7,29 +7,47 @@
     <title>400 METERS RELAY</title>
 </head>
 <body>
-  <div class="container">
-    <h1 class="title1">400 METERS RELAY</h1>
-    <div class="rules">
-      <h2>Rules & Regulations</h2>
-      <ul>
-        <li>Will be added later</li>
-        <li>Will be added later</li>
-        <li>Will be added later</li>
-        <li>Will be added later</li>
-        <li>Will be added later</li>
-
-      </ul>
+ <div class="container">
+        <!-- Left Content -->
+        <div class="left-section">
+                <h1>Womens - Relay 400 Meters</h1>
+            <h2>Rules and Regulations</h2>
+            <ul class="rules-list">
+<li>Consist of four players</li>
+<li>Participants are requested to report at least half an hour before each event at the venue.</li>
+<li>Any person, if not ready by the time will be disqualified.</li>
+<li>Any form of obscene, unacceptable behaviour or language, vulgarity, on or off stage will lead to immediate disqualification.</li>
+<li>If these rules are not followed the participants will be disqualified.</li>
+<li>The decision of the judges will be final and binding on all participants in all events.</li>
+<li>Any complaints regarding judges or their judgement will not be entertained.</li>
+<li>Organizers enjoy the right to admission, right to modify the rules and to change or cancel any.</li>
+            </ul>
+            <div class="agreement">
+                <label>
+                    <input type="checkbox" id="agree-checkbox">
+                    <span>I have read all the rules and regulations and will follow them.</span>
+                </label>
+            </div>
+            <button id="register-button" class="button" disabled>REGISTER</button>
+        </div>
+    
+        <!-- Right Image -->
+        <div class="right-section">
+            <img src="https://i.ibb.co/RpqN4Bk6/Whats-App-Image-2025-02-15-at-11-39-35-7e467938.jpg" alt="Womens Relay">
+        </div>
     </div>
-    <div class="agreement">
-      <label>
-        <input type="checkbox" id="agree-checkbox">
-        <span>I have read all the rules and regulations and will follow them.</span>
-      </label>
-    </div>
-  </div>
-
-  <button id="register-button" class="button" disabled>REGISTER</button>
-  
-  <script src="../../script.js"></script>
+    
+    <script>
+        const checkbox = document.getElementById("agree-checkbox");
+        const registerButton = document.getElementById("register-button");
+    
+        checkbox.addEventListener("change", function () {
+            registerButton.disabled = !this.checked;
+        });
+    
+        registerButton.addEventListener("click", function () {
+            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/offline&no-payment.html?event=${encodeURIComponent(document.title)}`;
+        });
+    </script>
 </body>
 </html>
