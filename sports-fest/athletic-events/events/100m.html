@@ -6,26 +6,26 @@
     <link rel="stylesheet" href="../../style.css">
     <title>Athletics 100m</title>
 </head>
- <div class="container">
+<body>
+    <div class="container">
         <!-- Left Content -->
         <div class="left-section">
-                <h1>Athletics - 100m</h1>
-            <button id="register-button" class="button" disabled>REGISTER</button>
+            <h1>Athletics - 100m</h1>
+            <button id="register-button" class="button">REGISTER</button>
         </div>
-    
+
         <!-- Right Image -->
         <div class="right-section">
             <img src="../../../IMAGES2/100m.jpg" alt="Athletics 100m">
         </div>
     </div>
     
-<script>
-    const registerButton = document.getElementById("register-button");
+    <script>
+        const registerButton = document.getElementById("register-button");
 
-    registerButton.addEventListener("click", function () {
-        window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/offline&no-payment.html?event=${encodeURIComponent(document.title)}`;
-    });
-</script>
-
+        registerButton.addEventListener("click", function () {
+            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/offline&no-payment.html?event=${encodeURIComponent(document.title)}`;
+        });
+    </script>
 </body>
 </html>
