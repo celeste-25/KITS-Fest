@@ -27,11 +27,24 @@ groupEventForm.addEventListener('submit', e => {
     formData.append("email", groupEventForm.email.value);
     formData.append("year", groupEventForm.year.value);
     formData.append("branch", groupEventForm.branch.value);
-    formData.append("event", eventFieldGroup.value); 
+    formData.append("event", eventFieldGroup.value); // Include event name
     formData.append("registrationNumber", groupEventForm.registrationNumber.value);
     formData.append("transactionId", groupEventForm.transactionId.value);
 
     let fr = new FileReader();
     fr.onloadend = () => {
         let base64Data = fr.result.split("base64,")[1];
-        formData.append("base
+        formData.append("base64", base64Data);
+        formData.append("imageType", fileInput.files[0].type);
+        formData.append("imageName", fileInput.files[0].name);
+
+        fetch(groupEventForm.action, { method: 'POST', body: formData, mode: "no-cors" })
+        .then(() => {
+            alert("Thank you! Your group registration details are submitted.");
+            groupEventForm.reset();
+            preview.style.display = "none";
+        })
+        .catch(error => console.error('Error!', error.message));
+    };
+    fr.readAsDataURL(fileInput.files[0]);
+});
