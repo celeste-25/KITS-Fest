@@ -3,14 +3,12 @@ const fileInput = document.getElementById("image");
 const preview = document.getElementById("preview");
 const eventFieldGroup = document.getElementById("event");
 
-// Get event name from URL
 const urlParamsGroup = new URLSearchParams(window.location.search);
 const eventNameGroup = urlParamsGroup.get("event");
 if (eventNameGroup) {
-    eventFieldGroup.value = decodeURIComponent(eventNameGroup); // Decode the event name
+    eventFieldGroup.value = decodeURIComponent(eventNameGroup); 
 }
 
-// Image Preview
 fileInput.addEventListener("change", () => {
     let fr = new FileReader();
     fr.onloadend = () => {
@@ -20,7 +18,6 @@ fileInput.addEventListener("change", () => {
     fr.readAsDataURL(fileInput.files[0]);
 });
 
-// Form Submission
 groupEventForm.addEventListener('submit', e => {
     e.preventDefault();
 
