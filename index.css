@@ -114,6 +114,7 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
+  
 }
 
 /* Xenos Section */
@@ -274,13 +275,17 @@ body {
   transform: scale(1.05);
   text-align: center;
   text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 
-.eventname-title-sports {
+.eventname-title-tech {
   color: #ffffff;
   position: absolute;
   top: 75%; /* Adjust spacing from the top */
-  left: 25%;
+  left: 28%;
   transform: translateX(-50%);
   font-size: 24px;
   font-weight: bold;
@@ -288,6 +293,28 @@ body {
   transform: scale(1.05);
   text-align: center;
   text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.eventname-title-sports {
+  color: #ffffff;
+  position: absolute;
+  top: 75%; /* Adjust spacing from the top */
+  left: 22%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  font-weight: bold;
+  z-index: 3;
+  transform: scale(1.05);
+  text-align: center;
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 
 .artsthumb {
@@ -304,7 +331,7 @@ body {
 }
 
 .card-btn-arts {
-  background: linear-gradient(to bottom, rgb(0, 0, 0) 30%, #ff0000 80%);
+  background: linear-gradient(to bottom, rgb(0, 0, 0) 30%, #000000 80%);
   width: 250px;
   height: 150px;
   background-color: #1a1a1a;
@@ -323,7 +350,7 @@ body {
 }
 
 .card-btn-tech {
-  background: linear-gradient(to bottom, rgb(0, 0, 0) 30%, #0008ff 80%);
+  background: linear-gradient(to bottom, rgb(0, 0, 0) 30%, #000000 80%);
   width: 250px;
   height: 150px;
   background-color: #1a1a1a;
@@ -340,7 +367,7 @@ body {
 }
 
 .card-btn-sports {
-  background: linear-gradient(to bottom, rgb(0, 0, 0) 30%, #ffffff 80%);
+  background: linear-gradient(to bottom, rgb(0, 0, 0) 30%, #000000 80%);
   width: 250px;
   height: 150px;
   background-color: #1a1a1a;
