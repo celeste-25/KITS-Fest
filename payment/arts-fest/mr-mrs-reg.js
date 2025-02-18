@@ -1,4 +1,4 @@
-const offlineScriptURL = 'https://script.google.com/macros/s/AKfycbyFOlcsY27NFfmIOZKxJ26JJzOp1JpXJ3hb_bGDWqFZmvtygcSdtQ7kSBg4XVOhO8WK/exec'; 
+const offlineScriptURL = 'https://script.google.com/macros/s/AKfycbzTP2_tPaK9Eifv0_MSVIJEPaox6yAfzEBN8GQxlUiTkPMHSqIR3QQRl9T0r0Mby1zorg/exec'; 
 const offlineForm = document.forms['offlinePaymentForm'];
 const eventFieldOffline = document.getElementById("event");
 
