@@ -2,17 +2,21 @@ document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
     const eventName = urlParams.get("event").toUpperCase().replace(/%20/g, " ");
     const eventField = document.getElementById("event");
-    
+
     if (eventName) {
         eventField.value = eventName;
         let scriptSrc;
 
-        if (eventName === "SOLO SONG") {
-            scriptSrc = "solo-song-reg.js";
-        } else if (eventName === "SOLO DANCE") {
-            scriptSrc = "solo-dance-reg.js";
-        } else if (eventName === "SPOT CHOREOGRAPHY") {
-            scriptSrc = "spot-choreography.js";
+        switch (eventName) {
+            case "ATHLETICS 100M":
+                scriptSrc = "athletics/100m.js";
+                break;
+            case "ATHLETICS 200M":
+                scriptSrc = "athletics/200m.js";
+                break;
+            // Add more cases as needed
+            default:
+                scriptSrc = "";
         }
 
         if (scriptSrc) {
@@ -20,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (existingScript) {
                 existingScript.remove();
             }
-            
+
             const script = document.createElement('script');
             script.id = 'eventScript';
             script.src = scriptSrc;
