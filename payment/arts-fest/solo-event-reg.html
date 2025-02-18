@@ -42,6 +42,18 @@
             <input type="submit" value="Submit" id="submit">
         </form>
     </div>
-<script src="event-handler.js"></script>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const eventName = urlParams.get("event");
+    const eventField = document.getElementById("event");
+    
+    if (eventName) {
+        eventField.value = eventName;
+        const scriptSrc = `${eventName}-reg.js`;
+        const script = document.createElement('script');
+        script.src = scriptSrc;
+        document.body.appendChild(script);
+    }
+</script>
 </body>
 </html>
