@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', function () {
         let scriptSrc;
 
         if (eventName === "Athletics - 100m") {
-            scriptSrc = "athletics/100.js";
+            scriptSrc = "athletics/100m.js";
         } else if (eventName === "Athletics - 200m") {
-            scriptSrc = "athletics/200.js";
+            scriptSrc = "athletics/200m.js";
         } else if (eventName === "Athletics - Long Jump") {
             scriptSrc = "athletics/long-jump.js";
         } else if (eventName === "Athletics - Javelin Throw") {
