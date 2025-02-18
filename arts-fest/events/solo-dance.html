@@ -13,13 +13,14 @@
             <h1>Solo Dance</h1>
             <h2>Rules and Regulations</h2>
             <ul class="rules-list">
-        <li>The maximum time limit allowed is 4 minutes, if not be disqualified. </li>
-        <li>Freestyle, cinematic, hip pop, semi-classical.</li>
-        <li>Pure Classical Dance is not allowed.</li>
-        <li>It is mandatory to submit the song at least one hour the before the performance on a mobile phone or a pen drive.</li>
-        <li>Judgement will be based on choreography, rhythms, synchronization, costume, makeup and overall presentation and performances.</li>
-        <li>The decision of judges will be final.</li>
-        <li>Online registrations are allowed and No spot registration.</li>
+                <li>The maximum time limit allowed is 4 minutes, if not be disqualified.</li>
+                <li>Freestyle, cinematic, hip pop, semi-classical.</li>
+                <li>Pure Classical Dance is not allowed.</li>
+                <li>It is mandatory to submit the song at least one hour the before the performance on a mobile phone or a pen drive.</li>
+                <li>Judgement will be based on choreography, rhythms, synchronization, costume, makeup and overall presentation and performances.</li>
+                <li>The decision of judges will be final.</li>
+                <li>Online registrations are allowed and No spot registration.</li>
+            </ul>
             <div class="agreement">
                 <label>
                     <input type="checkbox" id="agree-checkbox">
@@ -44,7 +45,8 @@
         });
     
         registerButton.addEventListener("click", function () {
-            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/arts-fest/solo-event-reg.html?event=${encodeURIComponent(document.title)}`;
+            const eventName = document.title.split(' ')[0].toLowerCase();
+            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/arts-fest/solo-event-reg.html?event=${encodeURIComponent(eventName)}`;
         });
     </script>
 </body>
