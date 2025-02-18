@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (eventName === "SOLO DANCE") {
             scriptSrc = "solo-dance-reg.js";
         } else if (eventName === "SPOT CHOREOGRAPHY") {
-            scriptSrc = "spot-choreo-reg.js";
+            scriptSrc = "spot-choreography.js";
         }
 
         if (scriptSrc) {
