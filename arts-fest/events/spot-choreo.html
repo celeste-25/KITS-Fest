@@ -10,16 +10,11 @@
 <div class="container">
         <!-- Left Content -->
         <div class="left-section">
-            <h1>Spot Choreography</h1>
+            <h1>Solo Dance</h1>
             <h2>Rules and Regulations</h2>
             <ul class="rules-list">
-        <li>Duration upto 4min.</li>
-        <li>Free style</li>
-        <li>Songs will be provided.</li>
-        <li>Participants will not be allowed to refer to the lyrics while singing.</li>
-        <li>Classical songs are not allowed.</li>
-        <li>Judgement will be based on: Choreography, presentation, overall impression.</li>
-        <li>Judges’ decision will be final and binding to all.</li>
+                <!-- Add the rules here -->
+            </ul>
             <div class="agreement">
                 <label>
                     <input type="checkbox" id="agree-checkbox">
@@ -31,7 +26,7 @@
     
         <!-- Right Image -->
         <div class="right-section">
-            <img src="https://i.ibb.co/0p2n4KSG/Whats-App-Image-2025-02-16-at-18-58-30-df04ea80.jpg" alt="Spot Choreography">
+            <img src="https://i.ibb.co/zHNdhzJP/Whats-App-Image-2025-02-15-at-15-47-19-3a69088e.jpg" alt="Solo Dance">
         </div>
     </div>
     
@@ -44,7 +39,8 @@
         });
     
         registerButton.addEventListener("click", function () {
-            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/offline&no-payment.html?event=${encodeURIComponent(document.title)}`;
+            const eventName = document.title;
+            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/arts-fest/solo-event-reg.html?event=${encodeURIComponent(eventName)}`;
         });
     </script>
 </body>
