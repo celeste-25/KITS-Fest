@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const selectedEvent = eventField.value;
         let scriptSrc;
 
-        if (selectedEvent === "SOLO SONG") {
+        if (selectedEvent === "SOLO%20SONG") {
             scriptSrc = "solo-song-reg.js";
         } else if (selectedEvent === "SOLO DANCE") {
             scriptSrc = "solo-dance-reg.js";
