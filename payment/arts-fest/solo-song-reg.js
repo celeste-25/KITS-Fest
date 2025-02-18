@@ -1,4 +1,4 @@
-const offlineScriptURL = 'https://script.google.com/macros/s/AKfycbwe6lA303M-wlqvacXBOg9pbpLns-M7nL92e8UYL1QZRhUxb8RWTdAxFAyftDv2Kemi/exec'; 
+const offlineScriptURL = 'https://script.google.com/macros/s/AKfycbyFOlcsY27NFfmIOZKxJ26JJzOp1JpXJ3hb_bGDWqFZmvtygcSdtQ7kSBg4XVOhO8WK/exec'; 
 const offlineForm = document.forms['offlinePaymentForm'];
 const eventFieldOffline = document.getElementById("event");
 
@@ -11,15 +11,13 @@ if (eventNameOffline) {
 offlineForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("name", offlineForm.name.value);
-    formData.append("email", offlineForm.email.value);
-    formData.append("year", offlineForm.year.value);
-    formData.append("branch", offlineForm.branch.value);
-    formData.append("event", eventFieldOffline.value); 
-    formData.append("registrationNumber", offlineForm.registrationNumber.value);
+    const formData = new FormData(offlineForm);
 
-    fetch(offlineScriptURL, { method: 'POST', body: formData, mode: "no-cors" })
+    fetch(offlineScriptURL, { 
+        method: 'POST', 
+        body: formData, 
+        mode: "no-cors" 
+    })
     .then(() => {
         alert("Thank you! Your offline payment details are submitted.");
         offlineForm.reset();
