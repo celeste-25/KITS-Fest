@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style.css">
-    <title>SOLO DANCE</title>
+    <title>Solo Dance</title>
 </head>
 <body>
 <div class="container">
@@ -45,7 +45,7 @@
         });
     
         registerButton.addEventListener("click", function () {
-            const eventName = document.title.split(' ')[0].toLowerCase();
+            const eventName = document.title;
             window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/arts-fest/solo-event-reg.html?event=${encodeURIComponent(eventName)}`;
         });
     </script>
