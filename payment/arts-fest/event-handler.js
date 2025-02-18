@@ -1,16 +1,17 @@
 document.addEventListener('DOMContentLoaded', function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const eventName = urlParams.get("event").toUpperCase().replace(/%20/g, " ");
     const eventField = document.getElementById("event");
-    const offlineForm = document.forms['offlinePaymentForm'];
-
-    eventField.addEventListener('change', function () {
-        const selectedEvent = eventField.value;
+    
+    if (eventName) {
+        eventField.value = eventName;
         let scriptSrc;
 
-        if (selectedEvent === "SOLO%20SONG") {
+        if (eventName === "SOLO SONG") {
             scriptSrc = "solo-song-reg.js";
-        } else if (selectedEvent === "SOLO DANCE") {
+        } else if (eventName === "SOLO DANCE") {
             scriptSrc = "solo-dance-reg.js";
-        } else if (selectedEvent === "SPOT%20CHOREOGRAPHY") {
+        } else if (eventName === "SPOT CHOREOGRAPHY") {
             scriptSrc = "spot-choreo-reg.js";
         }
 
@@ -25,5 +26,5 @@ document.addEventListener('DOMContentLoaded', function () {
             script.src = scriptSrc;
             document.body.appendChild(script);
         }
-    });
+    }
 });
