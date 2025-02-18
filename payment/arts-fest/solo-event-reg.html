@@ -49,7 +49,7 @@
     
     if (eventName) {
         eventField.value = eventName;
-        const scriptSrc = `${eventName}-reg.js`;
+        const scriptSrc = `${eventName.toLowerCase().replace(' ', '-')}-reg.js`;
         const script = document.createElement('script');
         script.src = scriptSrc;
         document.body.appendChild(script);
