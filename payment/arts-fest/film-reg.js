@@ -1,26 +1,26 @@
-const offlineScriptURL = 'https://script.google.com/macros/s/AKfycbzTP2_tPaK9Eifv0_MSVIJEPaox6yAfzEBN8GQxlUiTkPMHSqIR3QQRl9T0r0Mby1zorg/exec'; 
-const offlineForm = document.forms['offlinePaymentForm'];
-const eventFieldOffline = document.getElementById("event");
+const groupScriptURL = 'https://script.google.com/macros/s/AKfycbzTP2_tPaK9Eifv0_MSVIJEPaox6yAfzEBN8GQxlUiTkPMHSqIR3QQRl9T0r0Mby1zorg/exec'; 
+const groupForm = document.forms['groupEventForm'];
+const eventFieldGroup = document.getElementById("event");
 
-const urlParamsOffline = new URLSearchParams(window.location.search);
-const eventNameOffline = urlParamsOffline.get("event");
-if (eventNameOffline) {
-    eventFieldOffline.value = eventNameOffline;
+const urlParamsGroup = new URLSearchParams(window.location.search);
+const eventNameGroup = urlParamsGroup.get("event");
+if (eventNameGroup) {
+    eventFieldGroup.value = eventNameGroup;
 }
 
-offlineForm.addEventListener('submit', e => {
+groupForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    const formData = new FormData(offlineForm);
+    const formData = new FormData(groupForm);
 
-    fetch(offlineScriptURL, { 
+    fetch(groupScriptURL, { 
         method: 'POST', 
         body: formData, 
         mode: "no-cors" 
     })
     .then(() => {
-        alert("Thank you! Your offline payment details are submitted.");
-        offlineForm.reset();
+        alert("Thank you! Your registration details are submitted.");
+        groupForm.reset();
     })
     .catch(error => console.error('Error!', error.message));
 });
