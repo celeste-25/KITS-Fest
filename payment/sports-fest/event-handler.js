@@ -7,12 +7,18 @@ document.addEventListener('DOMContentLoaded', function () {
         eventField.value = eventName;
         let scriptSrc;
 
-        if (eventName === "SOLO SONG") {
-            scriptSrc = "solo-song-reg.js";
-        } else if (eventName === "SOLO DANCE") {
-            scriptSrc = "solo-dance-reg.js";
-        } else if (eventName === "SPOT CHOREOGRAPHY") {
-            scriptSrc = "spot-choreography.js";
+        if (eventName === "Athletics - 100m") {
+            scriptSrc = "athletics/100.js";
+        } else if (eventName === "Athletics - 200m") {
+            scriptSrc = "athletics/200.js";
+        } else if (eventName === "Athletics - Long Jump") {
+            scriptSrc = "athletics/long-jump.js";
+        } else if (eventName === "Athletics - Javelin Throw") {
+            scriptSrc = "javelin.js";
+        } else if (eventName === "Athletics - ShotPut") {
+            scriptSrc = "shotput.js";
+        } else if (eventName === "Athletics - Disk Throw") {
+            scriptSrc = "disk.js";
         }
 
         if (scriptSrc) {
