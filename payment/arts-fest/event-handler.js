@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
             scriptSrc = "solo-song-reg.js";
         } else if (selectedEvent === "SOLO DANCE") {
             scriptSrc = "solo-dance-reg.js";
-        } else if (selectedEvent === "SPOT CHOREOGRAPHY") {
+        } else if (selectedEvent === "SPOT%20CHOREOGRAPHY") {
             scriptSrc = "spot-choreo-reg.js";
         }
 
