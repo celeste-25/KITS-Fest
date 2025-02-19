@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 scriptSrc = "tte.js";
                 break;
             case "LOGO IDENTIFICATION":
-                scriptSrc = "logo-identification.js";
+                scriptSrc = "li.js";
                 break;
             default:
                 scriptSrc = "";
