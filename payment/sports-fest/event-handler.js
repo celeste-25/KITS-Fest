@@ -14,7 +14,19 @@ document.addEventListener('DOMContentLoaded', function () {
             case "ATHLETICS 200M":
                 scriptSrc = "athletics/200m.js";
                 break;
-            // Add more cases as needed
+            case "ATHLETICS LONG JUMP":
+                scriptSrc = "athletics/long-jump.js";
+                break;
+            case "ATHLETICS JAVELIN THROW":
+                scriptSrc = "athletics/javelin.js";
+                break;
+            case "ATHLETICS SHOTPUT":
+                scriptSrc = "athletics/shotput.js";
+                break;
+            case "ATHLETICS DISK THROW":
+                scriptSrc = "athletics/disk.js";
+                break;
+            // Add more if needed
             default:
                 scriptSrc = "";
         }
