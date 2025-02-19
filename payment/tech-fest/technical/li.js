@@ -1,4 +1,4 @@
-const groupScriptURL = 'https://script.google.com/macros/s/AKfycbzLDydMo_MN_DrZNZHfraomANt4SgbOzKBObgVVvc6vCBN4e7kEoZx0iaIb19twW3SO/exec'; 
+const groupScriptURL = 'https://script.google.com/macros/s/AKfycbwAG4TiFG1lMs2IQg3YpWX83Mwm-wrXEPfPsQpXYAyK7Mu1QgJdRK9V7laISIGndOOp/exec'; 
 const groupForm = document.forms['groupEventForm'];
 const eventFieldGroup = document.getElementById("event");
 
