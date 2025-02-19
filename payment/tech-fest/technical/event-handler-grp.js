@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 scriptSrc = "th.js";
                 break;
             case "BRIDGE MAKING":
-                scriptSrc = "bridge-making.js";
+                scriptSrc = "bm.js";
                 break;
             case "TOSS THE EGG":
                 scriptSrc = "toss-the-egg.js";
