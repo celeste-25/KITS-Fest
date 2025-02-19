@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 scriptSrc = "bm.js";
                 break;
             case "TOSS THE EGG":
-                scriptSrc = "toss-the-egg.js";
+                scriptSrc = "tte.js";
                 break;
             case "LOGO IDENTIFICATION":
                 scriptSrc = "logo-identification.js";
