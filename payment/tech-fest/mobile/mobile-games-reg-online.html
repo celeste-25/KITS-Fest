@@ -58,7 +58,23 @@
             <input type="submit" value="Submit" id="submit">
         </form>
     </div>
+<script>
+  const eventFieldGroup = document.getElementById("event");
+  const urlParamsGroup = new URLSearchParams(window.location.search);
+  const eventNameGroup = urlParamsGroup.get("event");
+  
+  if (eventNameGroup) {
+    eventFieldGroup.value = decodeURIComponent(eventNameGroup);
+    
+    if (eventFieldGroup.value.toLowerCase().includes("bgmi")) {
+      document.write('<script src="bgmi-reg.js"><\/script>');
+    } else if (eventFieldGroup.value.toLowerCase().includes("freefire") || eventFieldGroup.value.toLowerCase().includes("ff")) {
+      document.write('<script src="ff-reg.js"><\/script>');
+    } else if (eventFieldGroup.value.toLowerCase().includes("e-football") || eventFieldGroup.value.toLowerCase().includes("pes") || eventFieldGroup.value.toLowerCase().includes("efootball")) {
+      document.write('<script src="pes-reg.js"><\/script>');
+    }
+  }
+</script>
 
-    <script src="mobile-games-reg-online.js"></script>
 </body>
 </html>
