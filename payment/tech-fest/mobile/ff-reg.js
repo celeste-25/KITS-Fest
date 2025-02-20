@@ -27,7 +27,7 @@ document.getElementById("groupEventForm").addEventListener("submit", function (e
 });
 
 function sendData(formData) {
-    fetch("https://script.google.com/macros/s/AKfycbzfyeaxVAtyOdd_QjsBzDBLlWtSwhTKNnIpVi79Q8AXOfFkgsKTTRhNJOaYwzRcFA8/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbyfGBctpq5lSSQmPPNuFMi47gFLtZlCc3TD4sBlRqpouMwusAnrPsWExb6itWlVWFNl/exec", {
         method: "POST",
         body: formData
     })
