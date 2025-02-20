@@ -1,39 +1,26 @@
-document.getElementById("groupEventForm").addEventListener("submit", function (event) {
-    event.preventDefault();
-    console.log("Form submission started");
+const groupScriptURL = 'https://script.google.com/macros/s/AKfycbxd6KzZ7XZvGs03nda16hK_lqH5Rkiw7uFINNJfsn6Th71yy744a1GSzzQi1eocA6SN/exec'; 
+const groupForm = document.forms['groupEventForm'];
+const eventFieldGroup = document.getElementById("event");
 
-    let formData = new FormData(this);
-    let fileInput = document.getElementById("image");
-    let file = fileInput.files[0];
-
-    if (file) {
-        console.log("File selected");
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = function () {
-            console.log("File read successfully");
-            formData.append("imageData", reader.result.split(',')[1]);
-            submitForm(formData);
-        };
-    } else {
-        console.log("No file selected");
-        submitForm(formData);
-    }
-});
-
-function submitForm(formData) {
-    console.log("Submitting form to the server...");
-    fetch("https://script.google.com/macros/s/AKfycbwOOoIc4U8tU8pRtq0C29i1ocSkI8kho8S9hxRNdGEL659BpP1Y3XD1DO53fm1-NLbC/exec", {
-        method: "POST",
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log("Server response:", data);
-        alert(data.message);
-    })
-    .catch(error => {
-        console.error("Error:", error);
-        alert("Error submitting form. Try again.");
-    });
+const urlParamsGroup = new URLSearchParams(window.location.search);
+const eventNameGroup = urlParamsGroup.get("event");
+if (eventNameGroup) {
+    eventFieldGroup.value = eventNameGroup;
 }
+
+groupForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const formData = new FormData(groupForm);
+
+    fetch(groupScriptURL, { 
+        method: 'POST', 
+        body: formData, 
+        mode: "no-cors" 
+    })
+    .then(() => {
+        alert("Thank you! Your registration details are submitted.");
+        groupForm.reset();
+    })
+    .catch(error => console.error('Error!', error.message));
+});
