@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="container">
-        <form method="post" name="groupEventForm" enctype="multipart/form-data" action="https://script.google.com/macros/s/AKfycbyVa9QZQtOwksjzx45hEMuBqle36Q9_ufXKD_0yxYQMxIJWmwBVv1qllQV0X1ZJy2M/exec" aria-label="Group Events Registration Form">
+        <form method="post" name="groupEventForm" enctype="multipart/form-data" action="https://script.google.com/macros/s/AKfycbzRCUtdpkikORk4KXzI9AWRxBMKDktiioj9h_TJ2Vj7girxlShLtL-gNO4Hcl0C8Ssw/exec" aria-label="Group Events Registration Form">
             <h4>Group Registration Form</h4>
             <label for="teamLeaderName">Team Leader Name</label>
             <input type="text" id="teamLeaderName" name="teamLeaderName" placeholder="Team Leader's Name" required aria-label="Team Leader Name">
@@ -59,6 +59,33 @@
         </form>
     </div>
 
-    <script src="grp-events-online.js"></script>
+    <script>
+        const groupScriptURL = 'https://script.google.com/macros/s/AKfycbzRCUtdpkikORk4KXzI9AWRxBMKDktiioj9h_TJ2Vj7girxlShLtL-gNO4Hcl0C8Ssw/exec'; 
+const groupForm = document.forms['groupEventForm'];
+const eventFieldGroup = document.getElementById("event");
+
+const urlParamsGroup = new URLSearchParams(window.location.search);
+const eventNameGroup = urlParamsGroup.get("event");
+if (eventNameGroup) {
+    eventFieldGroup.value = eventNameGroup;
+}
+
+groupForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const formData = new FormData(groupForm);
+
+    fetch(groupScriptURL, { 
+        method: 'POST', 
+        body: formData, 
+        mode: "no-cors" 
+    })
+    .then(() => {
+        alert("Thank you! Your registration details are submitted.");
+        groupForm.reset();
+    })
+    .catch(error => console.error('Error!', error.message));
+});
+</script>
 </body>
 </html>
