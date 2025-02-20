@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Options</title>
+    <link rel="stylesheet" href="style-upi.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Rock+3D&family=Rubik+Distressed&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1 id="eventTitle"></h1>
+      <img
+        src="../../IMAGES3/vishnu.jpeg"
+        alt="QR Code"
+        style="width: 200px; height: 200px"
+      />
+      <p>UPI ID: vichudq6@oksbi</p>
+      <a href="upi://pay?pa=vichudq6@oksbi&pn=Vichu%20CM&aid=uGICAgICz282ZCQ"
+        >GPay Here</a
+      >
+      <li>Rules Pending</li>
+      <div class="agreement" style="margin-top: 10px">
+        <label style="display: flex; align-items: center">
+          <input
+            type="checkbox"
+            id="paid-checkbox"
+            style="margin-right: 10px"
+          />
+          <span>I have paid the amount for this event.</span>
+        </label>
+      </div>
+      <div style="text-align: center; margin-top: 10px">
+        <button id="next-button" class="button" disabled>Next</button>
+      </div>
+    </div>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const eventName = urlParams.get("event");
+      const eventTitle = document.getElementById("eventTitle");
+      const paidCheckbox = document.getElementById("paid-checkbox");
+      const nextButton = document.getElementById("next-button");
+
+      if (eventName) {
+        eventTitle.innerText = `Event: ${eventName}`;
+      }
+
+      paidCheckbox.addEventListener("change", function () {
+        nextButton.disabled = !this.checked;
+      });
+
+      nextButton.addEventListener("click", function () {
+        window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/tech-fest/technical/th-online.html?event=${eventName}`;
+      });
+    </script>
+  </body>
+</html>
