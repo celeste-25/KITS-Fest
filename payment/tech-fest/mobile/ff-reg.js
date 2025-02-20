@@ -1,29 +1,39 @@
-const bgmiForm = document.forms['groupEventForm'];
+document.getElementById("groupEventForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+    console.log("Form submission started");
 
-bgmiForm.addEventListener('submit', e => {
-  e.preventDefault();
-  const formData = new FormData(bgmiForm);
+    let formData = new FormData(this);
+    let fileInput = document.getElementById("image");
+    let file = fileInput.files[0];
 
-  let fr = new FileReader();
-  fr.onloadend = () => {
-    let base64Data = fr.result.split("base64,")[1];
-    formData.append("base64", base64Data);
-    formData.append("imageType", fileInput.files[0].type);
-    formData.append("imageName", fileInput.files[0].name);
-
-    fetch(bgmiForm.action, { method: 'POST', body: formData })
-      .then(response => response.json())
-      .then(data => {
-        alert(data.message);
-        if (data.result === 'success') {
-          bgmiForm.reset();
-          preview.style.display = "none";
-        }
-      })
-      .catch(error => {
-        alert('Error submitting your registration. Please try again later.');
-        console.error('Error!', error.message);
-      });
-  };
-  fr.readAsDataURL(fileInput.files[0]);
+    if (file) {
+        console.log("File selected");
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = function () {
+            console.log("File read successfully");
+            formData.append("imageData", reader.result.split(',')[1]);
+            submitForm(formData);
+        };
+    } else {
+        console.log("No file selected");
+        submitForm(formData);
+    }
 });
+
+function submitForm(formData) {
+    console.log("Submitting form to the server...");
+    fetch("https://script.google.com/macros/s/AKfycbxx9BqmRyZ80_2o5Foc-EAC5ljluv4UXsCldaqsQZ1yTTLdLutx7aYdz6C0ncEyUdaN/exec", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Server response:", data);
+        alert(data.message);
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert("Error submitting form. Try again.");
+    });
+}
