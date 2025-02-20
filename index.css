@@ -92,6 +92,22 @@ body {
   box-shadow: 0 0 30px 30px rgba(0, 0, 0, 1);
 }
 
+.warning {
+  background: linear-gradient(to top, #350000 5%, #000 80%);
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid rgb(132, 0, 0);
+  margin-top: 60px;
+}
+
+.enq {
+  background: linear-gradient(to top, #010035 5%, #000 80%);
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid rgb(0, 44, 132);
+  margin-top: 20px;
+}
+
 @media (max-width: 768px) {
   .hero {
     flex-direction: column;
@@ -114,7 +130,12 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  
+}
+
+a {
+  text-decoration: underline;
+  font-weight: bolder;
+  color: rgb(0, 255, 0);
 }
 
 /* Xenos Section */
@@ -253,6 +274,15 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(0%, -500%);
+  }
+
+  .warning {
+    background: linear-gradient(to top, #350000 5%, #000 80%);
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid rgb(132, 0, 0);
+    margin-top: 60px;
+    width: 330px;
   }
 }
 
