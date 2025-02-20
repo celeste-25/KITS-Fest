@@ -7,32 +7,32 @@
     <link rel="stylesheet" href="../../style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Rock+3D&family=Rubik+Distressed&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <form id="groupEventForm" enctype="multipart/form-data">
+        <form method="post" name="groupEventForm" enctype="multipart/form-data" action="https://script.google.com/macros/s/AKfycbx645JLv0Zm9RiOTzjePfVFuZOx9gcYe4dJqnRIFhYnyFB0h0ymP9zmrIwktn1w8qJN/exec" aria-label="Group Events Registration Form">
             <h4>Mobile Games Registration Form</h4>
             <label for="teamLeaderName">Team Leader Name</label>
-            <input type="text" id="teamLeaderName" name="teamLeaderName" placeholder="Team Leader's Name" required>
-
+            <input type="text" id="teamLeaderName" name="teamLeaderName" placeholder="Team Leader's Name" required aria-label="Team Leader Name">
+            
             <label for="playerNames">Player Names</label>
-            <textarea id="playerNames" name="playerNames" placeholder="Player 2, Player 3, Player 4..." required></textarea>
-
+            <textarea id="playerNames" name="playerNames" placeholder="eg: Player 2, Player 3, Player 4..." required aria-label="Player Names" style="height: 100px;"></textarea>
+            
             <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" placeholder="E-mail" required>
-
+            <input type="email" id="email" name="email" placeholder="E-mail" required aria-label="E-mail">
+            
             <label for="year">Year</label>
-            <select id="year" name="year" required>
+            <select id="year" name="year" required aria-label="Year">
                 <option value="" disabled selected>Select Year</option>
                 <option value="1st Year">1st Year</option>
                 <option value="2nd Year">2nd Year</option>
                 <option value="3rd Year">3rd Year</option>
                 <option value="4th Year">4th Year</option>
             </select>
-
+            
             <label for="branch">Branch</label>
-            <select id="branch" name="branch" required>
+            <select id="branch" name="branch" required aria-label="Branch">
                 <option value="" disabled selected>Select Branch</option>
                 <option value="CSE">CSE</option>
                 <option value="Automobile">Automobile</option>
@@ -41,38 +41,45 @@
                 <option value="Electrical">Electrical</option>
                 <option value="Electronics">Electronics</option>
             </select>
-
+            
             <label for="event">Event</label>
-            <input type="text" id="event" name="event" readonly>
-
+            <input type="text" id="event" name="event" readonly aria-label="Event">
+            
             <label for="registrationNumber">Registration Number</label>
-            <input type="text" id="registrationNumber" name="registrationNumber" placeholder="eg. KIT21CS000" required oninput="this.value = this.value.toUpperCase()">
-
+            <input type="text" id="registrationNumber" name="registrationNumber" placeholder="eg. KIT21CS000" required oninput="this.value = this.value.toUpperCase()" aria-label="Registration Number">
+            
             <label for="transactionId">Transaction ID (12 Alphanumeric)</label>
             <input type="text" id="transactionId" name="transactionId" placeholder="Transaction ID" required pattern="[A-Za-z0-9]{12}" title="Transaction ID must be exactly 12 alphanumeric characters">
-
+            
             <label for="image">Upload Payment Screenshot</label>
             <input type="file" id="image" name="image" accept="image/*" required>
             <img id="preview" src="" alt="Image Preview" style="display: none; width: 100%; max-width: 300px; margin-top: 10px;">
-
+            
             <input type="submit" value="Submit" id="submit">
         </form>
     </div>
-
+    
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-      const urlParams = new URLSearchParams(window.location.search);
-      const eventName = urlParams.get("event");
-      if (eventName) document.getElementById("event").value = eventName;
+  const eventFieldGroup = document.getElementById("event");
+  const urlParamsGroup = new URLSearchParams(window.location.search);
+  const eventNameGroup = urlParamsGroup.get("event");
 
-      if (eventName.toLowerCase().includes("bgmi")) {
-          document.write('<script src="bgmi-reg.js"><\/script>');
-      } else if (eventName.toLowerCase().includes("freefire") || eventName.toLowerCase().includes("ff")) {
-          document.write('<script src="ff-reg.js"><\/script>');
-      } else if (eventName.toLowerCase().includes("e-football") || eventName.toLowerCase().includes("pes") || eventName.toLowerCase().includes("efootball")) {
-          document.write('<script src="pes-reg.js"><\/script>');
-      }
-  });
+  if (eventNameGroup) {
+    eventFieldGroup.value = decodeURIComponent(eventNameGroup);
+
+    console.log("Event detected:", eventFieldGroup.value);
+
+    if (eventFieldGroup.value.toLowerCase().includes("bgmi")) {
+      console.log("Loading BGMI script");
+      document.write('<script src="bgmi-reg.js"><\/script>');
+    } else if (eventFieldGroup.value.toLowerCase().includes("freefire") || eventFieldGroup.value.toLowerCase().includes("ff")) {
+      console.log("Loading Free Fire script");
+      document.write('<script src="ff-reg.js"><\/script>');
+    } else if (eventFieldGroup.value.toLowerCase().includes("e-football") || eventFieldGroup.value.toLowerCase().includes("pes") || eventFieldGroup.value.toLowerCase().includes("efootball")) {
+      console.log("Loading PES script");
+      document.write('<script src="pes-reg.js"><\/script>');
+    }
+  }
 </script>
 
 </body>
