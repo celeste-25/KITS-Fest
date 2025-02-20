@@ -18,7 +18,7 @@ body::after {
   width: 100vw;
   height: 150%;
 
-  background: url(/KITS-Fest/IMAGES1/artsBackground.png);
+  background: url(IMAGES1/arts background.png);
   background-size: contain;
 
   background-position: center;
