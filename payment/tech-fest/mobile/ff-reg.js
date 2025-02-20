@@ -23,7 +23,7 @@ document.getElementById("groupEventForm").addEventListener("submit", function (e
 
 function submitForm(formData) {
     console.log("Submitting form to the server...");
-    fetch("https://script.google.com/macros/s/AKfycbxx9BqmRyZ80_2o5Foc-EAC5ljluv4UXsCldaqsQZ1yTTLdLutx7aYdz6C0ncEyUdaN/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbz0s4Fp23rs69ueKnRuG57wMsXlhY-vre4VlENxobkIZ1E6xYavUcqN7twrZ1J1dUhk/exec", {
         method: "POST",
         body: formData
     })
