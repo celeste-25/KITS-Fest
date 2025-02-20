@@ -1,29 +1,33 @@
-const bgmiForm = document.forms['groupEventForm'];
+document.getElementById("groupEventForm").addEventListener("submit", function (event) {
+    event.preventDefault();
 
-bgmiForm.addEventListener('submit', e => {
-  e.preventDefault();
-  const formData = new FormData(bgmiForm);
+    let formData = new FormData(this);
+    let fileInput = document.getElementById("image");
+    let file = fileInput.files[0];
 
-  let fr = new FileReader();
-  fr.onloadend = () => {
-    let base64Data = fr.result.split("base64,")[1];
-    formData.append("base64", base64Data);
-    formData.append("imageType", fileInput.files[0].type);
-    formData.append("imageName", fileInput.files[0].name);
-
-    fetch(bgmiForm.action, { method: 'POST', body: formData })
-      .then(response => response.json())
-      .then(data => {
-        alert(data.message);
-        if (data.result === 'success') {
-          bgmiForm.reset();
-          preview.style.display = "none";
-        }
-      })
-      .catch(error => {
-        alert('Error submitting your registration. Please try again later.');
-        console.error('Error!', error.message);
-      });
-  };
-  fr.readAsDataURL(fileInput.files[0]);
+    if (file) {
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = function () {
+            formData.append("imageData", reader.result);
+            submitForm(formData);
+        };
+    } else {
+        submitForm(formData);
+    }
 });
+
+function submitForm(formData) {
+    fetch("https://script.google.com/macros/s/AKfycbys66Qwom9qWLYFVTCGd2Sp18SkLrJz6rmgQ88_ShR9DLxQ03PrgkP_Av6DIFokUT3u/exec", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+    })
+    .catch(error => {
+        alert("Error submitting form. Try again.");
+        console.error("Error:", error);
+    });
+}
