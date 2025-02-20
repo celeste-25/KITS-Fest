@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Games Registration Form</title>
+    <title>Group Event Registration Form</title>
     <link rel="stylesheet" href="../../style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,8 +11,8 @@
 </head>
 <body>
     <div class="container">
-        <form method="post" name="groupEventForm" enctype="multipart/form-data" action="https://script.google.com/macros/s/AKfycbwOOoIc4U8tU8pRtq0C29i1ocSkI8kho8S9hxRNdGEL659BpP1Y3XD1DO53fm1-NLbC/exec" aria-label="Group Events Registration Form">
-            <h4>Mobile Games Registration Form</h4>
+        <form method="post" name="groupEventForm" enctype="multipart/form-data" action="https://script.google.com/macros/s/AKfycbyEDCyaCMZ8r19a-O-atNDFP61EnGrgBSp1YPYtOlLPO6lAKEOkGsxmXhxgwreSkv7m/exec" aria-label="Group Events Registration Form">
+            <h4>Group Registration Form</h4>
             <label for="teamLeaderName">Team Leader Name</label>
             <input type="text" id="teamLeaderName" name="teamLeaderName" placeholder="Team Leader's Name" required aria-label="Team Leader Name">
             
@@ -58,29 +58,7 @@
             <input type="submit" value="Submit" id="submit">
         </form>
     </div>
-    
-<script>
-  const eventFieldGroup = document.getElementById("event");
-  const urlParamsGroup = new URLSearchParams(window.location.search);
-  const eventNameGroup = urlParamsGroup.get("event");
 
-  if (eventNameGroup) {
-    eventFieldGroup.value = decodeURIComponent(eventNameGroup);
-
-    console.log("Event detected:", eventFieldGroup.value);
-
-    if (eventFieldGroup.value.toLowerCase().includes("bgmi")) {
-      console.log("Loading BGMI script");
-      document.write('<script src="bgmi-reg.js"><\/script>');
-    } else if (eventFieldGroup.value.toLowerCase().includes("freefire") || eventFieldGroup.value.toLowerCase().includes("ff")) {
-      console.log("Loading Free Fire script");
-      document.write('<script src="ff-reg.js"><\/script>');
-    } else if (eventFieldGroup.value.toLowerCase().includes("e-football") || eventFieldGroup.value.toLowerCase().includes("pes") || eventFieldGroup.value.toLowerCase().includes("efootball")) {
-      console.log("Loading PES script");
-      document.write('<script src="pes-reg.js"><\/script>');
-    }
-  }
-</script>
-
+    <script src="mobile-games-online.js"></script>
 </body>
 </html>
