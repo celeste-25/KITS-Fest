@@ -40,7 +40,7 @@ body::after {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: url(/KITS-Fest/IMAGES1/mobile\ games\ background_00000.png);
+    background: url(IMAGES1/mobile games background_00000.png);
     background-size: cover;
 
     background-position: center;
