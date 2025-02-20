@@ -58,19 +58,25 @@
             <input type="submit" value="Submit" id="submit">
         </form>
     </div>
+    
 <script>
   const eventFieldGroup = document.getElementById("event");
   const urlParamsGroup = new URLSearchParams(window.location.search);
   const eventNameGroup = urlParamsGroup.get("event");
-  
+
   if (eventNameGroup) {
     eventFieldGroup.value = decodeURIComponent(eventNameGroup);
-    
+
+    console.log("Event detected:", eventFieldGroup.value);
+
     if (eventFieldGroup.value.toLowerCase().includes("bgmi")) {
+      console.log("Loading BGMI script");
       document.write('<script src="bgmi-reg.js"><\/script>');
     } else if (eventFieldGroup.value.toLowerCase().includes("freefire") || eventFieldGroup.value.toLowerCase().includes("ff")) {
+      console.log("Loading Free Fire script");
       document.write('<script src="ff-reg.js"><\/script>');
     } else if (eventFieldGroup.value.toLowerCase().includes("e-football") || eventFieldGroup.value.toLowerCase().includes("pes") || eventFieldGroup.value.toLowerCase().includes("efootball")) {
+      console.log("Loading PES script");
       document.write('<script src="pes-reg.js"><\/script>');
     }
   }
