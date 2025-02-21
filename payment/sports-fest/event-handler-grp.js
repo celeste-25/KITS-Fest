@@ -8,19 +8,19 @@ document.addEventListener('DOMContentLoaded', function () {
         let scriptSrc;
 
         switch (eventName) {
-            case "Mens - Football":
+            case "Mens Football":
                 scriptSrc = "mens/football.js";
                 break;
             case "Mens Cricket":
                 scriptSrc = "mens/cricket.js";
                 break;
-            case "Mens - Volleyball":
+            case "Mens Volleyball":
                 scriptSrc = "mens/volleyball.js";
                 break;
-            case "Men's - BADMINTON DOUBLES":
+            case "Mens BADMINTON DOUBLES":
                 scriptSrc = "mens/badminton.js";
                 break;
-            case "Mens - Relay 400 Meters":
+            case "Mens Relay 400 Meters":
                 scriptSrc = "mens/relay.js";
                 break;
             default:
