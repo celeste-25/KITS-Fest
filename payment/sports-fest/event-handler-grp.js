@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
             case "Mens - Football":
                 scriptSrc = "mens/football.js";
                 break;
-            case "Mens - Cricket":
+            case "Mens Cricket":
                 scriptSrc = "mens/cricket.js";
                 break;
             case "Mens - Volleyball":
