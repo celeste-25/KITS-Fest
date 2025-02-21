@@ -1,4 +1,4 @@
-const offlineScriptURL = 'https://script.google.com/macros/s/AKfycbz-s6PIJMMYNFYDzs7zK0F6KJmSJtkGIsIkARPQwlYmteN-ANSLGCLJ7BHkBBDLcAaDYg/exec'; 
+const offlineScriptURL = 'https://script.google.com/macros/s/AKfycbzmE-3CnK2bkeL7rOw6cJp3myYQvdLyd2Po3ZAihLFFQ39JANFMZDIiBSLNHjWaMRy2bA/exec'; 
 const offlineForm = document.forms['offlinePaymentForm'];
 const eventFieldOffline = document.getElementById("event");
 
@@ -19,7 +19,7 @@ offlineForm.addEventListener('submit', e => {
         mode: "no-cors" 
     })
     .then(() => {
-        alert("Thank you! Your offline payment details are submitted.");
+        alert("Thank you! Your registration details are successfully submitted.");
         offlineForm.reset();
     })
     .catch(error => console.error('Error!', error.message));
