@@ -1,4 +1,4 @@
-const offlineScriptURL = 'https://script.google.com/macros/s/AKfycbxAX6HDuWd28iIzVsZitSQ1_onnQ2TYHxP3hzSCUb23_OR6BJYSyH5TqsPPqI05iGtnhw/exec';
+const offlineScriptURL = 'https://script.google.com/macros/s/AKfycbziD9LjZK2Rh_XWBqaZ0gZwU5G0MxKBVy-RK93Qryvo3rkNGwTdeVTBJJIj5ASCr2r-Lw/exec';
 const offlineForm = document.forms['offlinePaymentForm'];
 
 offlineForm.addEventListener('submit', e => {
