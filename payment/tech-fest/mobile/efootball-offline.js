@@ -7,6 +7,7 @@ const eventField = document.getElementById("event");
 
 if (eventName) {
     eventField.value = eventName;
+    document.getElementById('eventTitle').innerText = `Event: ${eventName}`;
 }
 
 offlineForm.addEventListener('submit', e => {
