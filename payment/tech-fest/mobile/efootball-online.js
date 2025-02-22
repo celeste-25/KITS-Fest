@@ -1,64 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration & Payment Form</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Rock+3D&family=Rubik+Distressed&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="container">
-        <form method="post" name="paymentForm" enctype="multipart/form-data">
-            <h4>Registration & Payment Form</h4>
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxAX6HDuWd28iIzVsZitSQ1_onnQ2TYHxP3hzSCUb23_OR6BJYSyH5TqsPPqI05iGtnhw/exec';
+const form = document.forms['paymentForm'];
 
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="Name" required oninput="this.value = this.value.toUpperCase()">
-            
-            <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" placeholder="E-mail" required>
-            
-            <label for="year">Year</label>
-            <select id="year" name="year" required>
-                <option value="" disabled selected>Select Year</option>
-                <option value="1st Year">1st Year</option>
-                <option value="2nd Year">2nd Year</option>
-                <option value="3rd Year">3rd Year</option>
-                <option value="4th Year">4th Year</option>
-            </select>
-            
-            <label for="branch">Branch</label>
-            <select id="branch" name="branch" required>
-                <option value="" disabled selected>Select Branch</option>
-                <option value="CSE">CSE</option>
-                <option value="Automobile">Automobile</option>
-                <option value="Civil">Civil</option>
-                <option value="Mech">Mechanical</option>
-                <option value="Electrical">Electrical</option>
-                <option value="Electronics">Electronics</option>
-            </select>
-            
-            <label for="event">Event</label>
-            <input type="text" id="event" name="event" readonly>
-            
-            <label for="registrationNumber">Registration Number</label>
-            <input type="text" id="registrationNumber" name="registrationNumber" placeholder="Registration Number" required oninput="this.value = this.value.toUpperCase()">
-            
-            <!-- Transaction ID Input -->
-            <label for="transactionId">Transaction ID (12 Alphanumeric)</label>
-            <input type="text" id="transactionId" name="transactionId" placeholder="Transaction ID" required pattern="[A-Za-z0-9]{12}" title="Transaction ID must be exactly 12 alphanumeric characters">
-            
-            <!-- Image Upload -->
-            <label for="image">Upload Payment Screenshot</label>
-            <input type="file" id="image" name="image" accept="image/*" required>
-            <img id="preview" src="" alt="Image Preview" style="display: none; width: 100%; max-width: 300px; margin-top: 10px;">
-            
-            <input type="submit" value="Submit" id="submit">
-        </form>
-    </div>
+form.addEventListener('submit', e => {
+    e.preventDefault();
 
-    <script src="efootball-online.js"></script>
-</body>
-</html>
+    const fileInput = document.getElementById('image');
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = function () {
+        const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
+        const formData = new FormData(form);
+        formData.append('base64', base64String);
+        formData.append('imageType', file.type);
+        formData.append('imageName', file.name);
+
+        fetch(scriptURL, { method: 'POST', body: formData })
+            .then(response => response.json())
+            .then(response => {
+                alert(response.message);
+                form.reset();
+            })
+            .catch(error => console.error('Error!', error.message));
+    };
+
+    reader.readAsDataURL(file);
+});
