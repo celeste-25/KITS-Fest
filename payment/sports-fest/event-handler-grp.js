@@ -23,6 +23,18 @@ document.addEventListener('DOMContentLoaded', function () {
             case "Mens Relay 400 Meters":
                 scriptSrc = "mens/relay.js";
                 break;
+            case "Womens Throwball":
+                scriptSrc = "womens/throw.js";
+                break;
+            case "Womens BADMINTON DOUBLES":
+                scriptSrc = "womens/badminton.js";
+                break;
+            case "Womens Penalty Shootout":
+                scriptSrc = "womens/penalty.js";
+                break;
+            case "Womens Relay 400 Meters":
+                scriptSrc = "womens/relay.js";
+                break;
             default:
                 scriptSrc = "";
         }
