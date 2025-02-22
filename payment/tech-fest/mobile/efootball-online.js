@@ -1,6 +1,14 @@
 const scriptURL = 'https://script.google.com/macros/s/AKfycbxAX6HDuWd28iIzVsZitSQ1_onnQ2TYHxP3hzSCUb23_OR6BJYSyH5TqsPPqI05iGtnhw/exec';
 const form = document.forms['paymentForm'];
 
+const urlParams = new URLSearchParams(window.location.search);
+const eventName = urlParams.get("event");
+const eventField = document.getElementById("event");
+
+if (eventName) {
+    eventField.value = eventName;
+}
+
 form.addEventListener('submit', e => {
     e.preventDefault();
 
