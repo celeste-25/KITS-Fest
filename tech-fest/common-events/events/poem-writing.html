@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../../style.css">
     <title>Poem Writing</title>
 </head>
+<body>
 <div class="container">
         <!-- Left Content -->
         <div class="left-section">
@@ -18,7 +19,7 @@
         <li>Participants should bring the necessary things for the event.</li>
         <li>Mobile phones & smart watches are not allowed.</li>
         <li>If Any kind Malpractice is found will be immediately disqualified. </li>
-        <li>Results will be based on the writing skills, expressions, and content which is more apt to the topic.</li>
+        <li>Results will be based on the writing skills, expressions, and content which is more apt to the topic.</li>
             </ul>
             <div class="agreement">
                 <label>
@@ -36,7 +37,12 @@
     </div>
     
     <script>
+        const checkbox = document.getElementById("agree-checkbox");
         const registerButton = document.getElementById("register-button");
+
+        checkbox.addEventListener("change", function () {
+            registerButton.disabled = !this.checked;
+        });
 
         registerButton.addEventListener("click", function () {
             window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/tech-fest/common/solo-event-reg.html?event=${encodeURIComponent(document.title)}`;
@@ -44,5 +50,3 @@
     </script>
 </body>
 </html>
-
-
