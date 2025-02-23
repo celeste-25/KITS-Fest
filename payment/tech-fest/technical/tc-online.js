@@ -1,4 +1,4 @@
-const scriptURL = 'https://script.google.com/macros/s/AKfycby8h2cyLIGBLGewktv7V8rjwsNNKrzzqQY2wgXXYm49hIMib2WH9P5rDUTU8PTUuDk65w/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbyaVSmpRIpmlKTTgZhBENCo2Mh48c4btBfDigrhGZ3m8dq7FuKxeG0IGhQfckzbh2HdSg/exec';
 const form = document.forms['paymentForm'];
 
 const urlParams = new URLSearchParams(window.location.search);
