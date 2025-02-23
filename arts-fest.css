@@ -18,7 +18,7 @@ body::after {
   width: 100vw;
   height: 150%;
 
-  background: url(/IMAGES1/arts\ background_00000.png);
+  background: url(IMAGES1/artsbackground.png);
   background-size: contain;
 
   background-position: center;
@@ -37,7 +37,7 @@ body::after {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: url(/IMAGES1/arts\ background_00000.png);
+    background: url(IMAGES1/artsbackground.png);
     background-size: cover;
 
     background-position: center;

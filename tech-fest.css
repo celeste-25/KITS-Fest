@@ -72,10 +72,10 @@ body::after {
 }
 
 .rule-book {
-  background: linear-gradient(to top, #004d5a 5%, #000 80%);
+  background: linear-gradient(to top, #48005a 5%, #000 80%);
   border-radius: 8px;
   padding: 20px;
-  border: 1px solid rgb(0, 110, 132);
+  border: 1px solid rgb(112, 0, 132);
   margin-top: 10px;
   margin-bottom: 20px;
 }

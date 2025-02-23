@@ -22,7 +22,7 @@ body::after {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: url(/IMAGES1/coomon\ event\ background._00000.png);
+  background: url(IMAGES1/coomoneventbackground.png);
 
   background-position: center;
   background-repeat: repeat;
@@ -40,7 +40,7 @@ body::after {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: url(/IMAGES1/coomon\ event\ background._00000.png);
+    background: url(IMAGES1/coomoneventbackground.png);
     background-size: cover;
 
     background-position: center;
@@ -63,14 +63,13 @@ body::after {
   font-style: normal;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
-.p2{
+.p2 {
   font-size: 18px;
 }
-
 
 .btn {
   position: relative;
@@ -130,10 +129,9 @@ a{
   width: 200px;
 }
 
-
 .to-home:hover {
   background-color: rgb(0, 255, 255);
-  
+
   color: #000;
 }
 .btn:hover {
