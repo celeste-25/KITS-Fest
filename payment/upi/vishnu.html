@@ -40,23 +40,23 @@
       </div>
     </div>
     <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      const eventName = urlParams.get("event");
-      const eventTitle = document.getElementById("eventTitle");
-      const paidCheckbox = document.getElementById("paid-checkbox");
-      const nextButton = document.getElementById("next-button");
+        const urlParams = new URLSearchParams(window.location.search);
+        const eventName = urlParams.get("event");
+        const eventTitle = document.getElementById("eventTitle");
+        const paidCheckbox = document.getElementById("paid-checkbox");
+        const nextButton = document.getElementById("next-button");
 
-      if (eventName) {
-        eventTitle.innerText = `Event: ${eventName}`;
-      }
+        if (eventName) {
+            eventTitle.innerText = `Event: ${eventName}`;
+        }
 
-      paidCheckbox.addEventListener("change", function () {
-        nextButton.disabled = !this.checked;
-      });
+        paidCheckbox.addEventListener("change", function () {
+            nextButton.disabled = !this.checked;
+        });
 
-      nextButton.addEventListener("click", function () {
-        window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/tech-fest/technical/th-online.html?event=${eventName}`;
-      });
+        nextButton.addEventListener("click", function () {
+            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/tech-fest/technical/chess-online.html?event=${eventName}`;
+        });
     </script>
   </body>
 </html>
