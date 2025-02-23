@@ -1,29 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Options</title>
-    <link rel="stylesheet" href="../style-upi.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Rock+3D&family=Rubik+Distressed&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
+    <link rel="stylesheet" href="../style-upi.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Rock+3D&family=Rubik+Distressed&display=swap" rel="stylesheet">
+</head>
+<body>
     <div class="container">
-      <h1 id="eventTitle"></h1>
-      <img
-        src="../../IMAGES3/swaroop.jpg"
-        alt="QR Code"
-        style="width: 200px; height: 200px"
-      />
-      <p>UPI ID: swaroopms123@okicici</p>
+        <h1 id="eventTitle"></h1>
+        <img src="../../IMAGES3/swaroop-upi.jpg" alt="QR Code" style="width: 200px; height: 200px;">
+        <p>UPI ID: swaroopms123@okicici</p>
         <a href="upi://pay?pa=swaroopms123@okicici&pn=Swaroop%20Ms&aid=uGICAgMDMoaaBUw&am=20&cu=INR">GPay Here</a>
-        >GPay Here</a
-      >
    <h2>Rules Pending</h2>
          <ul>
         <li>Pay the exact amount mentioned for the event.</li>
@@ -32,19 +23,15 @@
         <li>Upload only the payment screenshot on the next page.</li>
         <li>Any other images uploaded will lead to disqualification.</li>
         <li>Incomplete or incorrect payments will result in registration removal.</li>
-         </ul>      <div class="agreement" style="margin-top: 10px">
-        <label style="display: flex; align-items: center">
-          <input
-            type="checkbox"
-            id="paid-checkbox"
-            style="margin-right: 10px"
-          />
-          <span>I have paid the amount for this event.</span>
-        </label>
-      </div>
-      <div style="text-align: center; margin-top: 10px">
-        <button id="next-button" class="button" disabled>Next</button>
-      </div>
+         </ul>        <div class="agreement" style="margin-top: 10px;">
+            <label style="display: flex; align-items: center;">
+                <input type="checkbox" id="paid-checkbox" style="margin-right: 10px;">
+                <span>I have paid the amount for this event.</span>
+            </label>
+        </div>
+        <div style="text-align: center; margin-top: 10px;">
+            <button id="next-button" class="button" disabled>Next</button>
+        </div>
     </div>
     <script>
         const urlParams = new URLSearchParams(window.location.search);
@@ -65,5 +52,5 @@
             window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/tech-fest/technical/cpu-online.html?event=${eventName}`;
         });
     </script>
-  </body>
+</body>
 </html>
