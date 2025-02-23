@@ -1,53 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="events-page.css" />
     <title>Face Painting</title>
-</head>
-<body>
-<div class="container">
-        <!-- Left Content -->
-        <div class="left-section">
-                <h1>Face Painting</h1>
-            <h2>Rules and Regulations</h2>
-            <ul class="rules-list">
-        <li>Judgement will be based on the theme.</li>
-        <li>This is a team event of two participants in a team. </li>
-        <li>Please do not participate if you have sensitive skin or allergies, We will not be responsible for the skin reactions. </li>
-                  <li>Participants should bring their own materials (color, brushes, etc...)</li>
-                  <li>At least 30%-50% face should be covered.</li>
-                  <li>Only use proffesional face paint and glitters that are approved for use on the face and eye area.</li>
-            </ul>
-            <div class="agreement">
-                <label>
-                    <input type="checkbox" id="agree-checkbox">
-                    <span>I have read all the rules and regulations and will follow them.</span>
-                </label>
-            </div>
-            <button id="register-button" class="button" disabled>REGISTER</button>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Left Content -->
+      <div class="left-section">
+        <h1>Face Painting</h1>
+        <h2>Rules and Regulations</h2>
+        <ul class="rules-list">
+          <li>Judgement will be based on the theme.</li>
+          <li>This is a team event of two participants in a team.</li>
+          <li>
+            Please do not participate if you have sensitive skin or allergies,
+            We will not be responsible for the skin reactions.
+          </li>
+          <li>
+            Participants should bring their own materials (color, brushes,
+            etc...)
+          </li>
+          <li>At least 30%-50% face should be covered.</li>
+          <li>
+            Only use proffesional face paint and glitters that are approved for
+            use on the face and eye area.
+          </li>
+        </ul>
+        <div class="agreement">
+          <label>
+            <input type="checkbox" id="agree-checkbox" />
+            <span
+              >I have read all the rules and regulations and will follow
+              them.</span
+            >
+          </label>
         </div>
-    
-        <!-- Right Image -->
-        <div class="right-section">
-            <img src="https://i.ibb.co/zVMnNJhH/Whats-App-Image-2025-02-15-at-11-41-07-89674611.jpg" alt="Face Painting">
-        </div>
+        <button id="register-button" class="button" disabled>REGISTER</button>
+      </div>
+
+      <!-- Right Image -->
+      <div class="right-section">
+        <img src="IMAGES4/face-painting.jpeg" alt="Face Painting" />
+      </div>
     </div>
-    
+
     <script>
-        const checkbox = document.getElementById("agree-checkbox");
-        const registerButton = document.getElementById("register-button");
+      const checkbox = document.getElementById("agree-checkbox");
+      const registerButton = document.getElementById("register-button");
 
-        checkbox.addEventListener("change", function () {
-            registerButton.disabled = !this.checked;
-        });
+      checkbox.addEventListener("change", function () {
+        registerButton.disabled = !this.checked;
+      });
 
-        registerButton.addEventListener("click", function () {
-            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/tech-fest/common/solo-event-reg.html?event=${encodeURIComponent(document.title)}`;
-        });
+      registerButton.addEventListener("click", function () {
+        window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/tech-fest/common/solo-event-reg.html?event=${encodeURIComponent(
+          document.title
+        )}`;
+      });
     </script>
-</body>
+    <script src="event-page.js" ></script>
+  </body>
 </html>
-
-
