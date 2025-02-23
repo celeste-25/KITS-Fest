@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="container">
-        <form method="post" name="groupEventForm" enctype="multipart/form-data" action="https://script.google.com/macros/s/AKfycbwKOQS6ynWRMebuMvrH51HzH3Jwwvdoq_3eawGaZlN2R-9e4WN2rIfGhZtBnX2FKNuU/exec" aria-label="Group Events Registration Form">
+        <form method="post" name="groupEventForm" enctype="multipart/form-data" action="https://script.google.com/macros/s/AKfycbzR_wkdn6see00lbsuLu5iycB1-2rXuSuCN01gj2OBuZE-I-4UJx75lt_IHWe7_IJYu/exec" aria-label="Group Events Registration Form">
             <h4>Group Registration Form</h4>
             <label for="teamLeaderName">Team Leader Name</label>
             <input type="text" id="teamLeaderName" name="teamLeaderName" placeholder="Team Leader's Name" required aria-label="Team Leader Name">
@@ -60,32 +60,52 @@
     </div>
 
     <script>
-        const groupScriptURL = 'https://script.google.com/macros/s/AKfycbwKOQS6ynWRMebuMvrH51HzH3Jwwvdoq_3eawGaZlN2R-9e4WN2rIfGhZtBnX2FKNuU/exec'; 
-        const groupForm = document.forms['groupEventForm'];
-        const eventFieldGroup = document.getElementById("event");
+        const groupScriptURL = 'https://script.google.com/macros/s/AKfycbzR_wkdn6see00lbsuLu5iycB1-2rXuSuCN01gj2OBuZE-I-4UJx75lt_IHWe7_IJYu/exec'; 
+const groupEventForm = document.forms['groupEventForm'];
+const fileInput = document.getElementById("image");
+const preview = document.getElementById("preview");
+const eventFieldGroup = document.getElementById("event");
 
-        const urlParamsGroup = new URLSearchParams(window.location.search);
-        const eventNameGroup = urlParamsGroup.get("event");
-        if (eventNameGroup) {
-            eventFieldGroup.value = eventNameGroup;
-        }
+const urlParamsGroup = new URLSearchParams(window.location.search);
+const eventNameGroup = urlParamsGroup.get("event");
+if (eventNameGroup) {
+    eventFieldGroup.value = decodeURIComponent(eventNameGroup);
+}
 
-        groupForm.addEventListener('submit', e => {
-            e.preventDefault();
+fileInput.addEventListener("change", () => {
+    let fr = new FileReader();
+    fr.onloadend = () => {
+        preview.src = fr.result;
+        preview.style.display = "block";
+    };
+    fr.readAsDataURL(fileInput.files[0]);
+});
 
-            const formData = new FormData(groupForm);
+groupEventForm.addEventListener('submit', e => {
+    e.preventDefault();
 
-            fetch(groupScriptURL, { 
-                method: 'POST', 
-                body: formData, 
-                mode: "no-cors" 
-            })
-            .then(() => {
-                alert("Thank you! Your registration details are submitted.");
-                groupForm.reset();
-            })
-            .catch(error => console.error('Error!', error.message));
-        });
+    const formData = new FormData(groupEventForm);
+    formData.append("event", eventFieldGroup.value);
+
+    let fr = new FileReader();
+    fr.onloadend = () => {
+        const base64Data = fr.result.split("base64,")[1];
+        formData.append("base64", base64Data);
+        formData.append("imageType", fileInput.files[0].type);
+        formData.append("imageName", fileInput.files[0].name);
+
+        fetch(groupEventForm.action, { method: 'POST', body: formData })
+        .then(response => response.json())
+        .then(response => {
+            alert(response.message);
+            groupEventForm.reset();
+            preview.style.display = "none";
+        })
+        .catch(error => console.error('Error!', error.message));
+    };
+    fr.readAsDataURL(fileInput.files[0]);
+});
+
     </script>
 </body>
 </html>
