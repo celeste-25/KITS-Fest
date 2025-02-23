@@ -1,4 +1,4 @@
-const scriptURL = 'https://script.google.com/macros/s/AKfycbzuoY-4tTcPIr1osPvVw6v2NUcnycdsBFOsrkTW4ipGRtj1MnMe07V24KKZLeZcNqHrPg/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxr2EKiGWbU11tJE6ipdfaMTJIkYSnVjZmPFs6YW-gfoLIcRr2LqQY758_k6c6pps_mTw/exec';
 const groupEventForm = document.forms['groupEventForm'];
 const fileInput = document.getElementById("image");
 const preview = document.getElementById("preview");
