@@ -21,7 +21,7 @@ body::after {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: url(/IMAGES1/techbackground.png);
+  background: url(IMAGES1/techbackground.png);
 
   background-position: center;
   background-repeat: repeat;
@@ -38,7 +38,7 @@ body::after {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: url(/IMAGES1/techbackground.png);
+    background: url(IMAGES1/techbackground.png);
     background-size: cover;
 
     background-position: center;
@@ -72,7 +72,7 @@ body::after {
 }
 
 .rule-book {
-  background: linear-gradient(to top, #48005a 5%, #000 80%);
+  background: linear-gradient(to top, #004d5a 5%, #000 80%);
   border-radius: 8px;
   padding: 20px;
   border: 1px solid rgb(112, 0, 132);
