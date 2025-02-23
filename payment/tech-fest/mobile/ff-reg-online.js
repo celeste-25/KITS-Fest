@@ -1,4 +1,4 @@
-const scriptURL = 'https://script.google.com/macros/s/AKfycbxr2EKiGWbU11tJE6ipdfaMTJIkYSnVjZmPFs6YW-gfoLIcRr2LqQY758_k6c6pps_mTw/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwHwFUH6v9nh4aQmWnq2i-V9j6-nFNuK1GOFoDYLweo4-L7pXGfiPm0Eu1w1xUfSD5IUg/exec';
 const groupEventForm = document.forms['groupEventForm'];
 const fileInput = document.getElementById("image");
 const preview = document.getElementById("preview");
@@ -23,7 +23,7 @@ groupEventForm.addEventListener('submit', e => {
     e.preventDefault();
 
     const formData = new FormData(groupEventForm);
-    formData.append("event", eventFieldGroup.value); 
+    formData.append("event", eventFieldGroup.value);
 
     let fr = new FileReader();
     fr.onloadend = () => {
