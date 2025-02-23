@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/events-page.css">
+    <title>Soldering Competition</title>
+</head>
+    <div class="container">
+        <!-- Left Content -->
+        <div class="left-section">
+            <h1>Soldering Competition</h1>
+            <h2>Rules and Regulations</h2>
+            <!-- <ul class="rules-list">
+                <li>Follow the provided materials and instructions carefully</li>
+                <li>The bridge must be able to support a certain weight.</li>
+                <li>No external tools or materials are allowed.</li>
+                <li>Respect all safety guidelines during the construction.</li>
+                <li>The judging will be based on design, strength, and creativity.</li>
+                <li>The organizers' decision will be final.</li>
+            </ul> -->
+            <div class="agreement">
+                <label>
+                    <input type="checkbox" id="agree-checkbox">
+                    <span>I have read all the rules and regulations and will follow them.</span>
+                </label>
+            </div>
+            <button id="pay-online-button" class="button" disabled>Pay Online</button>
+            <button id="pay-offline-button" class="button" style="margin-top: 10px;" disabled>Pay Offline</button>
+        </div>
+
+        <!-- Right Image -->
+        <div class="right-section">
+            <img src="/IMAGES4/soldering.jpeg" alt="Soldering Competition">
+        </div>
+    </div>
+    <script>
+        const checkbox = document.getElementById("agree-checkbox");
+        const payOnlineButton = document.getElementById("pay-online-button");
+        const payOfflineButton = document.getElementById("pay-offline-button");
+
+        checkbox.addEventListener("change", function () {
+            payOnlineButton.disabled = !this.checked;
+            payOfflineButton.disabled = !this.checked;
+        });
+
+        payOnlineButton.addEventListener("click", function () {
+            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/upi/sandra-babu.html?event=${encodeURIComponent(document.querySelector('h1').innerText)}`;
+        });
+
+        payOfflineButton.addEventListener("click", function () {
+            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/tech-fest/technical/group-event-reg.html?event=${encodeURIComponent(document.querySelector('h1').innerText)}`;
+        });
+    </script>
+    <script src="/event-page.js" ></script>
+</body>
+</html>
+
