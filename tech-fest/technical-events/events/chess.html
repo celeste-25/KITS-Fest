@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="events-page.css">
     <title>Chess</title>
 </head>
 <div class="container">
@@ -29,7 +29,7 @@
 
         <!-- Right Image -->
         <div class="right-section">
-            <img src="https://i.ibb.co/BHnhM8H5/Whats-App-Image-2025-02-15-at-11-42-52-0e28547b.jpg" alt="Bridge Making">
+            <img src="IMAGES4/chess.jpeg">
         </div>
     </div>
     <script>
@@ -43,13 +43,14 @@
         });
 
         payOnlineButton.addEventListener("click", function () {
-            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/upi/vishnu.html?event=${encodeURIComponent(document.querySelector('h1').innerText)}`;
+            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/payment-options.html?event=${encodeURIComponent(document.querySelector('h1').innerText)}`;
         });
 
         payOfflineButton.addEventListener("click", function () {
-            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/tech-fest/technical/chess-offline.html?event=${encodeURIComponent(document.querySelector('h1').innerText)}`;
+            window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/offline&no-payment.html?event=${encodeURIComponent(document.querySelector('h1').innerText)}`;
         });
     </script>
+    <script src="event-page.js" ></script>
 </body>
 </html>
 
