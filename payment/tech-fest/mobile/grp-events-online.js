@@ -38,10 +38,9 @@ groupEventForm.addEventListener('submit', e => {
         formData.append("imageType", fileInput.files[0].type);
         formData.append("imageName", fileInput.files[0].name);
 
-        fetch(groupEventForm.action, { method: 'POST', body: formData })
-        .then(response => response.json())
-        .then(response => {
-            alert(response.message);
+        fetch(groupEventForm.action, { method: 'POST', body: formData, mode: "no-cors" })
+        .then(() => {
+            alert("Thank you! Your group registration details are submitted.");
             groupEventForm.reset();
             preview.style.display = "none";
         })
