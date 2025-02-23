@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="container">
-        <form method="post" name="groupEventForm" enctype="multipart/form-data" action="https://script.google.com/macros/s/AKfycbzR_wkdn6see00lbsuLu5iycB1-2rXuSuCN01gj2OBuZE-I-4UJx75lt_IHWe7_IJYu/exec" aria-label="Group Events Registration Form">
+        <form method="post" name="groupEventForm" enctype="multipart/form-data" action="https://script.google.com/macros/s/AKfycbzJG_oFK5WEc0fIh_LoHotmPaPhAYrXa5Ne3Vo5-XffshQj4os-8h3B1ZXEOlcMYwvQ/exec" aria-label="Group Events Registration Form">
             <h4>Group Registration Form</h4>
             <label for="teamLeaderName">Team Leader Name</label>
             <input type="text" id="teamLeaderName" name="teamLeaderName" placeholder="Team Leader's Name" required aria-label="Team Leader Name">
@@ -60,7 +60,7 @@
     </div>
 
     <script>
-        const groupScriptURL = 'https://script.google.com/macros/s/AKfycbzR_wkdn6see00lbsuLu5iycB1-2rXuSuCN01gj2OBuZE-I-4UJx75lt_IHWe7_IJYu/exec'; 
+        const groupScriptURL = 'https://script.google.com/macros/s/AKfycbzJG_oFK5WEc0fIh_LoHotmPaPhAYrXa5Ne3Vo5-XffshQj4os-8h3B1ZXEOlcMYwvQ/exec'; 
 const groupEventForm = document.forms['groupEventForm'];
 const fileInput = document.getElementById("image");
 const preview = document.getElementById("preview");
@@ -97,15 +97,18 @@ groupEventForm.addEventListener('submit', e => {
         fetch(groupEventForm.action, { method: 'POST', body: formData })
         .then(response => response.json())
         .then(response => {
-            alert(response.message);
-            groupEventForm.reset();
-            preview.style.display = "none";
+            if (response.result === 'success') {
+                alert(response.message);
+                groupEventForm.reset();
+                preview.style.display = "none";
+            } else {
+                alert(response.message);
+            }
         })
         .catch(error => console.error('Error!', error.message));
     };
     fr.readAsDataURL(fileInput.files[0]);
 });
-
     </script>
 </body>
 </html>
