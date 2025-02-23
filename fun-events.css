@@ -22,12 +22,12 @@ body::after {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: url(/IMAGES1/coomon\ event\ background._00000.png);
+  background: url(/KITS-Fest/IMAGES1/techbackground.png);
 
   background-position: center;
   background-repeat: repeat;
   pointer-events: none;
-  opacity: 27%;
+  opacity: 75%;
   filter: invert(27%) sepia(92%) saturate(586%) hue-rotate(150deg);
 }
 
@@ -40,13 +40,13 @@ body::after {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: url(/IMAGES1/coomon\ event\ background._00000.png);
+    background: url(/KITS-Fest/IMAGES1/techbackground.png);
     background-size: cover;
 
     background-position: center;
     background-repeat: repeat;
     pointer-events: none;
-    opacity: 27%;
+    opacity: 65%;
     filter: invert(27%) sepia(92%) saturate(586%) hue-rotate(150deg);
   }
 }
@@ -63,14 +63,9 @@ body::after {
   font-style: normal;
 }
 
-a{
+a {
   text-decoration: none;
 }
-
-.p2{
-  font-size: 18px;
-}
-
 
 .btn {
   position: relative;
@@ -126,16 +121,16 @@ a{
   border-radius: 32px;
   text-decoration: none;
   padding: 20px;
-  color: rgb(255, 255, 255);
+  color: white;
   width: 200px;
 }
 
-
 .to-home:hover {
   background-color: rgb(0, 255, 255);
-  
+
   color: #000;
 }
+
 .btn:hover {
   transform: scale(1.05);
   border: 1px solid #fff;
@@ -143,7 +138,6 @@ a{
 }
 
 .prev-btn {
-  color: #ffffff;
   display: grid;
   place-items: center;
   margin-top: 60px;
@@ -296,7 +290,7 @@ a{
     padding: 0;
     text-align: center;
     overflow-x: hidden;
-    height: 200vh;
+    height: 190vh;
   }
 
   .prev-btn {
@@ -304,7 +298,6 @@ a{
     place-items: center;
     margin-top: 60px;
   }
-
   .to-home {
     text-align: center;
     gap: 50px;

@@ -276,14 +276,14 @@ a {
     transform: translate(0%, -500%);
   }
 
-  .warning {
+  /* .warning {
     background: linear-gradient(to top, #350000 5%, #000 80%);
     border-radius: 8px;
     padding: 20px;
     border: 1px solid rgb(132, 0, 0);
     margin-top: 60px;
-    width: 330px;
-  }
+    width: 400px;
+  } */
 }
 
 .container {

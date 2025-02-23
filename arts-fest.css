@@ -18,7 +18,7 @@ body::after {
   width: 100vw;
   height: 150%;
 
-  background: url(IMAGES1/arts background.png);
+  background: url(/IMAGES1/arts\ background_00000.png);
   background-size: contain;
 
   background-position: center;
@@ -37,7 +37,7 @@ body::after {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: url(/KITS-Fest/IMAGES1/arts\ background.png);
+    background: url(/IMAGES1/arts\ background_00000.png);
     background-size: cover;
 
     background-position: center;
@@ -66,6 +66,19 @@ body::after {
 
 a {
   text-decoration: none;
+}
+
+.rule-book-text{
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.rule-book {
+  background: linear-gradient(to top, #48005a 5%, #000 80%);
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid rgb(112, 0, 132);
+  margin-top: 10px;
 }
 
 .btn {
@@ -294,5 +307,18 @@ a {
     overflow-x: hidden;
     height: 100%;
     margin-bottom: 300px;
+  }
+
+  .rule-book {
+    background: linear-gradient(to top, #48005a 5%, #000 80%);
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid rgb(112, 0, 132);
+    margin-top: 10px;
+    width: 300px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  
+    margin-left: 10px;
+    
   }
 }

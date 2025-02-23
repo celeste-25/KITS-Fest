@@ -21,8 +21,8 @@ body::after {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
-  background: url(/KITS-Fest/IMAGES1/techbackground.png);
+  height: 190vh;
+  background: url(IMAGES1/techbackground.png);
 
   background-position: center;
   background-repeat: repeat;
@@ -40,7 +40,7 @@ body::after {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: url(/KITS-Fest/IMAGES1/techbackground.png);
+    background: url(IMAGES1/techbackground.png);
     background-size: cover;
 
     background-position: center;
@@ -290,7 +290,7 @@ a {
     padding: 0;
     text-align: center;
     overflow-x: hidden;
-    height: 190vh;
+    height: 250vh;
   }
 
   .prev-btn {

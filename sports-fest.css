@@ -7,6 +7,10 @@ body {
   text-align: center;
   overflow-x: hidden;
   height: 100vh;
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
 }
 
 body::after {
@@ -17,7 +21,7 @@ body::after {
   width: 100vw;
   height: 150%;
 
-  background: url(/KITS-Fest/IMAGES1/sports\ baxckground0ff_00000.png);
+  background: url(/IMAGES1/sports\ baxckground0ff_00000.png);
   background-size: contain;
 
   background-position: center;
@@ -36,7 +40,7 @@ body::after {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: url(/KITS-Fest/IMAGES1/sports\ baxckground0ff_00000.png);
+    background: url(/IMAGES1/sports\ baxckground0ff_00000.png);
     background-size: cover;
 
     background-position: center;
@@ -283,6 +287,6 @@ a {
     padding: 0;
     text-align: center;
     overflow-x: hidden;
-    height: 100vh;
+    height: 120vh;
   }
 }

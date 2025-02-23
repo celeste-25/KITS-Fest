@@ -6,12 +6,14 @@
     <title>Tech Fest - CELESTE'25</title>
     <link rel="stylesheet" href="tech-fest.css"">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    
     <nav class="navbar">
       <!-- Hamburger Menu Button -->
       <button class="hamburger-menu" aria-label="Toggle navigation">
@@ -27,9 +29,9 @@
 
       <div class="nav-links">
         <ul>
-          <li><a href="/KITS-Fest/index.html">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="/KITS-Fest/guidelines.html">Guidelines</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="guidelines.html">Guidelines</a></li>
 
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -41,13 +43,15 @@
         <span class="p1">TECH EVENTS</span>
       </p>
     </div>
-    
+    <button class="rule-book">
+      <p><a class="rule-book-text" href="CELESTE'25 TECH FEST RULE BOOK.pdf" download="Tech_Rulebook.pdf">TECH RULEBOOK</a></p>
+    </button>
 
     <div class="btn-position">
       <button
         style="--clr: #ffd700"
         class="btn"
-        onclick="window.location.href='common-events/common-events.html'"
+        onclick="window.location.href='common-events.html'"
       >
         <span>Common Events</span><i></i>
       </button>
@@ -55,7 +59,7 @@
       <button
         style="--clr: #00ffff"
         class="btn"
-        onclick="window.location.href='technical-events/technical-events.html'"
+        onclick="window.location.href='technical-events.html'"
       >
         <span>Technical Events</span><i></i>
       </button>
@@ -63,15 +67,23 @@
       <button
         style="--clr: #ff44cc"
         class="btn"
-        onclick="window.location.href='mobile-games/mobile-games.html'"
+        onclick="window.location.href='mobile-games.html'"
       >
         <span>Mobile Games</span><i></i>
+      </button>
+
+      <button
+        style="--clr: #ff44cc"
+        class="btn"
+        onclick="window.location.href='fun-events.html'"
+      >
+        <span>Fun Events</span><i></i>
       </button>
     </div>
 
     <div class="back-to-home">
-      <a href="../index.html" class="to-home">Back to Home</a>
+      <a href="index.html" class="to-home">Back to Home</a>
     </div>
   </body>
-  <script src="../navbar.js" defer></script>
+  <script src="navbar.js" defer></script>
 </html>
