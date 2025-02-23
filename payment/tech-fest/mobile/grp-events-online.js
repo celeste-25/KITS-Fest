@@ -1,3 +1,4 @@
+const scriptURL = 'https://script.google.com/macros/s/AKfycbygjJ4C8tqM5qjQA9e9RKDbSgxuiMKNZsbrfwjmXllhasBEc_49CK1sDBn1WvwqW7W0Eg/exec';
 const groupEventForm = document.forms['groupEventForm'];
 const fileInput = document.getElementById("image");
 const preview = document.getElementById("preview");
