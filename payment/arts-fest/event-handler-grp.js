@@ -49,33 +49,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (form) {
         form.addEventListener("submit", function (event) {
-            event.preventDefault(); // Stop default form submission to prevent duplicate requests
-
-            // Disable submit button permanently to prevent duplicate submissions
+            // Disable the submit button to prevent double submission
             submitButton.disabled = true;
 
-            // Show loading box
+            // Show loading screen
             loadingOverlay.style.display = "flex";
-            loadingBar.style.width = "0%"; // Reset loading bar
+            loadingBar.style.width = "0%";
 
-            // Start infinite loading animation
+            // Start loading animation
             let progress = 0;
             const interval = setInterval(() => {
-                progress = (progress + 10) % 100; // Looping animation
+                progress = (progress + 10) % 100;
                 loadingBar.style.width = progress + "%";
             }, 300);
 
-            // Allow the form to submit naturally after a slight delay (Prevents double submission)
+            // Allow the form to submit naturally (Google Sheets will handle it)
             setTimeout(() => {
-                clearInterval(interval); // Stop loading animation
-                form.submit(); // Now, submit the form only once
-            }, 500); // Small delay to prevent immediate double submission
+                clearInterval(interval); // Stop animation
+            }, 1000);
 
-            // Hide the loading screen 1 second after Google Sheets pop-up appears
+            // Hide the loading bar 1 second after Google Sheets pop-up appears
             setTimeout(() => {
-                loadingOverlay.style.display = "none"; // Hide loading screen after 1 second
-                loadingBar.style.width = "0%"; // Reset loading bar
-            }, 1500);
+                loadingOverlay.style.display = "none";
+                loadingBar.style.width = "0%";
+            }, 500); // Adjust if needed
         });
     }
 });
