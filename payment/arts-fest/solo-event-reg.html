@@ -43,71 +43,103 @@
         </form>
     </div>
     
-    
-<script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const eventName = urlParams.get("event");
-    const eventField = document.getElementById("event");
-
-    if (eventName) {
-        eventField.value = eventName;
-        const scriptSrc = `${eventName.toLowerCase().replace(/ /g, '-')}-reg.js`;
-        const script = document.createElement('script');
-        script.src = scriptSrc;
-        document.body.appendChild(script);
-    }
-</script>
-<script src="event-handler.js"></script>
-
     <!-- Loading Box with Progress Bar -->
-<div id="loadingOverlay" style="display: none;">
-    <div class="loadingBox">
-        <p>Loading...</p>
-        <div class="loadingBar"></div>
+    <div id="loadingOverlay" style="display: none;">
+        <div class="loadingBox">
+            <p>Loading...</p>
+            <div class="loadingBar"></div>
+        </div>
     </div>
-</div>
 
-<style>
-    /* Fullscreen Background */
-    #loadingOverlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-    }
+    <!-- Loading Overlay CSS -->
+    <style>
+        /* Fullscreen Background */
+        #loadingOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
 
-    /* Loading Box */
-    .loadingBox {
-        background: white;
-        padding: 20px;
-        border-radius: 8px;
-        text-align: center;
-        width: 300px;
-        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
-    }
+        /* Loading Box */
+        .loadingBox {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+        }
 
-    .loadingBox p {
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
+        .loadingBox p {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
 
-    /* Loading Bar */
-    .loadingBar {
-        width: 0%;
-        height: 5px;
-        background-color: #007bff;
-        transition: width 0.4s ease-in-out;
-    }
-</style>
+        /* Loading Bar */
+        .loadingBar {
+            width: 0%;
+            height: 5px;
+            background-color: #007bff;
+            transition: width 0.4s ease-in-out;
+        }
+    </style>
 
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const eventName = urlParams.get("event");
+        const eventField = document.getElementById("event");
 
+        if (eventName) {
+            eventField.value = eventName;
+            const scriptSrc = `${eventName.toLowerCase().replace(/ /g, '-')}-reg.js`;
+            const script = document.createElement('script');
+            script.src = scriptSrc;
+            document.body.appendChild(script);
+        }
 
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.forms['offlinePaymentForm'];
+            const loadingOverlay = document.getElementById("loadingOverlay");
+            const loadingBar = document.querySelector(".loadingBar");
+            const submitButton = form.querySelector("input[type='submit']");
+
+            if (form) {
+                form.addEventListener("submit", function (event) {
+                    // Disable the submit button to prevent duplicate submissions
+                    submitButton.disabled = true;
+
+                    // Show loading screen
+                    loadingOverlay.style.display = "flex";
+                    loadingBar.style.width = "0%";
+
+                    // Start loading animation
+                    let progress = 0;
+                    const interval = setInterval(() => {
+                        progress = (progress + 10) % 100;
+                        loadingBar.style.width = progress + "%";
+                    }, 300);
+
+                    // Allow the form to submit naturally (Google Sheets will handle it)
+                });
+
+                // Detect Google Sheets Pop-up and Hide Loading Bar After Clicking "OK"
+                window.addEventListener("focus", function () {
+                    // When user returns focus after clicking "OK" on Google Sheets pop-up, hide the loading bar
+                    loadingOverlay.style.display = "none"; // Hide loading screen
+                    loadingBar.style.width = "0%"; // Reset loading bar
+                });
+            }
+        });
+    </script>
+
+    <script src="event-handler.js"></script>
 </body>
 </html>
