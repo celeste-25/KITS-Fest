@@ -42,6 +42,14 @@
             <input type="submit" value="Submit" id="submit">
         </form>
     </div>
+    
+    <div id="loadingOverlay" style="display: none;">
+    <div class="loadingBox">
+        <p>Loading...</p>
+        <div class="loadingBar"></div>
+    </div>
+</div>
+    
 <script>
     const urlParams = new URLSearchParams(window.location.search);
     const eventName = urlParams.get("event");
