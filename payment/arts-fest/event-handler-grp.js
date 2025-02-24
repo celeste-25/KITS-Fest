@@ -39,4 +39,43 @@ document.addEventListener('DOMContentLoaded', function () {
             document.body.appendChild(script);
         }
     }
+
+    const form = document.forms['groupEventForm'];
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    const loadingBar = document.getElementById('loadingBar');
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyVxXMRAfEsEVW4TVz_otqyddSKBPXzIFsQg3ZzeXYcS96BcywjDMf8hVrFlxGm5Mcp3A/exec';
+
+    const updateLoadingBar = () => {
+        let width = 0;
+        loadingBar.style.width = width;
+        const interval = setInterval(() => {
+            width += 10;
+            if (width >= 100) {
+                width = 100;
+                clearInterval(interval);
+            }
+            loadingBar.style.width = width + '%';
+        }, 400);
+    };
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+
+        loadingOverlay.style.display = 'flex';
+        updateLoadingBar();
+
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+            .then(response => response.json())
+            .then(response => {
+                loadingOverlay.style.display = 'none';
+                
+                // Only handle the Google Sheets Apps Script alert and reset the form
+                form.reset();
+            })
+            .catch(error => {
+                loadingOverlay.style.display = 'none';
+                
+                console.error('Error!', error.message);
+            });
+    });
 });
