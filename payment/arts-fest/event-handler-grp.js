@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => {
                 loadingOverlay.style.display = 'none';
                 
-                // Only handle the Google Sheets Apps Script alert and reset the form
+
                 form.reset();
             })
             .catch(error => {
