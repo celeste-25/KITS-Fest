@@ -15,12 +15,19 @@ offlineForm.addEventListener('submit', e => {
 
     fetch(offlineScriptURL, { 
         method: 'POST', 
-        body: formData, 
-        mode: "no-cors" 
+        body: formData
     })
-    .then(() => {
-        alert("Thank you! Your offline payment details are submitted.");
-        offlineForm.reset();
+    .then(response => response.json())
+    .then(data => {
+        if (data.result === "success") {
+            alert("Thank you! Your offline payment details are submitted.");
+            offlineForm.reset();
+        } else {
+            alert("Something went wrong. Please try again.");
+        }
     })
-    .catch(error => console.error('Error!', error.message));
+    .catch(error => {
+        alert("There was an error submitting your form. Please try again later.");
+        console.error('Error!', error.message);
+    });
 });
