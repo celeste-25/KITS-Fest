@@ -39,48 +39,44 @@ document.addEventListener('DOMContentLoaded', function () {
             document.body.appendChild(script);
         }
     }
-
-    const form = document.forms['groupEventForm'];
-    const loadingOverlay = document.getElementById('loadingOverlay');
-    const loadingBar = document.getElementById('loadingBar');
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyVxXMRAfEsEVW4TVz_otqyddSKBPXzIFsQg3ZzeXYcS96BcywjDMf8hVrFlxGm5Mcp3A/exec';
-    let isSubmitting = false;
-
-    const updateLoadingBar = () => {
-        let width = 0;
-        loadingBar.style.width = width;
-        const interval = setInterval(() => {
-            width += 10;
-            if (width >= 100) {
-                width = 100;
-                clearInterval(interval);
-            }
-            loadingBar.style.width = width + '%';
-        }, 400);
-    };
-
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-
-        if (isSubmitting) return;
-        isSubmitting = true;
-
-        loadingOverlay.style.display = 'flex';
-        updateLoadingBar();
-
-        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-            .then(response => response.json())
-            .then(response => {
-                loadingOverlay.style.display = 'none';
-                isSubmitting = false;
-                
-                form.reset();
-            })
-            .catch(error => {
-                loadingOverlay.style.display = 'none';
-                isSubmitting = false;
-
-                console.error('Error!', error.message);
-            });
-    });
 });
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form[name='groupEventForm']");
+    const loadingOverlay = document.getElementById("loadingOverlay");
+    const loadingBar = document.querySelector(".loadingBar");
+    const submitButton = form.querySelector("input[type='submit']");
+
+    if (form) {
+        form.addEventListener("submit", function (event) {
+            // Disable the submit button to prevent duplicate submissions
+            submitButton.disabled = true;
+
+            // Show loading screen
+            loadingOverlay.style.display = "flex";
+            loadingBar.style.width = "0%";
+
+            // Start loading animation
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress = (progress + 10) % 100;
+                loadingBar.style.width = progress + "%";
+            }, 300);
+
+            // Allow the form to submit naturally (Google Sheets will handle it)
+        });
+
+        // **Detect Google Sheets Pop-up and Hide Loading Bar After Clicking "OK"**
+        window.addEventListener("focus", function () {
+            // When user returns focus after clicking "OK" on Google Sheets pop-up, hide the loading bar
+            loadingOverlay.style.display = "none"; // Hide loading screen
+            loadingBar.style.width = "0%"; // Reset loading bar
+        });
+    }
+});
+
