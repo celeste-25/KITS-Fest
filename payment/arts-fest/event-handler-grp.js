@@ -40,3 +40,30 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form[name='groupEventForm']");
+    
+    if (form) {
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // Stop default form submission
+            
+            fetch(form.action, {
+                method: "POST",
+                body: new FormData(form),
+            })
+            .then(response => response.text()) // Use text instead of JSON if Apps Script does not return JSON
+            .then(() => {
+                alert("Successfully submitted! ✅");
+                form.reset(); // Reset the form after successful submission
+            })
+            .catch(error => {
+                alert("Submission failed. Please try again.");
+                console.error("Error:", error);
+            });
+        });
+    }
+});
