@@ -52,7 +52,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
+});
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form[name='groupEventForm']");
     
     if (form) {
@@ -76,4 +80,3 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-});
