@@ -13,17 +13,20 @@
     <div class="container">
         <h1 id="eventTitle"></h1>
         <img src="../../IMAGES3/vipin-upi.jpg" alt="QR Code" style="width: 200px; height: 200px;">
-        <p>UPI ID: vipinsaju07@oksbi</p>
-        <a href="upi://pay?pa=vipinsaju07@oksbi&pn=Vipin%20Saju&aid=uGICAgIC3j8-cYw&am=40&cu=INR">GPay Here</a>
-   <h2>Rules Pending</h2>
+<p>UPI ID: <span id="upiId"> vipinsaju07@oksbi</span> <button id="copyButton" class="button">Copy UPI Id</button></p>
+   <h2>PAYMENT INSTRUCTIONS</h2>
          <ul>
-        <li>Pay the exact amount mentioned for the event.</li>
-        <li>Copy the transaction ID after completing the payment.</li>
-        <li>Take a screenshot ensuring the transaction ID is clearly visible.</li>
-        <li>Upload only the payment screenshot on the next page.</li>
-        <li>Any other images uploaded will lead to disqualification.</li>
-        <li>Incomplete or incorrect payments will result in registration removal.</li>
-         </ul>        <div class="agreement" style="margin-top: 10px;">
+<li>Pay the exact amount mentioned for the event.</li>
+<li>Copy the transaction ID after completing the payment.</li>
+<li>Take a screenshot ensuring the transaction ID is clearly visible.</li>
+<li>Upload only the payment screenshot on the next page.</li>
+<li>Any other images uploaded will lead to disqualification.</li>
+<li>Incomplete or incorrect payments will result in registration removal.</li>
+<li>After payment, return to this page and complete the registration.</li>
+<li>Only making the payment will not confirm your slot.</li>
+<li>Enter the correct transaction ID to avoid issues.</li>
+         </ul>        
+        <div class="agreement" style="margin-top: 10px;">
             <label style="display: flex; align-items: center;">
                 <input type="checkbox" id="paid-checkbox" style="margin-right: 10px;">
                 <span>I have paid the amount for this event.</span>
@@ -39,6 +42,8 @@
         const eventTitle = document.getElementById("eventTitle");
         const paidCheckbox = document.getElementById("paid-checkbox");
         const nextButton = document.getElementById("next-button");
+        const copyButton = document.getElementById("copyButton");
+        const upiId = document.getElementById("upiId");
 
         if (eventName) {
             eventTitle.innerText = `Event: ${eventName}`;
@@ -51,6 +56,16 @@
         nextButton.addEventListener("click", function () {
             window.location.href = `https://celeste-25.github.io/KITS-Fest/payment/tech-fest/mobile/bgmi-reg-online.html?event=${eventName}`;
         });
+
+        copyButton.addEventListener("click", function () {
+            navigator.clipboard.writeText(upiId.textContent).then(function() {
+                alert("UPI ID copied to clipboard!");
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        });
     </script>
 </body>
 </html>
+
+
