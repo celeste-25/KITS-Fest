@@ -49,6 +49,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (form) {
         form.addEventListener("submit", function (event) {
+            event.preventDefault(); // Stop default form submission to prevent duplicate requests
+
             // Disable submit button permanently to prevent duplicate submissions
             submitButton.disabled = true;
 
@@ -63,13 +65,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 loadingBar.style.width = progress + "%";
             }, 300);
 
-            // Allow the form to submit naturally (removing fetch() to prevent double submission)
+            // Allow the form to submit naturally after a slight delay (Prevents double submission)
             setTimeout(() => {
                 clearInterval(interval); // Stop loading animation
+                form.submit(); // Now, submit the form only once
+            }, 500); // Small delay to prevent immediate double submission
+
+            // Hide the loading screen 1 second after Google Sheets pop-up appears
+            setTimeout(() => {
                 loadingOverlay.style.display = "none"; // Hide loading screen after 1 second
                 loadingBar.style.width = "0%"; // Reset loading bar
-            }, 1000); // Hide after 1 second (after Google Sheets pop-up appears)
+            }, 1500);
         });
     }
 });
+
 
