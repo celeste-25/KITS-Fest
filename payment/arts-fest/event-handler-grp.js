@@ -45,10 +45,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form[name='groupEventForm']");
     const loadingOverlay = document.getElementById("loadingOverlay");
     const loadingBar = document.querySelector(".loadingBar");
+    const submitButton = form.querySelector("input[type='submit']");
 
     if (form) {
         form.addEventListener("submit", function (event) {
             event.preventDefault(); // Stop default form submission
+
+            // Disable submit button permanently to prevent double submission
+            submitButton.disabled = true;
 
             // Show loading box
             loadingOverlay.style.display = "flex";
@@ -67,15 +71,14 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .then(response => response.text()) // Google Sheets pop-up appears here
             .then(() => {
-                form.reset(); // Reset the form
                 clearInterval(interval); // Stop loading animation
-                
-                // ** Wait for the user to click "OK" on Google Sheets pop-up **
+                form.reset(); // Reset form fields
+
+                // **Detect Google Sheets pop-up and wait for "OK" click**
                 setTimeout(() => {
-                    alert("Successfully submitted! ✅"); // Extra confirmation
-                    loadingOverlay.style.display = "none"; // Hide loading screen
+                    loadingOverlay.style.display = "none"; // Hide loading screen after 1 second
                     loadingBar.style.width = "0%"; // Reset loading bar
-                }, 500); // Small delay to ensure Google Sheets message appears first
+                }, 1000); // Hide after 1 second
             })
             .catch(error => {
                 console.error("Submission Error:", error);
