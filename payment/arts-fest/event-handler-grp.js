@@ -44,11 +44,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form[name='groupEventForm']");
-    
+    const loadingBarContainer = document.getElementById("loadingBarContainer");
+    const loadingBar = document.getElementById("loadingBar");
+
     if (form) {
         form.addEventListener("submit", function (event) {
             event.preventDefault(); // Stop default form submission
-            
+
+            // Show loading bar
+            loadingBarContainer.style.display = "block";
+            loadingBar.style.width = "0%"; // Reset loading bar
+            setTimeout(() => loadingBar.style.width = "100%", 50); // Animate loading bar
+
             fetch(form.action, {
                 method: "POST",
                 body: new FormData(form),
@@ -61,8 +68,16 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(error => {
                 alert("Submission failed. Please try again.");
                 console.error("Error:", error);
+            })
+            .finally(() => {
+                // Hide loading bar after submission completes
+                setTimeout(() => {
+                    loadingBarContainer.style.display = "none";
+                    loadingBar.style.width = "0%";
+                }, 500);
             });
         });
     }
 });
+
 
