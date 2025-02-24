@@ -1,4 +1,4 @@
-const offlineScriptURL = 'https://script.google.com/macros/s/AKfycbxuYLISRSpYUtZwMj9UDNk2QfbMquOViFqPf8-O2yemjTPXyZLH0FDzTrA9Di3Lrwie5Q/exec';
+const offlineScriptURL = 'https://script.google.com/macros/s/AKfycbxn6ozqTDmrThl5vbCGNGUdiw5DEnJYZUCAwmFc1Q6beV9CMd08XipUsXbzxkhVnFgQWQ/exec';
 const offlineForm = document.forms['offlinePaymentForm'];
 
 const urlParams = new URLSearchParams(window.location.search);
