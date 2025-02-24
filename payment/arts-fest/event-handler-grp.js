@@ -41,6 +41,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+
+
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form[name='groupEventForm']");
     const loadingOverlay = document.getElementById("loadingOverlay");
@@ -68,10 +73,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // **Detect Google Sheets Pop-up and Hide Loading Bar After Clicking "OK"**
         window.addEventListener("focus", function () {
-            setTimeout(() => {
-                loadingOverlay.style.display = "none"; // Hide loading screen
-                loadingBar.style.width = "0%"; // Reset loading bar
-            }, 1000); // Hide 1 second after clicking "OK"
+            // When user returns focus after clicking "OK" on Google Sheets pop-up, hide the loading bar
+            loadingOverlay.style.display = "none"; // Hide loading screen
+            loadingBar.style.width = "0%"; // Reset loading bar
         });
     }
 });
+
