@@ -43,14 +43,31 @@
         </form>
     </div>
     
-    <div id="loadingOverlay" style="display: none;">
+    
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const eventName = urlParams.get("event");
+    const eventField = document.getElementById("event");
+
+    if (eventName) {
+        eventField.value = eventName;
+        const scriptSrc = `${eventName.toLowerCase().replace(/ /g, '-')}-reg.js`;
+        const script = document.createElement('script');
+        script.src = scriptSrc;
+        document.body.appendChild(script);
+    }
+</script>
+<script src="event-handler.js"></script>
+
+    <!-- Loading Box with Progress Bar -->
+<div id="loadingOverlay" style="display: none;">
     <div class="loadingBox">
         <p>Loading...</p>
         <div class="loadingBar"></div>
     </div>
 </div>
 
-    <style>
+<style>
     /* Fullscreen Background */
     #loadingOverlay {
         position: fixed;
@@ -89,20 +106,8 @@
         transition: width 0.4s ease-in-out;
     }
 </style>
-    
-<script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const eventName = urlParams.get("event");
-    const eventField = document.getElementById("event");
 
-    if (eventName) {
-        eventField.value = eventName;
-        const scriptSrc = `${eventName.toLowerCase().replace(/ /g, '-')}-reg.js`;
-        const script = document.createElement('script');
-        script.src = scriptSrc;
-        document.body.appendChild(script);
-    }
-</script>
-<script src="event-handler.js"></script>
+
+
 </body>
 </html>
