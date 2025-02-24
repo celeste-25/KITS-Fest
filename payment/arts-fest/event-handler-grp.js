@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 
                 // ** Wait for the user to click "OK" on Google Sheets pop-up **
                 setTimeout(() => {
-                    alert("Click OK to close the loading screen."); // Extra confirmation
+                    alert("Successfully submitted! ✅"); // Extra confirmation
                     loadingOverlay.style.display = "none"; // Hide loading screen
                     loadingBar.style.width = "0%"; // Reset loading bar
                 }, 500); // Small delay to ensure Google Sheets message appears first
