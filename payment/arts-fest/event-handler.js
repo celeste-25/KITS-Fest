@@ -28,3 +28,31 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form[name='groupEventForm']");
+    const loadingOverlay = document.getElementById("loadingOverlay");
+    const loadingBar = document.querySelector(".loadingBar");
+    const submitButton = form.querySelector("input[type='submit']");
+
+    if (form) {
+        form.addEventListener("submit", function (event) {
+            submitButton.disabled = true;
+
+            loadingOverlay.style.display = "flex";
+            loadingBar.style.width = "0%";
+
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress = (progress + 10) % 100;
+                loadingBar.style.width = progress + "%";
+            }, 300);
+
+        });
+
+        window.addEventListener("focus", function () {
+            loadingOverlay.style.display = "none"; 
+            loadingBar.style.width = "0%"; 
+        });
+    }
+});
