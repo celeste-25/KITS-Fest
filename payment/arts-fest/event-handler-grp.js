@@ -42,9 +42,8 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-
-
-const form = document.querySelector("form[name='groupEventForm']");
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form[name='groupEventForm']");
     
     if (form) {
         form.addEventListener("submit", function (event) {
@@ -66,3 +65,4 @@ const form = document.querySelector("form[name='groupEventForm']");
         });
     }
 });
+
