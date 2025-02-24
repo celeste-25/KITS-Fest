@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const loadingOverlay = document.getElementById('loadingOverlay');
     const loadingBar = document.getElementById('loadingBar');
     const scriptURL = 'https://script.google.com/macros/s/AKfycbyVxXMRAfEsEVW4TVz_otqyddSKBPXzIFsQg3ZzeXYcS96BcywjDMf8hVrFlxGm5Mcp3A/exec';
+    let isSubmitting = false;
 
     const updateLoadingBar = () => {
         let width = 0;
@@ -61,6 +62,9 @@ document.addEventListener('DOMContentLoaded', function () {
     form.addEventListener('submit', e => {
         e.preventDefault();
 
+        if (isSubmitting) return;
+        isSubmitting = true;
+
         loadingOverlay.style.display = 'flex';
         updateLoadingBar();
 
@@ -68,13 +72,14 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(response => {
                 loadingOverlay.style.display = 'none';
+                isSubmitting = false;
                 
-
                 form.reset();
             })
             .catch(error => {
                 loadingOverlay.style.display = 'none';
-                
+                isSubmitting = false;
+
                 console.error('Error!', error.message);
             });
     });
