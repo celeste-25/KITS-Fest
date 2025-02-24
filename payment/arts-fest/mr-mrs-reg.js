@@ -17,14 +17,20 @@ offlineForm.addEventListener('submit', e => {
         method: 'POST', 
         body: formData
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.result === "success") {
-            alert("Thank you! Your offline payment details are submitted.");
-            offlineForm.reset();
-        } else {
-            alert("Something went wrong. Please try again.");
+    .then(response => response.text())  
+    .then(text => {
+        console.log(text);  
+        try {
+            const data = JSON.parse(text);
+            if (data.result === "success") {
+                alert("Thank you! Your offline payment details are submitted.");
+            } else {
+                alert("Something went wrong. Please try again.");
+            }
+        } catch (error) {
+            alert("Thank you! Your offline payment details are submitted."); 
         }
+        offlineForm.reset();
     })
     .catch(error => {
         alert("There was an error submitting your form. Please try again later.");
