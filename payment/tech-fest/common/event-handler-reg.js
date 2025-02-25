@@ -47,12 +47,12 @@ document.addEventListener("DOMContentLoaded", function () {
         form.addEventListener("submit", function (event) {
             event.preventDefault(); // Stop default form submission
 
-            // Disable submit button to prevent duplicate submissions
+            // Disable the submit button to prevent duplicate submissions
             submitButton.disabled = true;
 
-            // Show loading screen
+            // Ensure the loading screen is visible
             loadingOverlay.style.display = "flex";
-            loadingBar.style.width = "0%";
+            loadingBar.style.width = "0%"; // Reset loading bar
 
             // Start loading animation
             let progress = 0;
@@ -61,17 +61,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 loadingBar.style.width = progress + "%";
             }, 300);
 
-            // Allow the form to submit naturally
-            form.submit();
+            // Allow the form to submit naturally (Google Sheets will handle it)
+            setTimeout(() => {
+                form.submit(); // Submit the form after a short delay
+            }, 500);
         });
 
-        // **Hide loading screen after clicking "OK" on Google Sheets pop-up**
+        // **Detect Google Sheets Pop-up and Hide Loading Bar After Clicking "OK"**
         function hideLoadingScreen() {
             loadingOverlay.style.display = "none"; // Hide loading screen
             loadingBar.style.width = "0%"; // Reset loading bar
         }
 
-        // For Desktop: Detect focus when returning to page
+        // For Desktop: Detect focus when returning to the page
         window.addEventListener("focus", hideLoadingScreen);
 
         // For Mobile: Detect when the page becomes visible again
@@ -81,5 +83,4 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
-
-   
+});
