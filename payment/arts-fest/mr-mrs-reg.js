@@ -1,38 +1,43 @@
-const offlineScriptURL = 'https://script.google.com/macros/s/AKfycbzTP2_tPaK9Eifv0_MSVIJEPaox6yAfzEBN8GQxlUiTkPMHSqIR3QQRl9T0r0Mby1zorg/exec'; 
-const offlineForm = document.forms['offlinePaymentForm'];
-const eventFieldOffline = document.getElementById("event");
+const groupScriptURL = 'https://script.google.com/macros/s/AKfycbzTP2_tPaK9Eifv0_MSVIJEPaox6yAfzEBN8GQxlUiTkPMHSqIR3QQRl9T0r0Mby1zorg/exec'; 
+const groupForm = document.forms['groupEventForm'];
+const eventFieldGroup = document.getElementById("event");
 
-const urlParamsOffline = new URLSearchParams(window.location.search);
-const eventNameOffline = urlParamsOffline.get("event");
-if (eventNameOffline) {
-    eventFieldOffline.value = eventNameOffline;
+const urlParamsGroup = new URLSearchParams(window.location.search);
+const eventNameGroup = urlParamsGroup.get("event");
+if (eventNameGroup) {
+    eventFieldGroup.value = eventNameGroup;
 }
 
-offlineForm.addEventListener('submit', e => {
+groupForm.addEventListener('submit', e => {
     e.preventDefault();
 
-    const formData = new FormData(offlineForm);
+    const loadingOverlay = document.getElementById("loadingOverlay");
+    const loadingBar = document.querySelector(".loadingBar");
+    loadingOverlay.style.display = "flex";
+    loadingBar.style.width = "0%";
 
-    fetch(offlineScriptURL, { 
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress = (progress + 10) % 100;
+        loadingBar.style.width = progress + "%";
+    }, 300);
+
+    const formData = new FormData(groupForm);
+
+    fetch(groupScriptURL, { 
         method: 'POST', 
-        body: formData
+        body: formData, 
+        mode: "no-cors" 
     })
-    .then(response => response.text())  
-    .then(text => {
-        console.log(text);  
-        try {
-            const data = JSON.parse(text);
-            if (data.result === "success") {
-                alert("Thank you! Your offline payment details are submitted.");
-            } else {
-                alert("Something went wrong. Please try again.");
-            }
-        } catch (error) {
-            alert("Thank you! Your offline payment details are submitted."); 
-        }
-        offlineForm.reset();
+    .then(() => {
+        clearInterval(interval);
+        loadingOverlay.style.display = "none";
+        alert("Thank you! Your registration details are submitted.");
+        groupForm.reset();
     })
     .catch(error => {
+        clearInterval(interval);
+        loadingOverlay.style.display = "none";
         alert("There was an error submitting your form. Please try again later.");
         console.error('Error!', error.message);
     });
