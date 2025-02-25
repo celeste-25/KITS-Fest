@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
     const eventName = urlParams.get("event").toUpperCase().replace(/%20/g, " ");
     const eventField = document.getElementById("event");
-    
+
     if (eventName) {
         eventField.value = eventName;
         let scriptSrc;
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (existingScript) {
                 existingScript.remove();
             }
-            
+
             const script = document.createElement('script');
             script.id = 'eventScript';
             script.src = scriptSrc;
@@ -61,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (form) {
         form.addEventListener("submit", function (event) {
+            event.preventDefault();
             submitButton.disabled = true;
 
             loadingOverlay.style.display = "flex";
@@ -74,27 +75,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const formData = new FormData(form);
 
-            fetch(form.action, { 
-                method: 'POST', 
+            fetch(form.action, {
+                method: 'POST',
                 body: formData
             })
-            .then(response => response.text())
-            .then(text => {
+            .then(response => {
+                if (response.ok) {
+                    return response.text();
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .then(() => {
                 clearInterval(interval);
                 loadingOverlay.style.display = "none";
                 alert("Thank you! Your registration details are successfully submitted.");
                 form.reset();
+                submitButton.disabled = false;
             })
             .catch(error => {
                 clearInterval(interval);
                 loadingOverlay.style.display = "none";
                 alert("There was an error submitting your form. Please try again later.");
                 console.error('Error!', error.message);
+                submitButton.disabled = false;
             });
         });
 
         window.addEventListener("focus", function () {
-            loadingOverlay.style.display = "none"; 
+            loadingOverlay.style.display = "none";
             loadingBar.style.width = "0%";
         });
     }
