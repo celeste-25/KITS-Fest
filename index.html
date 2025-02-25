@@ -4,6 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CELESTE'25</title>
+
+        <script>
+        function setThemeColor() {
+            const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const themeColor = isDarkMode ? '#631b1b' : '#631b1b';
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', themeColor);
+        }
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setThemeColor);
+        window.addEventListener('DOMContentLoaded', setThemeColor);
+    </script>
+    
     <meta name="theme-color" content="#631b1b">
   </head>
     <link rel="stylesheet" href="index.css" />
