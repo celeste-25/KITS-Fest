@@ -47,12 +47,12 @@ document.addEventListener("DOMContentLoaded", function () {
         form.addEventListener("submit", function (event) {
             event.preventDefault(); // Stop default form submission
 
-            // Ensure the loading screen is visible before submitting
-            loadingOverlay.style.display = "flex";
-            loadingBar.style.width = "0%"; // Reset loading bar
-
             // Disable the submit button to prevent duplicate submissions
             submitButton.disabled = true;
+
+            // Ensure the loading screen is visible
+            loadingOverlay.style.display = "flex";
+            loadingBar.style.width = "0%"; // Reset loading bar
 
             // Start loading animation
             let progress = 0;
@@ -61,11 +61,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 loadingBar.style.width = progress + "%";
             }, 300);
 
-            // Delay form submission slightly to ensure the loading screen appears
-            setTimeout(() => {
-                clearInterval(interval); // Stop the animation interval
-                form.submit(); // Submit the form
-            }, 1000);
+            // Submit form using fetch()
+            const formData = new FormData(form);
+            fetch(form.action, { method: "POST", body: formData, mode: "no-cors" })
+                .then(() => {
+                    alert("Thank you! Your registration details are successfully submitted.");
+                    clearInterval(interval);
+                    loadingOverlay.style.display = "none"; // Hide loading screen
+                    form.reset(); // Reset the form after submission
+                    submitButton.disabled = false;
+                })
+                .catch(error => {
+                    clearInterval(interval);
+                    loadingOverlay.style.display = "none"; // Hide loading screen
+                    alert("There was an error submitting your form. Please try again later.");
+                    console.error('Error!', error.message);
+                    submitButton.disabled = false;
+                });
         });
 
         // **Detect Google Sheets Pop-up and Hide Loading Bar After Clicking "OK"**
