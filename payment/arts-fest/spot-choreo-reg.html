@@ -123,11 +123,10 @@
 
         fetch(offlineScriptURL, { 
             method: 'POST', 
-            body: formData, 
-            mode: "no-cors" 
+            body: formData
         })
-        .then(() => {
-            // Hide loading screen
+        .then(response => response.json())
+        .then(data => {
             clearInterval(interval);
             loadingOverlay.style.display = "none";
             alert("Thank you! Your registration details are successfully submitted.");
@@ -136,8 +135,16 @@
         .catch(error => {
             clearInterval(interval);
             loadingOverlay.style.display = "none";
+            alert("There was an error submitting your form. Please try again later.");
             console.error('Error!', error.message);
         });
+    });
+
+    window.addEventListener('popstate', function () {
+        const loadingOverlay = document.getElementById("loadingOverlay");
+        if (loadingOverlay) {
+            loadingOverlay.style.display = "none";
+        }
     });
     </script>
 </body>
