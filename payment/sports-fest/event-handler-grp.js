@@ -58,10 +58,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const loadingOverlay = document.getElementById("loadingOverlay");
     const loadingBar = document.querySelector(".loadingBar");
     const submitButton = form.querySelector("input[type='submit']");
+    let isSubmitting = false;
 
     if (form) {
         form.addEventListener("submit", function (event) {
             event.preventDefault();
+            if (isSubmitting) return;
+            isSubmitting = true;
             submitButton.disabled = true;
 
             loadingOverlay.style.display = "flex";
@@ -92,6 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert("Thank you! Your registration details are successfully submitted.");
                 form.reset();
                 submitButton.disabled = false;
+                isSubmitting = false;
             })
             .catch(error => {
                 clearInterval(interval);
@@ -99,6 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert("There was an error submitting your form. Please try again later.");
                 console.error('Error!', error.message);
                 submitButton.disabled = false;
+                isSubmitting = false;
             });
         });
 
