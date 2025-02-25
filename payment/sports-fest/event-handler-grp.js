@@ -51,10 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.body.appendChild(script);
         }
     }
-
 });
-
-
 
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form[name='groupEventForm']");
@@ -75,6 +72,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 loadingBar.style.width = progress + "%";
             }, 300);
 
+            const formData = new FormData(form);
+
+            fetch(form.action, { 
+                method: 'POST', 
+                body: formData
+            })
+            .then(response => response.text())
+            .then(text => {
+                clearInterval(interval);
+                loadingOverlay.style.display = "none";
+                alert("Thank you! Your registration details are successfully submitted.");
+                form.reset();
+            })
+            .catch(error => {
+                clearInterval(interval);
+                loadingOverlay.style.display = "none";
+                alert("There was an error submitting your form. Please try again later.");
+                console.error('Error!', error.message);
+            });
         });
 
         window.addEventListener("focus", function () {
