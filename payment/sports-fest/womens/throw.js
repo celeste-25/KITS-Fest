@@ -24,10 +24,16 @@ offlineForm.addEventListener('submit', e => {
 
     const formData = new FormData(offlineForm);
 
-    fetch(offlineScriptURL, { 
-        method: 'POST', 
-        body: formData, 
-        mode: "no-cors" 
+    fetch(offlineScriptURL, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.text();
+        } else {
+            throw new Error('Network response was not ok');
+        }
     })
     .then(() => {
         clearInterval(interval);
