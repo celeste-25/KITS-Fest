@@ -47,12 +47,12 @@ document.addEventListener("DOMContentLoaded", function () {
         form.addEventListener("submit", function (event) {
             event.preventDefault(); // Stop default form submission
 
-            // Disable the submit button to prevent duplicate submissions
-            submitButton.disabled = true;
-
-            // Ensure the loading screen is visible
+            // Ensure the loading screen is visible before submitting
             loadingOverlay.style.display = "flex";
             loadingBar.style.width = "0%"; // Reset loading bar
+
+            // Disable the submit button to prevent duplicate submissions
+            submitButton.disabled = true;
 
             // Start loading animation
             let progress = 0;
@@ -61,10 +61,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 loadingBar.style.width = progress + "%";
             }, 300);
 
-            // Allow the form to submit naturally (Google Sheets will handle it)
+            // Delay form submission slightly to ensure the loading screen appears
             setTimeout(() => {
-                form.submit(); // Submit the form after a short delay
-            }, 500);
+                clearInterval(interval); // Stop the animation interval
+                form.submit(); // Submit the form
+            }, 1000);
         });
 
         // **Detect Google Sheets Pop-up and Hide Loading Bar After Clicking "OK"**
@@ -84,3 +85,4 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
