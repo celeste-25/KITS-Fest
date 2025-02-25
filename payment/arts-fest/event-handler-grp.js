@@ -41,11 +41,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-
-
-
-
-
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form[name='groupEventForm']");
     const loadingOverlay = document.getElementById("loadingOverlay");
@@ -54,29 +49,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (form) {
         form.addEventListener("submit", function (event) {
-            // Disable the submit button to prevent duplicate submissions
             submitButton.disabled = true;
 
-            // Show loading screen
             loadingOverlay.style.display = "flex";
             loadingBar.style.width = "0%";
 
-            // Start loading animation
             let progress = 0;
             const interval = setInterval(() => {
                 progress = (progress + 10) % 100;
                 loadingBar.style.width = progress + "%";
             }, 300);
 
-            // Allow the form to submit naturally (Google Sheets will handle it)
         });
 
-        // **Detect Google Sheets Pop-up and Hide Loading Bar After Clicking "OK"**
         window.addEventListener("focus", function () {
-            // When user returns focus after clicking "OK" on Google Sheets pop-up, hide the loading bar
-            loadingOverlay.style.display = "none"; // Hide loading screen
-            loadingBar.style.width = "0%"; // Reset loading bar
+            loadingOverlay.style.display = "none"; 
+            loadingBar.style.width = "0%";
         });
     }
 });
-
