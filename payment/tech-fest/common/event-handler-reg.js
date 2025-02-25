@@ -47,10 +47,16 @@ document.addEventListener("DOMContentLoaded", function () {
         form.addEventListener("submit", function (event) {
             event.preventDefault(); // Stop default form submission
 
-            // Disable the submit button to prevent duplicate submissions
+            // Check if loading elements exist
+            if (!loadingOverlay || !loadingBar) {
+                console.error("Loading elements not found.");
+                return;
+            }
+
+            // Disable submit button to prevent multiple submissions
             submitButton.disabled = true;
 
-            // Ensure the loading screen is visible
+            // Show loading overlay
             loadingOverlay.style.display = "flex";
             loadingBar.style.width = "0%"; // Reset loading bar
 
@@ -61,29 +67,33 @@ document.addEventListener("DOMContentLoaded", function () {
                 loadingBar.style.width = progress + "%";
             }, 300);
 
-            // Submit form using fetch()
+            // Submit form via fetch()
             const formData = new FormData(form);
             fetch(form.action, { method: "POST", body: formData, mode: "no-cors" })
                 .then(() => {
                     alert("Thank you! Your registration details are successfully submitted.");
                     clearInterval(interval);
-                    loadingOverlay.style.display = "none"; // Hide loading screen
-                    form.reset(); // Reset the form after submission
+                    form.reset();
                     submitButton.disabled = false;
+
+                    // Hide loading overlay after clicking "OK" on the alert
+                    setTimeout(() => {
+                        loadingOverlay.style.display = "none";
+                    }, 1000); // Wait 1 sec after alert
                 })
                 .catch(error => {
                     clearInterval(interval);
-                    loadingOverlay.style.display = "none"; // Hide loading screen
+                    loadingOverlay.style.display = "none";
                     alert("There was an error submitting your form. Please try again later.");
-                    console.error('Error!', error.message);
+                    console.error("Error!", error.message);
                     submitButton.disabled = false;
                 });
         });
 
         // **Detect Google Sheets Pop-up and Hide Loading Bar After Clicking "OK"**
         function hideLoadingScreen() {
-            loadingOverlay.style.display = "none"; // Hide loading screen
-            loadingBar.style.width = "0%"; // Reset loading bar
+            loadingOverlay.style.display = "none";
+            loadingBar.style.width = "0%";
         }
 
         // For Desktop: Detect focus when returning to the page
@@ -97,4 +107,3 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
-
