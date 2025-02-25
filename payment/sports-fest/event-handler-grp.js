@@ -56,27 +56,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-// document.addEventListener("DOMContentLoaded", function () {
-//     const form = document.querySelector("form[name='groupEventForm']");
-    
-//     if (form) {
-//         form.addEventListener("submit", function (event) {
-//             event.preventDefault(); // Stop default form submission
-            
-//             fetch(form.action, {
-//                 method: "POST",
-//                 body: new FormData(form),
-//             })
-//             .then(response => response.text()) // Use text instead of JSON if Apps Script does not return JSON
-//             .then(() => {
-//                 alert("Successfully submitted! ✅");
-//                 form.reset(); // Reset the form after successful submission
-//             })
-//             .catch(error => {
-//                 alert("Submission failed. Please try again.");
-//                 console.error("Error:", error);
-//             });
-//         });
-//     }
-// });
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form[name='groupEventForm']");
+    const loadingOverlay = document.getElementById("loadingOverlay");
+    const loadingBar = document.querySelector(".loadingBar");
+    const submitButton = form.querySelector("input[type='submit']");
 
+    if (form) {
+        form.addEventListener("submit", function (event) {
+            submitButton.disabled = true;
+
+            loadingOverlay.style.display = "flex";
+            loadingBar.style.width = "0%";
+
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress = (progress + 10) % 100;
+                loadingBar.style.width = progress + "%";
+            }, 300);
+
+        });
+
+        window.addEventListener("focus", function () {
+            loadingOverlay.style.display = "none"; 
+            loadingBar.style.width = "0%";
+        });
+    }
+});
