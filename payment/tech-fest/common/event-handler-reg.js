@@ -38,62 +38,48 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("form[name='groupEventForm']");
+    const form = document.querySelector("form[name='offlinePaymentForm']");
     const loadingOverlay = document.getElementById("loadingOverlay");
     const loadingBar = document.querySelector(".loadingBar");
     const submitButton = form.querySelector("input[type='submit']");
-    let isSubmitting = false;
 
     if (form) {
         form.addEventListener("submit", function (event) {
-            event.preventDefault();
-            if (isSubmitting) return;
-            isSubmitting = true;
+            event.preventDefault(); // Stop default form submission
+
+            // Disable submit button to prevent duplicate submissions
             submitButton.disabled = true;
 
+            // Show loading screen
             loadingOverlay.style.display = "flex";
             loadingBar.style.width = "0%";
 
+            // Start loading animation
             let progress = 0;
             const interval = setInterval(() => {
                 progress = (progress + 10) % 100;
                 loadingBar.style.width = progress + "%";
             }, 300);
 
-            const formData = new FormData(form);
-
-            fetch(form.action, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.text();
-                } else {
-                    throw new Error('Network response was not ok');
-                }
-            })
-            .then(() => {
-                clearInterval(interval);
-                loadingOverlay.style.display = "none";
-                alert("Thank you! Your registration details are successfully submitted.");
-                form.reset();
-                submitButton.disabled = false;
-                isSubmitting = false;
-            })
-            .catch(error => {
-                clearInterval(interval);
-                loadingOverlay.style.display = "none";
-                alert("There was an error submitting your form. Please try again later.");
-                console.error('Error!', error.message);
-                submitButton.disabled = false;
-                isSubmitting = false;
-            });
+            // Allow the form to submit naturally
+            form.submit();
         });
 
-        window.addEventListener("focus", function () {
-            loadingOverlay.style.display = "none";
-            loadingBar.style.width = "0%";
+        // **Hide loading screen after clicking "OK" on Google Sheets pop-up**
+        function hideLoadingScreen() {
+            loadingOverlay.style.display = "none"; // Hide loading screen
+            loadingBar.style.width = "0%"; // Reset loading bar
+        }
+
+        // For Desktop: Detect focus when returning to page
+        window.addEventListener("focus", hideLoadingScreen);
+
+        // For Mobile: Detect when the page becomes visible again
+        document.addEventListener("visibilitychange", function () {
+            if (!document.hidden) {
+                hideLoadingScreen();
+            }
         });
     }
-});
+
+   
