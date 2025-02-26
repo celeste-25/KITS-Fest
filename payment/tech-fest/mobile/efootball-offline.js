@@ -15,19 +15,57 @@ offlineForm.addEventListener('submit', e => {
 
     const formData = new FormData(offlineForm);
 
-    fetch(offlineScriptURL, { method: 'POST', body: formData })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(response => {
-            alert(response.message);
-            offlineForm.reset();
-        })
-        .catch(error => {
-            console.error('Error!', error.message);
-            alert('There was an error submitting your form. Please try again later.');
-        });
+    const loadingOverlay = document.getElementById("loadingOverlay");
+    const loadingBar = document.querySelector(".loadingBar");
+    const submitButton = offlineForm.querySelector("input[type='submit']");
+    let isSubmitting = false; 
+
+    if (loadingOverlay) {
+        loadingOverlay.style.display = "flex";
+    } else {
+        console.error("❌ Loading overlay not found!");
+    }
+
+    if (!loadingBar) {
+        console.error("❌ Loading bar not found!");
+    } else {
+        loadingBar.style.width = "0%";
+
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress = (progress + 10) % 100;
+            loadingBar.style.width = progress + "%";
+            console.log(`⏳ Loading progress: ${progress}%`);
+        }, 300);
+
+        fetch(offlineScriptURL, { method: 'POST', body: formData })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(response => {
+                alert(response.message);
+                clearInterval(interval);
+                offlineForm.reset();
+
+                setTimeout(() => {
+                    if (loadingOverlay) {
+                        loadingOverlay.style.display = "none";
+                    }
+                }, 1000);
+
+                submitButton.disabled = false;
+                isSubmitting = false;
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                clearInterval(interval);
+                if (loadingOverlay) loadingOverlay.style.display = "none";
+                alert('There was an error submitting your form. Please try again later.');
+                submitButton.disabled = false;
+                isSubmitting = false;
+            });
+    }
 });
