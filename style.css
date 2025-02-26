@@ -1,105 +1,427 @@
 *
 {
-    margin: 0;
-    padding: 0;
-    font-family: 'poppins', sans-serif;
-    box-sizing: border-box;
-    
+    cursor: url('https://i.ibb.co/kcxPPSQ/cursor-knife.png'), pointer;
+    font-family: "Roboto", sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
-
-.container
+.title-metal
 {
+    display: flex;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.title-metal img
+{
+  position: absolute;
+  top: 20%;
+}
+
+@media (max-width: 768px) {
+    .title-metal {
+        width: 100%;
+        height: auto;
+    }
+
+    .title-metal img {
+        max-width: 80%; /* Adjust this if needed */
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+    overscroll-behavior: contain;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+*:focus
+{
+  outline: none;
+    outline-offset: 0;
+}
+
+@media (hover: none) and (pointer: coarse) {
+    *:focus {
+        outline: none;
+        box-shadow: none;
+    }
+}
+
+.background-image1 {
+    position: fixed; 
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
-    background-image: url(/maintenance-images/background.png);
-    background-position: center;
-    background-size: cover;
-    padding: 0 8%;
-    position: relative;
+    background: url('https://i.ibb.co/wFy5XgL7/upscalemedia-transformed.jpg') no-repeat center center/cover;
+    opacity: 0.7; 
+}
+
+@media screen and (max-width: 768px) {
+    .background-image1 {
+        background: url('https://i.ibb.co/XfqLNXKg/Home-Page-Bg.gif') no-repeat center center/cover;
+    }
+}
+body{
+  content: "";
+  background-color: rgb(0, 0, 0);
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: fixed;
+  background-attachment: fixed;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+body::before
+{
+    filter: hue-rotate(150deg);
+    z-index: -1;
+}
+
+@media (max-width: 768px) {
+  body::before {
+    margin-top: 50px;
+  }
+}
+
+.title1 {
+  font-family: "Rubik Distressed", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 300%;
+  text-align: center;
+  margin-top: 5%;
+  display: block;
+}
+
+@media (max-width:768px)
+{
+   .title1
+{
+  margin-top: 10%;
+  margin-bottom: 10%;
+  }
+}
+ 
+.title1:hover {
+  filter: drop-shadow(5px 5px 3px rgba(255, 255, 255, 0.795));
+}
+  
+@media (max-width: 768px) {
+  .title1:hover {
+    filter: none; 
+  }
 }
 
 .logo
 {
-    width: 120px;
-    padding: 20px 0;
-    cursor: pointer;
-}
-
-.content
-{
-    top: 50%;
-    position: absolute;
-    transform: translateY(-50%);
-    color: #fff;
-}
-
-.content h1
-{
-    font-size: 64px;
-    font-weight: 600;
-}
-
-.content h1 span
-{
-    color: #ff3753;
-}
-
-.content button
-{
-    background: transparent;
-    border: 2px solid #fff;
-    outline: none;
-    padding: 12px 25px;
-    color: #fff;
     display: flex;
+    justify-content: center;
     align-items: center;
-    margin-top: 30px;
+}
+
+.fest-logo
+{
+    width: 8%;
+}
+
+.insta-logo, .xenos-logo, .whatsapp-logo, .whatsapp-font
+{
+    width: 4%;
+    margin-bottom: 0;
     cursor: pointer;
 }
 
-.content button img
-{
-    width: 15px;
-    margin-left: 10px;
+@media (max-width: 768px) {
+    .insta-logo, .whatsapp-logo, .xenos-logo, .whatsapp-font {
+        width: 20%;
+    }
 }
-
-.launch-timer
+  
+.insta
 {
     display: flex;
-
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3%;
+    margin-top: 1%;
+    transition: transform 0.25s ease-in;
+    transform-origin: center;
+    transform: scale(1.8);
 }
 
-.launch-timer div
+.whatsapp
 {
-    flex-basis: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3%;
+    margin-top: 1%;
+    transition: transform 0.25s ease-in;
+    transform-origin: center;
+    transform: scale(1.8);
 }
 
-.launch-timer div p
+.insta:hover
 {
-    font-size: 60px;
-    margin-bottom: -14px;
+    transform: scale(2.5);
 }
 
-.rocket
+@media (max-width: 768px) {
+    .insta:hover {
+      transform: scale(1.8);
+  }
+}
+
+.check-info
 {
+    font-family: Arial;
+    font-weight: bold;
+    color: white;
+    font-style: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20%;
+    margin-bottom: 10px;
+    line-height: 20px;
+}
+
+@media(max-width:768px)
+{
+  .check-info
+  {
+    margin-top: 60%;
+  }
+}
+
+
+.whatsapp:hover
+{
+    transform: scale(2.5);
+}
+
+@media (max-width: 768px) {
+    .whatsapp:hover {
+        transform: scale(1.8);
+  }
+}
+
+.contact
+{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+    justify-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 2%;
+}
+
+.contact > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.buttons
+{
+    font-weight: bold;
+    height: 10%;
+    width: 60%;
+    margin-bottom: 1%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20%;
+}
+
+.events-button
+{
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: none;
+}
+
+.contact a
+{
+    pointer-events: none;
+}
+
+.contact a img 
+{
+    pointer-events: auto;
+    margin-bottom: 0;
+}
+
+.container {
+    width: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+     margin-top: 0;
+  }
+  
+  @media (max-width:768px)
+  {
+    .container
+    {
+      margin-top: 10%;
+    }
+  }
+
+
+.btn {
+    position: relative;
     width: 250px;
+    height: 50px;
+    margin: 20px;
+  }
+  
+  .btn a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    right: 10%;
-    bottom: 0;
-    animation: rocket 4s linear infinite;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.051);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(250, 52, 52, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 10;
+    color: #fff;
+    border-radius: 30px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: 0.5s;
+    overflow: hidden;
+}
+  
+  .btn:hover a {
+    letter-spacing: 3px;
+  }
+  
+  .btn a:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.149), transparent);
+    transform: skewX(45deg);
+    transition: 0.5s;
+    transition-delay: 0.5s;
+  }
+  
+  a:hover::before {
+    transform: skewX(45deg) translateX(200%);
+    transition-delay: 0s;
+  }
+  
+  .btn:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--clr-glow);
+    bottom: -5px;
+    width: 30px;
+    height: 10px;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0s;
+  }
+  
+  .btn:hover::before {
+    bottom: 0px;
+    height: 50%;
+    width: 80%;
+    border-radius: 30px;
+    transition-delay: 0.5s;
+  }
+  
+  .btn:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--clr-glow);
+    top: -5px;
+    width: 30px;
+    height: 10px;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-delay: 0s;
+  }
+  
+  .btn:hover::after {
+    top: 0px;
+    height: 50%;
+    width: 80%;
+    border-radius: 30px;
+    transition-delay: 0.5s;
+  }
+  
+  .btn:nth-child(1):before,
+  .btn:nth-child(1):after {
+    background: var(--clr);
+    box-shadow: 0 0 5px var(--clr), 0 0 15px var(--clr), 0 0 30px var(--clr),
+      0 0 60px var(--clr);
+  }
+  
+  .btn:nth-child(2):before,
+  .btn:nth-child(2):after {
+    background: var(--clr);
+    box-shadow: 0 0 5px var(--clr), 0 0 15px var(--clr), 0 0 30px var(--clr),
+      0 0 60px var(--clr);
+  }
+  
+.btn:nth-child(3):before,
+.btn:nth-child(3):after 
+{
+  background: var(--clr);
+  box-shadow: 0 0 5px var(--clr), 0 0 15px var(--clr), 0 0 30px var(--clr), 
+      0 0 60px var(--clr);
 }
 
-@keyframes rocket {
-    0%
-    {
-        bottom: 0;
-        opacity: 0;
-    }
+.btn:nth-child(4):before,
+.btn:nth-child(4):after {
+  background: var(--clr);
+  box-shadow: 0 0 5px var(--clr), 0 0 15px var(--clr), 0 0 30px var(--clr),
+    0 0 60px var(--clr);
+}
 
-    100%
-    {
-        bottom: 105%;
-        opacity: 1;
-    }
+.btn:nth-child(5):before,
+.btn:nth-child(5):after {
+  background: var(--clr);
+  box-shadow: 0 0 5px var(--clr), 0 0 15px var(--clr), 0 0 30px var(--clr),
+    0 0 60px var(--clr);
+}
+
+.btn:nth-child(6):before,
+.btn:nth-child(6):after {
+  background: var(--clr);
+  box-shadow: 0 0 5px var(--clr), 0 0 15px var(--clr), 0 0 30px var(--clr),
+    0 0 60px var(--clr);
 }

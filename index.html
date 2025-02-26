@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CELESTE'25</title>
+    <meta name="theme-color" content="#631b1b">
+  </head>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="indexnav.css" />
+    <link rel="stylesheet" href="pixel.css" />
+    <link rel="shortcut icon" href="IMAGES2/logo-global.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <body>
+  <body>
+    <div class="pixel-overlay"></div>
+    <nav class="navbar">
+      <!-- Hamburger Menu Button -->
+      <button class="hamburger-menu" aria-label="Toggle navigation">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </button>
+
+      <!-- Logo -->
+      <div class="NavBar_logo">
+        <img alt="-logo" src="IMAGES1/LOGO.png" class="hero-logo" />
+      </div>
+
+      <div class="nav-links">
+        <ul>
+          <li><a href="index.html"  >Home</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="guidelines.html">Guidelines</a></li>
+          <li><a href="CELESTE'25-Brochure_.pdf" download="Celeste'25-Brochure.pdf">Celeste'25-Brochure</a></li>
+          <!-- <li><a href="#events-section" class="nav-link" >Events</a></li> -->
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- <div>
+        <img src="https://i.ibb.co/wFy5XgL7/upscalemedia-transformed.jpg" class="background-image1" alt="">
+    </div> -->
+
+    <!-- <div class="title-metal">
+        <img src="https://i.ibb.co/FqhNb6y9/title-metal-with-25-00000-removebg-preview.png" alt="logo-with-text">
+    </div> -->
+
+    <section class="hero">
+      <!-- <p class="hero-title">celeste'25</p> -->
+      <img class="hero-title" src="IMAGES1/text_00000.png" alt="title" />
+      <video
+        class="video"
+        autoplay
+        loop
+        muted
+        src="videos2//hologram cropped.mp4"
+      ></video>
+    </section>
+
+    <h1 class="events-text">EVENTS</h1>
+
+    <!-- Events Section -->
+    <div class="events-button" id="events-section">
+      <div class="container">
+        <button
+          class="card-btn-arts"
+          style="--clr-glow: #e10361"
+          onclick="window.location.href='arts-fest.html'"
+        >
+          <span class="eventname-title">Arts Fest</span>
+          <img class="artsthumb" src="IMAGES1/ART.jpg" alt="Arts Fest" />
+        </button>
+
+        <button
+          class="card-btn-tech"
+          style="--clr-glow: #00a3d5"
+          onclick="window.location.href='tech-fest.html'"
+        >
+        <span class="eventname-title-tech">Tech Fest</span>
+          <img src="IMAGES1/TECH.jpg" alt="Tech Fest" />
+        </button>
+
+        <button
+          class="card-btn-sports"
+          style="--clr-glow: #e10361"
+          onclick="window.location.href='sports-fest.html'"
+        >
+        <span class="eventname-title-sports">Sports Fest</span>
+          <img src="IMAGES1/SPORTS.jfif" alt="Sports Fest" />
+        </button>
+      </div>
+    </div>
+
+
+    
+    <section class="warning">
+      <p>Please read the <a href="guidelines.html">Guidelines</a> before you register an event from the above </p>
+    </section>
+
+    <section class="enq">
+      <p>for any enquiry contact us on  <a href="https://www.instagram.com/celeste.25._">Instagram</a> and <a href="https://chat.whatsapp.com/I5qCmPEYsRR0TDrlLVIAS6">WhatsApp</a> </p>
+    </section>
+
+    <section class="xenos">
+      <div class="video-container">
+        <video
+          class="funElement1"
+          id="funElement1"
+          loop
+          muted
+          preload="auto"
+          playsinline
+          src="videos2//xenos-video1.mp4"
+        ></video>
+
+        <video
+          class="funElement2"
+          id="funElement2"
+          loop
+          muted
+          preload="auto"
+          playsinline
+          src="videos2/Kits.mp4"
+        ></video>
+
+        <video
+          class="funElement3"
+          id="funElement3"
+          loop
+          muted
+          preload="auto"
+          playsinline
+          src="videos2//xenos-video2.mp4"
+        ></video>
+        <video
+          class="funElement4"
+          id="funElement4"
+          loop
+          muted
+          preload="auto"
+          playsinline
+          src="videos2/Eye.mp4"
+        ></video>
+      </div>
+    </section>
+
+    
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="contact">
+        <a href="https://www.instagram.com/celeste.25._">
+          <img
+            src="https://i.ibb.co/SsK39YW/Instagram-Glyph-Color-Logo-wine-removebg-preview.png"
+            alt="Instagram"
+          />
+          @celeste.25._
+        </a>
+        <a href="https://wa.me/+917907829166">
+          <img
+            src="https://i.ibb.co/WcxJfWC/whatsapp-logo-removebg-preview.png"
+            alt="WhatsApp"
+          />
+          WHATSAPP
+        </a>
+      </div>
+    </footer>
+    
+        <script>
+        function setThemeColor() {
+            const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const themeColor = isDarkMode ? '#631b1b' : '#631b1b';
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', themeColor);
+        }
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setThemeColor);
+        window.addEventListener('DOMContentLoaded', setThemeColor);
+    </script>
+    
+    <script src="index.js" defer></script>
+    <script src="navbar.js"></script>
+    <script src="pixel.js"></script>
+  </body>
+</html>
