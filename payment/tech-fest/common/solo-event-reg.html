@@ -14,7 +14,7 @@
         <form method="post" name="offlinePaymentForm" enctype="multipart/form-data" aria-label="Offline Payment Form">
             <h4>Registration Form</h4>
             <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="Name" required oninput="this.value = this.value.toUpperCase()" aria-label="Your Name">
+            <input type="text" id="name" name="name" placeholder="Full Name" required oninput="this.value = this.value.toUpperCase()" aria-label="Your Name">
             <label for="email">E-mail</label>
             <input type="email" id="email" name="email" placeholder="E-mail" required aria-label="E-mail">
             <label for="year">Year</label>
@@ -38,7 +38,7 @@
             <label for="event">Event</label>
             <input type="text" id="event" name="event" readonly aria-label="Event">
             <label for="registrationNumber">Registration Number</label>
-            <input type="text" id="registrationNumber" name="registrationNumber" placeholder="eg. KIT21CS000" required oninput="this.value = this.value.toUpperCase()" aria-label="Registration Number">
+            <input type="text" id="registrationNumber" name="registrationNumber" placeholder="eg: KIT21CS000" required oninput="this.value = this.value.toUpperCase()" aria-label="Registration Number">
             <input type="submit" value="Submit" id="submit">
             <h5>Please wait a few seconds after submitting the form....</h5>
         </form>
@@ -91,7 +91,7 @@
     }
 </style>
 
-    <script>
+    <!-- <script>
     const urlParams = new URLSearchParams(window.location.search);
     const eventName = urlParams.get("event");
     const eventField = document.getElementById("event");
@@ -103,8 +103,8 @@
         script.src = scriptSrc;
         document.body.appendChild(script);
     }
-</script>
+</script> -->
 
-<script src="event-handler.js"></script>
+<script src="event-handler-reg.js"></script>
 </body>
 </html>
