@@ -12,7 +12,7 @@
 {
     width: 100vw;
     height: 100vh;
-    background-image: url(/maintenance-images/background.png);
+    background-image: url(maintenance-images/background.png);
     background-position: center;
     background-size: cover;
     padding: 0 8%;
