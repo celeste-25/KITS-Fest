@@ -16,10 +16,18 @@ offlineForm.addEventListener('submit', e => {
     const formData = new FormData(offlineForm);
 
     fetch(offlineScriptURL, { method: 'POST', body: formData })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(response => {
             alert(response.message);
             offlineForm.reset();
         })
-        .catch(error => console.error('Error!', error.message));
+        .catch(error => {
+            console.error('Error!', error.message);
+            alert('There was an error submitting your form. Please try again later.');
+        });
 });
