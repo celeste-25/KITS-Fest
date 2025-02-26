@@ -104,9 +104,14 @@
     }
 }
 
-@media (max-width: 768px) {  
+@media (max-width: 768px) {
     .rocket {
-        display: none !important;  
-        animation: none !important;
+        display: none !important;
+        visibility: hidden !important;
+        width: 0 !important;
+        height: 0 !important;
+        opacity: 0 !important;
+        position: absolute !important;
     }
 }
+
