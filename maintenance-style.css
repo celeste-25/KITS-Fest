@@ -103,3 +103,10 @@
         opacity: 1;
     }
 }
+
+@media (max-width: 768px) {  
+    .rocket {
+        display: none !important;  
+        animation: none !important;
+    }
+}
