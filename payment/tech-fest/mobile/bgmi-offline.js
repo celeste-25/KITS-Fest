@@ -4,6 +4,14 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("✅ JavaScript Loaded!");
 
     const form = document.forms["groupEventForm"];
+    const eventFieldGroup = document.getElementById("event");
+    const urlParamsGroup = new URLSearchParams(window.location.search);
+    const eventNameGroup = urlParamsGroup.get("event");
+
+    if (eventNameGroup) {
+        eventFieldGroup.value = eventNameGroup;
+    }
+
     const loadingOverlay = document.getElementById("loadingOverlay");
     const loadingBar = document.querySelector(".loadingBar");
     const submitButton = form.querySelector("input[type='submit']");
