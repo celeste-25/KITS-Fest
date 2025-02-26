@@ -18,7 +18,7 @@ offlineForm.addEventListener('submit', e => {
     const loadingOverlay = document.getElementById("loadingOverlay");
     const loadingBar = document.querySelector(".loadingBar");
     const submitButton = offlineForm.querySelector("input[type='submit']");
-    let isSubmitting = false; 
+    let isSubmitting = false; // Prevent double submission
 
     if (loadingOverlay) {
         loadingOverlay.style.display = "flex";
@@ -29,8 +29,9 @@ offlineForm.addEventListener('submit', e => {
     if (!loadingBar) {
         console.error("❌ Loading bar not found!");
     } else {
-        loadingBar.style.width = "0%";
+        loadingBar.style.width = "0%"; // Reset loading bar
 
+        // Start loading animation
         let progress = 0;
         const interval = setInterval(() => {
             progress = (progress + 10) % 100;
@@ -38,6 +39,7 @@ offlineForm.addEventListener('submit', e => {
             console.log(`⏳ Loading progress: ${progress}%`);
         }, 300);
 
+        // Submit form using fetch()
         fetch(offlineScriptURL, { method: 'POST', body: formData })
             .then(response => {
                 if (!response.ok) {
@@ -50,6 +52,7 @@ offlineForm.addEventListener('submit', e => {
                 clearInterval(interval);
                 offlineForm.reset();
 
+                // Hide loading overlay **AFTER user clicks "OK"**
                 setTimeout(() => {
                     if (loadingOverlay) {
                         loadingOverlay.style.display = "none";
