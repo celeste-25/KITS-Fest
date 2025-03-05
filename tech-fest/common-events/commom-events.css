@@ -128,24 +128,21 @@ body::after {
   justify-content: center;
 }
 
-/*** tech fest nav bar **/
 
-/* Navbar Styles */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%; /* Full width of the page */
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Space between hamburger and logo */
-  padding: 10px 20px; /* Add padding for spacing */
-  background-color: transparent; /* Keep transparent */
-  z-index: 1000; /* Ensure it stays on top */
-  height: 70px; /* Fixed height */
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: transparent; 
+  z-index: 1000; 
+  height: 70px; 
 }
 
-/* Hamburger Menu Button */
 .hamburger-menu {
   display: flex;
   flex-direction: column;
@@ -155,21 +152,20 @@ body::after {
   background: transparent;
   border: none;
   cursor: pointer;
-  margin-left: 20px; /* Add some margin for spacing */
+  margin-left: 20px;
   margin-top: 15px;
   margin-bottom: 10px;
-  z-index: 1003; /* Keep above other elements */
+  z-index: 1003;
   position: relative;
 }
 
 .hamburger-menu .line {
   width: 100%;
   height: 3px;
-  background-color: #fff; /* Adjust color as needed */
+  background-color: #fff;
   transition: all 0.3s ease;
 }
 
-/* Logo Positioning */
 .NavBar_logo {
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -177,11 +173,11 @@ body::after {
   border: 1px solid rgba(255, 255, 255, 0.2);
   width: 100%;
   height: 70px;
-  position: absolute; /* Position absolutely */
-  left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Center horizontally */
-  z-index: 1002; /* Ensure logo stays above menu */
-  padding: 10px; /* Add padding for better appearance */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1002;
+  padding: 10px;
 }
 
 .logo {
@@ -191,24 +187,23 @@ body::after {
   size: 3vw;
 }
 
-/* Navigation Links */
 .nav-links {
-  display: none; /* Shows the list */
+  display: none; 
   flex-direction: column;
   position: absolute;
-  top: 90px; /* Position below navbar */
+  top: 90px; 
   left: 0;
-  width: 100%; /* Full width */
-  background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent background */
+  width: 100%; 
+  background-color: rgba(0, 0, 0, 0.9); 
   padding: 10px 0;
-  z-index: 1001; /* Ensure it appears above other content */
+  z-index: 1001; 
 }
 
 .nav-links ul {
   list-style: none;
   padding: 0;
   margin: 0;
-  text-align: center; /* Center the links */
+  text-align: center; 
 }
 
 .nav-links ul li {
@@ -227,9 +222,8 @@ body::after {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Active State for Navbar */
 .navbar.active {
-  background-color: rgba(0, 0, 0, 0.9); /* Example background color */
+  background-color: rgba(0, 0, 0, 0.9); 
   display: flex;
 }
 
@@ -262,8 +256,8 @@ body::after {
 
 @media (max-width: 768px) {
   .NavBar_logo {
-    left: 50%; /* Center horizontally */
-    transform: translateX(-55%); /* Center horizontally */
+    left: 50%; 
+    transform: translateX(-55%);
   }
 
   body {
@@ -288,4 +282,24 @@ body::after {
     gap: 50px;
     font-size: 18px;
   }
+}
+
+.countdown-container {
+  margin: 20px 0;
+}
+
+#countdown-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#countdown-timer {
+  font-size: 32px;
+  font-weight: bold;
+  color: #ff0000;
+}
+
+#countdown-timer span {
+  display: inline-block;
+  margin: 0 5px;
 }
