@@ -1,10 +1,8 @@
 body {
   background: radial-gradient(circle at top, rgb(0, 67, 81) 0%, #000 80%);
-
   background-size: cover, cover;
   background-position: center, center;
   background-repeat: no-repeat;
-
   color: #ffffff;
   font-family: "Rubik Distressed", monospace;
   margin: 0;
@@ -23,7 +21,6 @@ body::after {
   width: 100vw;
   height: 100vh;
   background: url(/KITS-Fest/IMAGES1/techbackground.png);
-
   background-position: center;
   background-repeat: repeat;
   pointer-events: none;
@@ -42,7 +39,6 @@ body::after {
     height: 100vh;
     background: url(/KITS-Fest/IMAGES1/techbackground.png);
     background-size: cover;
-
     background-position: center;
     background-repeat: repeat;
     pointer-events: none;
@@ -59,10 +55,38 @@ body::after {
   margin-top: 120px;
 }
 
+.countdown-container {
+  margin: 20px 0;
+  font-family: Arial, sans-serif;
+}
+
+#countdown-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#countdown-timer {
+  font-size: 32px;
+  font-weight: bold;
+  color: #ff0000;
+}
+
+.time {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.label {
+  display: block;
+  font-size: 16px;
+  color: #ffffff;
+}
+
 .btn {
   position: relative;
   display: flex;
-  flex: wrap;
+  flex-wrap: wrap;
   gap: 20px;
   width: 250px;
   height: 150px;
@@ -104,7 +128,6 @@ body::after {
   width: 200px;
   text-align: center;
   justify-content: center;
-
   align-content: center;
 }
 
@@ -128,7 +151,7 @@ body::after {
   justify-content: center;
 }
 
-
+/* Navbar Styles */
 .navbar {
   position: fixed;
   top: 0;
@@ -138,9 +161,9 @@ body::after {
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  background-color: transparent; 
-  z-index: 1000; 
-  height: 70px; 
+  background-color: transparent;
+  z-index: 1000;
+  height: 70px;
 }
 
 .hamburger-menu {
@@ -188,22 +211,22 @@ body::after {
 }
 
 .nav-links {
-  display: none; 
+  display: none;
   flex-direction: column;
   position: absolute;
-  top: 90px; 
+  top: 90px;
   left: 0;
-  width: 100%; 
-  background-color: rgba(0, 0, 0, 0.9); 
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
   padding: 10px 0;
-  z-index: 1001; 
+  z-index: 1001;
 }
 
 .nav-links ul {
   list-style: none;
   padding: 0;
   margin: 0;
-  text-align: center; 
+  text-align: center;
 }
 
 .nav-links ul li {
@@ -223,7 +246,7 @@ body::after {
 }
 
 .navbar.active {
-  background-color: rgba(0, 0, 0, 0.9); 
+  background-color: rgba(0, 0, 0, 0.9);
   display: flex;
 }
 
@@ -256,7 +279,7 @@ body::after {
 
 @media (max-width: 768px) {
   .NavBar_logo {
-    left: 50%; 
+    left: 50%;
     transform: translateX(-55%);
   }
 
@@ -282,24 +305,4 @@ body::after {
     gap: 50px;
     font-size: 18px;
   }
-}
-
-.countdown-container {
-  margin: 20px 0;
-}
-
-#countdown-title {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-#countdown-timer {
-  font-size: 32px;
-  font-weight: bold;
-  color: #ff0000;
-}
-
-#countdown-timer span {
-  display: inline-block;
-  margin: 0 5px;
 }
