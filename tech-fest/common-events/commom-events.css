@@ -313,7 +313,14 @@ body::after {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
+    position: fixed; /* Ensures it stays visible */
+    top: 80px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8); /* Adds slight background for visibility */
+    padding: 15px;
+    border-radius: 10px;
+    z-index: 10000; /* Ensures it's on top */
 }
 
 #countdown-timer {
