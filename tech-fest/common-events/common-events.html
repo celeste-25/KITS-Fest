@@ -85,33 +85,39 @@
             <a href="../../index.html" class="to-home"> Home Page </a>
         </div>
     </div>
-
-    <script>
+    
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
         const countdownElement = document.getElementById('countdown-timer');
         const countdownTitle = document.getElementById('countdown-title');
         const targetDate = new Date('2025-07-03T23:59:00').getTime();
 
-        const countdownInterval = setInterval(() => {
+        function updateCountdown() {
             const now = new Date().getTime();
             const timeLeft = targetDate - now;
+
+            if (timeLeft <= 0) {
+                clearInterval(countdownInterval);
+                countdownTitle.style.display = 'none';
+                countdownElement.innerHTML = "<p style='color: red; font-size: 24px;'>Registration Closed</p>";
+                return;
+            }
 
             const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
             const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-            document.getElementById('days').innerText = days < 10 ? '0' + days : days;
-            document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
-            document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
-            document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+            document.getElementById('days').innerHTML = `${days}<span class="label">days</span>`;
+            document.getElementById('hours').innerHTML = `${hours}<span class="label">hours</span>`;
+            document.getElementById('minutes').innerHTML = `${minutes}<span class="label">minutes</span>`;
+            document.getElementById('seconds').innerHTML = `${seconds}<span class="label">seconds</span>`;
+        }
 
-            if (timeLeft < 0) {
-                clearInterval(countdownInterval);
-                countdownTitle.style.display = 'none';
-                countdownElement.innerHTML = "Registration Closed";
-            }
-        }, 1000);
-    </script>
+        updateCountdown();
+        const countdownInterval = setInterval(updateCountdown, 1000);
+    });
+</script>
 
     <script src="/KITS-Fest/navbar.js" defer></script>
 </body>
