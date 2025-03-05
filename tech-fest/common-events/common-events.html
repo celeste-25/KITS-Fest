@@ -4,21 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Common Events - CELESTE'25</title>
-    <link
-      rel="stylesheet"
-      href="/KITS-Fest/tech-fest/common-events/commom-events.css"
-    />
+    <link rel="stylesheet" href="/KITS-Fest/tech-fest/common-events/commom-events.css" />
   </head>
   <body>
     <nav class="navbar">
-      <!-- Hamburger Menu Button -->
       <button class="hamburger-menu" aria-label="Toggle navigation">
         <span class="line"></span>
         <span class="line"></span>
         <span class="line"></span>
       </button>
 
-      <!-- Logo -->
       <div class="NavBar_logo">
         <img alt="-logo" src="../../LOGO.png" class="logo" />
       </div>
@@ -27,7 +22,6 @@
         <ul>
           <li><a href="/KITS-Fest/index.html">Home</a></li>
           <li><a href="#about">About</a></li>
-
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -37,6 +31,20 @@
       <p class="event-title">
         <span class="p1">COMMON</span> <span class="p2">EVENTS</span>
       </p>
+    </div>
+
+    <div class="countdown-container">
+      <p id="countdown-title">Registration closes in:</p>
+      <div id="countdown-timer">
+          <span id="days">00</span>
+          <span class="label">days</span>
+          <span id="hours">00</span>
+          <span class="label">hours</span>
+          <span id="minutes">00</span>
+          <span class="label">minutes</span>
+          <span id="seconds">00</span>
+          <span class="label">seconds</span>
+      </div>
     </div>
 
     <div class="btn-position">
@@ -84,6 +92,33 @@
       </div>
     </div>
   </body>
+
+  <script>
+    const countdownElement = document.getElementById('countdown-timer');
+    const countdownTitle = document.getElementById('countdown-title');
+    const targetDate = new Date('2025-03-04T23:59:00').getTime();
+
+    const countdownInterval = setInterval(() => {
+        const now = new Date().getTime();
+        const timeLeft = targetDate - now;
+
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        document.getElementById('days').innerText = days < 10 ? '0' + days : days;
+        document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+        document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+        document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+
+        if (timeLeft < 0) {
+            clearInterval(countdownInterval);
+            countdownTitle.style.display = 'none';
+            countdownElement.innerHTML = "Registration Closed";
+        }
+    }, 1000);
+  </script>
 
   <script src="/KITS-Fest/navbar.js" defer></script>
 </html>
