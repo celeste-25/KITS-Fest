@@ -34,13 +34,13 @@
     </div>
 
     <div class="countdown-container">
-      <p id="countdown-title">Registration closes in:</p>
-      <div id="countdown-timer">
-          <div id="days" class="time">00<span class="label">days</span></div>
-          <div id="hours" class="time">00<span class="label">hours</span></div>
-          <div id="minutes" class="time">00<span class="label">minutes</span></div>
-          <div id="seconds" class="time">00<span class="label">seconds</span></div>
-      </div>
+        <p id="countdown-title">Registration closes in:</p>
+        <div id="countdown-timer">
+            <div id="days" class="time">00<span class="label">days</span></div>
+            <div id="hours" class="time">00<span class="label">hours</span></div>
+            <div id="minutes" class="time">00<span class="label">minutes</span></div>
+            <div id="seconds" class="time">00<span class="label">seconds</span></div>
+        </div>
     </div>
 
     <div class="btn-position">
@@ -80,7 +80,7 @@
         <div class="to-home">
             <a href="../tech-fest.html" class="to-home"> Previous Page </a>
         </div>
-        <br /><br />
+        <br><br>
         <div class="to-home">
             <a href="../../index.html" class="to-home"> Home Page </a>
         </div>
@@ -88,6 +88,7 @@
     
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+    console.log('DOM fully loaded and parsed');
     const countdownElement = document.getElementById('countdown-timer');
     const countdownTitle = document.getElementById('countdown-title');
     const targetDate = new Date('2025-07-03T23:59:00').getTime();
@@ -100,6 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
             clearInterval(countdownInterval);
             countdownTitle.style.display = 'none';
             countdownElement.innerHTML = "<p style='color: red; font-size: 24px;'>Registration Closed</p>";
+            console.log('Registration closed');
             return;
         }
 
@@ -112,13 +114,13 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('hours').innerHTML = `${hours}<span class="label"> hours</span>`;
         document.getElementById('minutes').innerHTML = `${minutes}<span class="label"> minutes</span>`;
         document.getElementById('seconds').innerHTML = `${seconds}<span class="label"> seconds</span>`;
+
+        console.log(`${days}d ${hours}h ${minutes}m ${seconds}s`);
     }
 
-    // Start the interval before calling the function
     const countdownInterval = setInterval(updateCountdown, 1000);
     updateCountdown();
 });
-
 </script>
 
     <script src="/KITS-Fest/navbar.js" defer></script>
