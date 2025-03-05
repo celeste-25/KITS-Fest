@@ -1,8 +1,10 @@
 body {
   background: radial-gradient(circle at top, rgb(0, 67, 81) 0%, #000 80%);
+
   background-size: cover, cover;
   background-position: center, center;
   background-repeat: no-repeat;
+
   color: #ffffff;
   font-family: "Rubik Distressed", monospace;
   margin: 0;
@@ -21,6 +23,7 @@ body::after {
   width: 100vw;
   height: 100vh;
   background: url(/KITS-Fest/IMAGES1/techbackground.png);
+
   background-position: center;
   background-repeat: repeat;
   pointer-events: none;
@@ -39,6 +42,7 @@ body::after {
     height: 100vh;
     background: url(/KITS-Fest/IMAGES1/techbackground.png);
     background-size: cover;
+
     background-position: center;
     background-repeat: repeat;
     pointer-events: none;
@@ -55,38 +59,10 @@ body::after {
   margin-top: 120px;
 }
 
-.countdown-container {
-  margin: 20px 0;
-  font-family: Arial, sans-serif;
-}
-
-#countdown-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-#countdown-timer {
-  font-size: 32px;
-  font-weight: bold;
-  color: #ff0000;
-}
-
-.time {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-.label {
-  display: block;
-  font-size: 16px;
-  color: #ffffff;
-}
-
 .btn {
   position: relative;
   display: flex;
-  flex-wrap: wrap;
+  flex: wrap;
   gap: 20px;
   width: 250px;
   height: 150px;
@@ -128,6 +104,7 @@ body::after {
   width: 200px;
   text-align: center;
   justify-content: center;
+
   align-content: center;
 }
 
@@ -151,21 +128,24 @@ body::after {
   justify-content: center;
 }
 
+/*** tech fest nav bar **/
+
 /* Navbar Styles */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100%; /* Full width of the page */
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px;
-  background-color: transparent;
-  z-index: 1000;
-  height: 70px;
+  justify-content: space-between; /* Space between hamburger and logo */
+  padding: 10px 20px; /* Add padding for spacing */
+  background-color: transparent; /* Keep transparent */
+  z-index: 1000; /* Ensure it stays on top */
+  height: 70px; /* Fixed height */
 }
 
+/* Hamburger Menu Button */
 .hamburger-menu {
   display: flex;
   flex-direction: column;
@@ -175,20 +155,21 @@ body::after {
   background: transparent;
   border: none;
   cursor: pointer;
-  margin-left: 20px;
+  margin-left: 20px; /* Add some margin for spacing */
   margin-top: 15px;
   margin-bottom: 10px;
-  z-index: 1003;
+  z-index: 1003; /* Keep above other elements */
   position: relative;
 }
 
 .hamburger-menu .line {
   width: 100%;
   height: 3px;
-  background-color: #fff;
+  background-color: #fff; /* Adjust color as needed */
   transition: all 0.3s ease;
 }
 
+/* Logo Positioning */
 .NavBar_logo {
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -196,11 +177,11 @@ body::after {
   border: 1px solid rgba(255, 255, 255, 0.2);
   width: 100%;
   height: 70px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1002;
-  padding: 10px;
+  position: absolute; /* Position absolutely */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
+  z-index: 1002; /* Ensure logo stays above menu */
+  padding: 10px; /* Add padding for better appearance */
 }
 
 .logo {
@@ -210,23 +191,24 @@ body::after {
   size: 3vw;
 }
 
+/* Navigation Links */
 .nav-links {
-  display: none;
+  display: none; /* Shows the list */
   flex-direction: column;
   position: absolute;
-  top: 90px;
+  top: 90px; /* Position below navbar */
   left: 0;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
+  width: 100%; /* Full width */
+  background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent background */
   padding: 10px 0;
-  z-index: 1001;
+  z-index: 1001; /* Ensure it appears above other content */
 }
 
 .nav-links ul {
   list-style: none;
   padding: 0;
   margin: 0;
-  text-align: center;
+  text-align: center; /* Center the links */
 }
 
 .nav-links ul li {
@@ -245,8 +227,9 @@ body::after {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
+/* Active State for Navbar */
 .navbar.active {
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.9); /* Example background color */
   display: flex;
 }
 
@@ -279,8 +262,8 @@ body::after {
 
 @media (max-width: 768px) {
   .NavBar_logo {
-    left: 50%;
-    transform: translateX(-55%);
+    left: 50%; /* Center horizontally */
+    transform: translateX(-55%); /* Center horizontally */
   }
 
   body {
@@ -307,39 +290,22 @@ body::after {
   }
 }
 
-
 .countdown-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: fixed; /* Ensures it stays visible */
-    top: 80px; /* Adjust as needed */
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.8); /* Adds slight background for visibility */
-    padding: 15px;
-    border-radius: 10px;
-    z-index: 10000; /* Ensures it's on top */
+  margin: 20px 0;
+}
+
+#countdown-title {
+  font-size: 24px;
+  font-weight: bold;
 }
 
 #countdown-timer {
-    display: flex;
-    gap: 15px;
-    font-size: 32px;
-    font-weight: bold;
-    color: #ff0000;
+  font-size: 32px;
+  font-weight: bold;
+  color: #ff0000;
 }
 
-.time {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.label {
-    font-size: 16px;
-    color: #ffffff;
+#countdown-timer span {
+  display: inline-block;
+  margin: 0 5px;
 }
